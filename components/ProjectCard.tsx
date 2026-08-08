@@ -10,7 +10,7 @@ export default function ProjectCard({ project, variant = "home" }: ProjectCardPr
   const titleSize = variant === "home" ? "text-[32px]" : "text-[28px]";
 
   return (
-    <div className="avp-card flex flex-col gap-5 rounded-card border border-border bg-bg-alt p-10">
+    <div className="avp-card flex h-full flex-col gap-5 rounded-card border border-border bg-bg-alt p-10">
       <div className="flex items-start justify-between">
         <span className="text-sm font-semibold text-fg-muted">{index}</span>
         <span className="text-sm text-fg-muted">{period}</span>

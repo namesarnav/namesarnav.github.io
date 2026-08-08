@@ -34,7 +34,7 @@ export default function WorkPage() {
         <div className="mx-auto max-w-[1600px]">
           <div className="grid grid-cols-3 gap-8 max-[860px]:grid-cols-1">
             {allProjects.map((project) => (
-              <Reveal key={project.index} amount={0.1} y={24}>
+              <Reveal key={project.index} amount={0.1} y={24} className="h-full">
                 <ProjectCard project={project} variant="index" />
               </Reveal>
             ))}

@@ -231,7 +231,7 @@ export default function Home() {
           </Reveal>
           <div className="grid grid-cols-3 gap-8 max-[860px]:grid-cols-1">
             {projects.map((project) => (
-              <Reveal key={project.index}>
+              <Reveal key={project.index} className="h-full">
                 <ProjectCard project={project} variant="home" />
               </Reveal>
             ))}
