@@ -9,6 +9,7 @@ import ArrowLink from "@/components/ArrowLink";
 import SectionHeader from "@/components/SectionHeader";
 import ProjectCard from "@/components/ProjectCard";
 import DotGrid from '@/components/DotGrid';
+import AskArnav from "@/components/AskArnav";
 
 import {
   typewriterPhrases,
@@ -22,8 +23,6 @@ import {
   skillGroups,
   socials,
 } from "@/lib/content";
-
-
 
 
 
@@ -73,6 +72,10 @@ export default function Home() {
               </ArrowLink>
             </div>
           </Reveal>
+
+          {/* <Reveal className="mt-10 flex justify-left">
+            <AskArnav />
+          </Reveal> */}
         </div>
 
         <Parallax speed={0.35} fixed className="absolute bottom-12 left-16 text-sm uppercase tracking-[.08em] text-fg-muted">
@@ -256,7 +259,7 @@ export default function Home() {
                 <div className="flex flex-col items-end gap-2.5">
                   <span className="text-sm font-semibold uppercase tracking-[.08em] text-fg-muted">Index — 06</span>
                   <ArrowLink href="/writing" className="text-base font-semibold">
-                    View all writing
+                    <u>View All Writing</u>
                   </ArrowLink>
                 </div>
               }
@@ -267,7 +270,9 @@ export default function Home() {
               <Reveal key={post.title} className="flex items-center gap-8 border-t border-border py-9">
                 <span className="w-24 shrink-0 text-sm text-fg-muted">{post.status}</span>
                 <h3 className="m-0 flex-1 text-[clamp(20px,2.8vw,34px)] font-semibold tracking-[-0.01em]">{post.title}</h3>
-                <span className="shrink-0 text-sm text-fg-muted">{post.topic}</span>
+                <ArrowLink href="https://medium.com/@namesarnav/adapting-llama-for-ner-tasks-2a9ab3425f46" className="text-base font-semibold">
+                  <span className="underline">Read Here</span>
+                </ArrowLink>
               </Reveal>
             ))}
             <div className="border-t border-border" />
@@ -300,7 +305,7 @@ export default function Home() {
                 target="_blank"
                 rel="noopener"
                 className="avp-social text-base font-semibold"
-                style={{ color: `light-dark(${social.lightColor ?? social.color}, ${social.color})` }}
+                style={{ color: social.color }}
               >
                 {social.label}
               </a>

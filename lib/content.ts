@@ -20,12 +20,13 @@ export interface Project {
   demo: string | null;
   code: string | null;
   pending?: boolean;
+  moreinfo?: string;
 }
 
 export interface Post {
-  status: string;
+  status?: string;
   title: string;
-  topic: string;
+  link: string;
 }
 
 export interface Course {
@@ -122,9 +123,9 @@ export const projectPlaceholders: Project[] = Array.from({ length: 10 }, (_, i) 
 export const allProjects: Project[] = [...projects, ...projectPlaceholders];
 
 export const posts: Post[] = [
-  { status: "Soon", title: "What breaks when LLMs meet clinical text", topic: "Generalization" },
-  { status: "Soon", title: "Fine-tuned PLMs vs. prompted LLMs: a fairer comparison", topic: "NLP" },
-  { status: "Soon", title: "Shipping Polish: lessons from a resume SaaS", topic: "Engineering" },
+  { status: "Medium", title: "Adapting LLaMA for NER Tasks: Customize your models using PEFT ", link: "Read Here ↗︎" },
+  { status: "Hashnode", title: "Fine-tuned PLMs vs. prompted LLMs: a fairer comparison", link: "Read Here ↗︎" },
+  { status: "Hashnode", title: "Shipping Polish: lessons from a resume SaaS", link: "Read Here ↗︎" },
 ];
 
 const postTopics = ["Research", "Engineering", "Notes", "ML", "Systems"];
@@ -132,7 +133,7 @@ const postTopics = ["Research", "Engineering", "Notes", "ML", "Systems"];
 export const postPlaceholders: Post[] = Array.from({ length: 10 }, (_, i) => ({
   status: "Soon",
   title: `Post ${String(i + 4).padStart(2, "0")} — coming soon`,
-  topic: postTopics[i % postTopics.length],
+  link: postTopics[i % postTopics.length],
 }));
 
 export const allPosts: Post[] = [...posts, ...postPlaceholders];
@@ -202,11 +203,8 @@ export const skillGroups: SkillGroup[] = [
         "LlamaIndex",
         "Ollama",
         "Pinecone",
-        "Chroma",
-        "Deep Learning",
-        "LLM Evaluation",
       ],
-      blue: ["JAX", "vLLM", "TensorRT", "n8n", "Gradio", "Streamlit"],
+      blue: ["JAX", "vLLM", "TensorRT", "n8n", "Gradio", "Streamlit", "Chroma",],
       gray: ["OpenCV", "YOLO", "spaCy", "ONNX"],
     }),
   },
@@ -219,7 +217,7 @@ export const skillGroups: SkillGroup[] = [
     index: "04",
     label: "Tools",
     items: mk({
-      green: ["Docker", "Terraform", "PostgreSQL", "MongoDB"],
+      green: ["Docker", "Terraform", "PostgreSQL", "MongoDB", "Claude Code", "OpenClaw"],
       blue: ["Kubernetes", "Jenkins", "Ansible"],
       gray: ["Google AI Studio"],
     }),
@@ -241,4 +239,6 @@ export const socials: Social[] = [
   { label: "Hashnode", color: "#2CE2B2", url: "https://hashnode.com/@namesarnav" },
   { label: "Leetcode", color: "#E85B03", url: "https://leetcode.com/namesarnav" },
   { label: "𝕏", color: "#FFFFFF", lightColor: "#100f0c", url: "https://x.com/namesarnav" },
+  { label: "Medium", color: "#FFFFFF", lightColor: "#100f0c", url: "https://medium.com/@namesarnav" },
+  { label: "Openreview", color: "#FFFFFF", lightColor: "#100f0c", url: "https://openreview.net/namesarnav" },
 ];

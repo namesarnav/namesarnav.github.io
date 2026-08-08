@@ -3,6 +3,20 @@
 ## Overview
 Personal portfolio for an ML engineer / LLM researcher. One long homepage (Hero → About → Education → Skills → Work → Writing → Contact) plus two index pages (`/work`, `/writing`). Swiss-grid typography on a **dark-only** canvas, a floating glass pill nav, scroll parallax, scroll-reveal, and a WebGL "warped glass" treatment on the hero name.
 
+## "Ask Arnav" chat (hero)
+The hero includes a real AI-backed chat ("Ask anything about Arnav") — see `components/AskArnav.tsx`. Because this site is a static export (`next.config.ts` → `output: "export"`) deployed to GitHub Pages, there's no server to hold an API key, so the chat calls a separate Cloudflare Worker backend in `worker/`.
+
+**Deploying the worker (one-time, or whenever `worker/src/knowledge.ts` changes):**
+```
+cd worker
+npm install
+npx wrangler login
+npx wrangler kv namespace create RATE_LIMIT   # paste the id into wrangler.toml
+npx wrangler secret put ANTHROPIC_API_KEY
+npx wrangler deploy                            # note the printed *.workers.dev URL
+```
+Then set `NEXT_PUBLIC_CHAT_API_URL` (see `.env.example`) to that URL and rebuild/redeploy the Next.js site as usual. `worker/src/knowledge.ts` mirrors the bio/projects/education/skills in `lib/content.ts` as a plain string for the system prompt — update it by hand if `lib/content.ts` changes, since the worker has no shared build step with the Next app.
+
 ## About the Design Files
 The files in `reference/` are **design references, not production code**. `Portfolio.dc.html`, `Projects.dc.html` and `Blog.dc.html` are authored in a proprietary "Design Component" templating format (`{{ }}` bindings, `<sc-for>` / `<sc-if>` control-flow tags, a `DCLogic` class, `<x-import>` mounts) that only runs inside the design tool — they will **not** execute as-is in a browser or React app.
 

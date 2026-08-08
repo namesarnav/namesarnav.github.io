@@ -40,7 +40,7 @@ export default function WritingPage() {
                   <h3 className="m-0 flex-1 text-[clamp(19px,2.4vw,28px)] font-semibold tracking-[-0.01em]">
                     {post.title}
                   </h3>
-                  <span className="shrink-0 text-sm text-fg-muted">{post.topic}</span>
+                  <span className="shrink-0 text-sm text-fg-muted">{post.link}</span>
                 </div>
               </div>
             </Reveal>

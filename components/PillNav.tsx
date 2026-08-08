@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useRef, useState, type MouseEvent } from "react";
+import { useEffect, useRef, useState, type MouseEvent } from "react";
 import ThemeTogglerButton from "@/components/ThemeTogglerButton";
 
 const links = [
@@ -20,10 +20,32 @@ interface PillNavProps {
 
 export default function PillNav({ home = true }: PillNavProps) {
   const [navOpen, setNavOpen] = useState(false);
+  const [activeId, setActiveId] = useState("");
   const navRef = useRef<HTMLElement | null>(null);
   const indicatorRef = useRef<HTMLSpanElement | null>(null);
 
   const prefix = home ? "" : "/";
+
+  // Scroll-spy: highlight the nav link for whichever section is centered in
+  // the viewport. Only meaningful on the homepage, where these ids exist.
+  useEffect(() => {
+    if (!home) return;
+    const sections = ["hero", ...links.map((link) => link.href.slice(1))]
+      .map((id) => document.getElementById(id))
+      .filter((el): el is HTMLElement => el !== null);
+    if (sections.length === 0) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) setActiveId(entry.target.id);
+        });
+      },
+      { rootMargin: "-45% 0px -50% 0px", threshold: 0 },
+    );
+    sections.forEach((el) => observer.observe(el));
+    return () => observer.disconnect();
+  }, [home]);
 
   const moveIndicator = (event: MouseEvent<HTMLAnchorElement>) => {
     const nav = navRef.current;
@@ -66,16 +88,20 @@ export default function PillNav({ home = true }: PillNavProps) {
           AV
         </Link>
         <div className="hidden items-center gap-0.5 min-[861px]:flex">
-          {links.map((link) => (
-            <Link
-              key={link.href}
-              href={`${prefix}${link.href}`}
-              onMouseEnter={moveIndicator}
-              className="avp-pilllink relative z-[1] rounded-full px-5 py-3 text-[15px] font-medium"
-            >
-              {link.label}
-            </Link>
-          ))}
+          {links.map((link) => {
+            const isActive = activeId === link.href.slice(1);
+            return (
+              <Link
+                key={link.href}
+                href={`${prefix}${link.href}`}
+                onMouseEnter={moveIndicator}
+                aria-current={isActive ? "true" : undefined}
+                className={`avp-pilllink relative z-[1] rounded-full px-5 py-3 text-[15px] font-medium ${isActive ? "text-fg" : ""}`}
+              >
+                {link.label}
+              </Link>
+            );
+          })}
           <a
             href="/Arnav-Verma-CV.pdf"
             download
@@ -104,11 +130,19 @@ export default function PillNav({ home = true }: PillNavProps) {
           className="fixed inset-0 z-[90] flex flex-col items-start justify-center gap-7 bg-bg p-12"
           onClick={() => setNavOpen(false)}
         >
-          {links.map((link) => (
-            <Link key={link.href} href={`${prefix}${link.href}`} className="text-4xl font-bold">
-              {link.label}
-            </Link>
-          ))}
+          {links.map((link) => {
+            const isActive = activeId === link.href.slice(1);
+            return (
+              <Link
+                key={link.href}
+                href={`${prefix}${link.href}`}
+                aria-current={isActive ? "true" : undefined}
+                className={`text-4xl font-bold ${isActive ? "text-accent" : ""}`}
+              >
+                {link.label}
+              </Link>
+            );
+          })}
           <ThemeTogglerButton className="mt-4" />
         </div>
       )}

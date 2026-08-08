@@ -1,0 +1,18 @@
+name = "arnav-ask-chat"
+main = "src/index.ts"
+compatibility_date = "2024-11-01"
+
+# Allowed origins for CORS — the deployed GitHub Pages site plus local dev.
+# Update ALLOWED_ORIGINS if the site's domain changes.
+[vars]
+ALLOWED_ORIGINS = "https://namesarnav.github.io,http://localhost:3000"
+ANTHROPIC_MODEL = "claude-haiku-4-5"
+RATE_LIMIT_PER_HOUR = "8"
+
+# Created via `npx wrangler kv namespace create RATE_LIMIT`.
+# Paste the resulting id below before deploying.
+[[kv_namespaces]]
+binding = "RATE_LIMIT"
+id = "REPLACE_WITH_KV_NAMESPACE_ID"
+
+# Set with `npx wrangler secret put ANTHROPIC_API_KEY` — never stored here.
