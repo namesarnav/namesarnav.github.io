@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+  html{scroll-behavior:smooth}
+  body{margin:0;font-family:'Instrument Sans','Helvetica Neue',Helvetica,Arial,sans-serif;-webkit-font-smoothing:antialiased}
+  .avp-root{--bg:#0c0c0c;--bg-alt:#161616;--fg:#f4f3ef;--fg-muted:#9a988f;--accent:#ff5147;--accent-rgb:255,81,71;--border:rgba(244,243,239,.14);--glass-bg:rgba(22,22,22,.5);--glass-border:rgba(244,243,239,.1);--shadow:rgba(0,0,0,.4);background:var(--bg);color:var(--fg)}
+  .avp-root a{color:var(--fg);text-decoration:none}
+  .avp-root a:hover{color:var(--accent)}
+  [data-reveal]{opacity:0;transform:translateY(28px);transition:opacity .7s cubic-bezier(.16,1,.3,1),transform .7s cubic-bezier(.16,1,.3,1)}
+  [data-reveal].is-visible{opacity:1;transform:none}
+  .avp-navlink{position:relative;padding-bottom:2px}
+  .avp-navlink::after{content:'';position:absolute;left:0;bottom:0;width:0;height:1px;background:var(--accent);transition:width .3s cubic-bezier(.16,1,.3,1)}
+  .avp-navlink:hover::after{width:100%}
+  .avp-card{position:relative;isolation:isolate;transition:transform .55s cubic-bezier(.16,1,.3,1)}
+  .avp-card::before{content:'';position:absolute;inset:0;border-radius:4px;padding:1.5px;background:linear-gradient(125deg,var(--accent),transparent 45%,transparent 55%,var(--accent));-webkit-mask:linear-gradient(#fff 0 0) content-box,linear-gradient(#fff 0 0);-webkit-mask-composite:xor;mask-composite:exclude;opacity:0;transition:opacity .5s ease;pointer-events:none}
+  .avp-card:hover{transform:translateY(-10px) scale(1.012)}
+  .avp-card:hover::before{opacity:1}
+  .avp-btn{position:relative;isolation:isolate;overflow:hidden;transition:transform .35s cubic-bezier(.16,1,.3,1),color .3s ease,border-color .3s ease}
+  .avp-btn::after{content:'';position:absolute;inset:0;background:var(--accent);transform:scaleX(0);transform-origin:left center;transition:transform .45s cubic-bezier(.16,1,.3,1);z-index:-1}
+  .avp-btn:hover::after{transform:scaleX(1)}
+  .avp-btn:hover{transform:translateY(-3px);border-color:var(--accent);color:#fff}
+  .avp-btn:active{transform:translateY(0) scale(.97)}
+  .avp-arrow{display:inline-block;transition:transform .3s cubic-bezier(.16,1,.3,1)}
+  .avp-link-arrow:hover .avp-arrow{transform:translate(3px,-3px)}
+  .avp-hamburger{display:none}
+  section,nav,footer{position:relative;z-index:1}
+  @media (max-width:860px){
+    .avp-desktop-nav{display:none !important}
+    .avp-hamburger{display:flex !important}
+    .avp-grid-3{grid-template-columns:1fr !important}
+    .avp-section-pad{padding-left:24px !important;padding-right:24px !important}
+  }
+</style>
+</helmet>
+<div class="avp-root" ref="{{rootRef}}" style="min-height:100vh;position:relative;overflow-x:clip">
+
+  <nav style="position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:18px 48px;background:var(--glass-bg);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);border-bottom:1px solid var(--glass-border)">
+    <a href="Portfolio.dc.html#hero" style="font-size:18px;font-weight:700;letter-spacing:-0.02em">ARNAV VERMA</a>
+    <div class="avp-desktop-nav" style="display:flex;align-items:center;gap:40px">
+      <a class="avp-navlink" href="Projects.dc.html" style="font-size:14px;font-weight:500;color:var(--accent)">Work</a>
+      <a class="avp-navlink" href="Blog.dc.html" style="font-size:14px;font-weight:500">Writing</a>
+      <a class="avp-navlink" href="Portfolio.dc.html#about" style="font-size:14px;font-weight:500">About</a>
+      <a class="avp-navlink" href="Portfolio.dc.html#contact" style="font-size:14px;font-weight:500">Contact</a>
+    </div>
+    <button class="avp-hamburger avp-btn" onClick="{{toggleNav}}" aria-label="Menu" style="width:36px;height:36px;border:1px solid var(--border);border-radius:999px;background:transparent;color:var(--fg);align-items:center;justify-content:center;cursor:pointer">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M3 12h18M3 18h18"></path></svg>
+    </button>
+  </nav>
+
+  <sc-if value="{{navOpen}}" hint-placeholder-val="{{false}}">
+    <div style="position:fixed;inset:0;z-index:90;background:var(--bg);display:flex;flex-direction:column;align-items:flex-start;justify-content:center;gap:28px;padding:48px" onClick="{{closeNav}}">
+      <a href="Projects.dc.html" style="font-size:36px;font-weight:700">Work</a>
+      <a href="Blog.dc.html" style="font-size:36px;font-weight:700">Writing</a>
+      <a href="Portfolio.dc.html#about" style="font-size:36px;font-weight:700">About</a>
+      <a href="Portfolio.dc.html#contact" style="font-size:36px;font-weight:700">Contact</a>
+    </div>
+  </sc-if>
+
+  <section class="avp-section-pad" style="padding:160px 48px 64px">
+    <div style="max-width:1400px;margin:0 auto">
+      <span data-parallax="-0.06" style="display:block;font-size:13px;font-weight:600;letter-spacing:.08em;color:var(--fg-muted);text-transform:uppercase;will-change:transform">Index — 02</span>
+      <h1 data-parallax="-0.06" style="font-size:clamp(48px,8vw,120px);line-height:.95;font-weight:700;letter-spacing:-0.03em;margin:16px 0 24px;will-change:transform">All Work.</h1>
+      <p style="font-size:clamp(16px,1.6vw,20px);color:var(--fg-muted);max-width:600px;margin:0">Every project, big or small — research pipelines, production apps, and things still in progress.</p>
+    </div>
+  </section>
+
+  <section class="avp-section-pad" style="padding:0 48px 140px">
+    <div style="max-width:1400px;margin:0 auto">
+      <div class="avp-grid-3" style="display:grid;grid-template-columns:repeat(3,1fr);gap:24px">
+        <sc-for list="{{projects}}" as="p" hint-placeholder-count="6">
+          <div class="avp-card" data-reveal="{{true}}" style="display:flex;flex-direction:column;gap:18px;padding:32px;border:1px solid var(--border);border-radius:4px;background:var(--bg-alt)">
+            <div style="display:flex;justify-content:space-between;align-items:flex-start">
+              <span style="font-size:13px;color:var(--fg-muted);font-weight:600">{{p.index}}</span>
+              <span style="font-size:13px;color:var(--fg-muted)">{{p.period}}</span>
+            </div>
+            <h3 style="font-size:24px;font-weight:700;margin:0;letter-spacing:-0.01em">{{p.title}}</h3>
+            <p style="font-size:15px;line-height:1.6;color:var(--fg-muted);margin:0;flex:1">{{p.description}}</p>
+            <div style="display:flex;flex-wrap:wrap;gap:8px">
+              <sc-for list="{{p.tags}}" as="tag" hint-placeholder-count="3">
+                <span style="font-size:11px;padding:5px 10px;border:1px solid var(--border);border-radius:999px;color:var(--fg-muted)">{{tag}}</span>
+              </sc-for>
+            </div>
+            <div style="display:flex;gap:20px;padding-top:12px;border-top:1px solid var(--border)">
+              <sc-if value="{{p.demo}}" hint-placeholder-val="{{false}}">
+                <a href="{{p.demo}}" target="_blank" rel="noopener" class="avp-link-arrow" style="font-size:13px;font-weight:600;display:flex;align-items:center;gap:5px">Demo <span class="avp-arrow">↗</span></a>
+              </sc-if>
+              <sc-if value="{{p.code}}" hint-placeholder-val="{{false}}">
+                <a href="{{p.code}}" target="_blank" rel="noopener" class="avp-link-arrow" style="font-size:13px;font-weight:600;display:flex;align-items:center;gap:5px">Code <span class="avp-arrow">↗</span></a>
+              </sc-if>
+              <sc-if value="{{p.pending}}" hint-placeholder-val="{{false}}">
+                <span style="font-size:13px;color:var(--fg-muted)">Case study in progress</span>
+              </sc-if>
+            </div>
+          </div>
+        </sc-for>
+      </div>
+    </div>
+  </section>
+
+  <footer style="padding:32px 48px;display:flex;justify-content:space-between;align-items:center;border-top:1px solid var(--border);flex-wrap:wrap;gap:12px">
+    <span style="font-size:13px;color:var(--fg-muted)">© 2026 Arnav Verma</span>
+    <a href="Portfolio.dc.html#hero" style="font-size:13px;color:var(--fg-muted);font-weight:600">← Back home</a>
+  </footer>
+
+</div>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  state = { navOpen: false };
+  rootRef = React.createRef();
+
+  componentDidMount() {
+    this._observer = new IntersectionObserver((entries) => {
+      entries.forEach((e) => {
+        if (e.isIntersecting) { e.target.classList.add('is-visible'); this._observer.unobserve(e.target); }
+      });
+    }, { threshold: 0.1 });
+    if (this.rootRef.current) this.rootRef.current.querySelectorAll('[data-reveal]').forEach((el) => this._observer.observe(el));
+    const nodes = this.rootRef.current ? Array.from(this.rootRef.current.querySelectorAll('[data-parallax]')) : [];
+    this._parallaxEls = nodes.map((el) => ({
+      el,
+      speed: parseFloat(el.dataset.parallax) || 0,
+      fixed: getComputedStyle(el).position === 'fixed',
+      docTop: el.getBoundingClientRect().top + window.scrollY
+    }));
+    this._onScroll = () => {
+      if (this._rafPending) return;
+      this._rafPending = true;
+      requestAnimationFrame(() => {
+        const y = window.scrollY, vh = window.innerHeight;
+        this._parallaxEls.forEach((p) => {
+          const raw = p.fixed ? y * p.speed : (p.docTop - y - vh / 2) * p.speed;
+          const limit = p.fixed ? 70 : 30;
+          p.el.style.transform = `translateY(${Math.max(-limit, Math.min(limit, raw))}px)`;
+        });
+        this._rafPending = false;
+      });
+    };
+    window.addEventListener('scroll', this._onScroll, { passive: true });
+    this._onScroll();
+  }
+
+  componentWillUnmount() {
+    if (this._observer) this._observer.disconnect();
+    window.removeEventListener('scroll', this._onScroll);
+  }
+
+
+
+  toggleNav = () => this.setState((s) => ({ navOpen: !s.navOpen }));
+  closeNav = () => this.setState({ navOpen: false });
+
+  renderVals() {
+    const placeholders = Array.from({ length: 10 }, (_, i) => ({
+      index: String(i + 4).padStart(2, '0'),
+      title: `Project ${String(i + 4).padStart(2, '0')}`,
+      period: '2026',
+      description: 'Case study write-up in progress — details coming soon.',
+      tags: ['Coming soon'],
+      demo: null, code: null, pending: true
+    }));
+    return {
+      navOpen: this.state.navOpen,
+      toggleNav: this.toggleNav,
+      closeNav: this.closeNav,
+      rootRef: this.rootRef,
+      dotSize: 10,
+      dotGap: 15,
+      dotProximity: 120,
+      dotShockRadius: 250,
+      dotShockStrength: 5,
+      dotResistance: 750,
+      dotReturnDuration: 1.5,
+      projects: [
+        { index: '01', title: 'Polish', period: '2025', description: 'Full-stack AI resume SaaS with Claude & Gemini-powered feedback, full version control with diff comparison, and Dockerized CI/CD on Railway.', tags: ['Next.js', 'Express', 'PostgreSQL', 'Redis'], demo: 'https://polish-client-production.up.railway.app/', code: 'https://github.com/PolishAI-app/polish', pending: false },
+        { index: '02', title: 'Marigold', period: '2025', description: 'AI study app that turns uploaded PDFs into Gemini-generated flashcards and timed quizzes, secured with JWT rotation and httpOnly cookies.', tags: ['React', 'FastAPI', 'MongoDB', 'PyMuPDF'], demo: 'https://marigold-production.up.railway.app/', code: 'https://github.com/namesarnav/marigold', pending: false },
+        { index: '03', title: 'LLM Generalization Study', period: '2025–Present', description: 'Multi-dimensional generalization study across 42 model configurations (LLaMA, Qwen, Mistral), evaluating domain shift, adversarial robustness and compositionality on temporal extraction.', tags: ['PyTorch', 'HuggingFace', 'RoBERTa', 'T5'], demo: null, code: 'https://github.com/namesarnav', pending: false },
+        ...placeholders
+      ]
+    };
+  }
+}
+
+</script>
+</body>
+</html>

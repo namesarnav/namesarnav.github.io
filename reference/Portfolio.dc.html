@@ -1,0 +1,542 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&amp;display=swap" rel="stylesheet">
+<style>
+  html{scroll-behavior:smooth}
+  body{margin:0;font-family:'Instrument Sans','Helvetica Neue',Helvetica,Arial,sans-serif;-webkit-font-smoothing:antialiased}
+  .avp-root{--bg:#0c0c0c;--bg-alt:#161616;--fg:#f4f3ef;--fg-muted:#9a988f;--accent:#ff5147;--accent-rgb:255,81,71;--border:rgba(244,243,239,.14);--glass-bg:rgba(22,22,22,.5);--glass-border:rgba(244,243,239,.1);--shadow:rgba(0,0,0,.3);background:var(--bg);color:var(--fg)}
+  .avp-root a{color:var(--fg);text-decoration:none}
+  .avp-root a:hover{color:var(--accent)}
+  [data-reveal]{opacity:0;transform:translateY(28px);transition:opacity .7s cubic-bezier(.16,1,.3,1),transform .7s cubic-bezier(.16,1,.3,1)}
+  [data-reveal].is-visible{opacity:1;transform:none}
+  .avp-navlink{position:relative;padding-bottom:2px}
+  .avp-navlink::after{content:'';position:absolute;left:0;bottom:0;width:0;height:1px;background:var(--accent);transition:width .3s cubic-bezier(.16,1,.3,1)}
+  .avp-navlink:hover::after{width:100%}
+  .avp-card{position:relative;isolation:isolate;transition:transform .55s cubic-bezier(.16,1,.3,1)}
+  .avp-card::before{content:'';position:absolute;inset:0;border-radius:4px;padding:1.5px;background:linear-gradient(125deg,var(--accent),transparent 45%,transparent 55%,var(--accent));-webkit-mask:linear-gradient(#fff 0 0) content-box,linear-gradient(#fff 0 0);-webkit-mask-composite:xor;mask-composite:exclude;opacity:0;transition:opacity .5s ease;pointer-events:none}
+  .avp-card:hover{transform:translateY(-10px) scale(1.012)}
+  .avp-card:hover::before{opacity:1}
+  .avp-btn{position:relative;isolation:isolate;overflow:hidden;transition:transform .35s cubic-bezier(.16,1,.3,1),color .3s ease,border-color .3s ease}
+  .avp-btn::after{content:'';position:absolute;inset:0;background:var(--accent);transform:scaleX(0);transform-origin:left center;transition:transform .45s cubic-bezier(.16,1,.3,1);z-index:-1}
+  .avp-btn:hover::after{transform:scaleX(1)}
+  .avp-btn:hover{transform:translateY(-3px);border-color:var(--accent);color:#fff}
+  .avp-btn:active{transform:translateY(0) scale(.97)}
+  .avp-arrow{display:inline-block;transition:transform .3s cubic-bezier(.16,1,.3,1)}
+  .avp-link-arrow:hover .avp-arrow{transform:translate(3px,-3px)}
+  .avp-hamburger{display:none}
+  .avp-pillnav{transform:translateX(-50%);animation:avp-navdrop .7s cubic-bezier(.16,1,.3,1) both}
+  @keyframes avp-navdrop{from{opacity:0;transform:translate(-50%,-24px)}to{opacity:1;transform:translate(-50%,0)}}
+  .avp-skill{color:var(--fg);border-color:var(--border);transition:border-color .3s ease,transform .3s cubic-bezier(.16,1,.3,1)}
+  .avp-skill:hover{transform:translateY(-3px)}
+  .avp-lv-gray:hover{border-color:rgba(244,243,239,.45)}
+  .avp-lv-green{border-color:rgba(74,222,128,.45)}
+  .avp-lv-green:hover{border-color:#4ade80}
+  .avp-lv-blue{border-color:rgba(96,165,250,.45)}
+  .avp-lv-blue:hover{border-color:#60a5fa}
+  .avp-pilllink{color:var(--fg-muted);transition:color .25s ease}
+  .avp-pilllink:hover{color:var(--fg)}
+  .avp-monogram{transition:transform .4s cubic-bezier(.16,1,.3,1)}
+  .avp-monogram:hover{transform:rotate(-8deg) scale(1.06)}
+  .avp-copybtn{transition:transform .3s cubic-bezier(.16,1,.3,1),background-color .3s ease,color .3s ease}
+  .avp-copybtn:hover{transform:translateY(-1px);background:var(--accent);color:#fff !important}
+  .avp-copybtn:active{transform:scale(.96)}
+  @keyframes avp-blink{0%,49%{opacity:1}50%,100%{opacity:0}}
+  .avp-cursor{display:inline-block;width:2px;height:.85em;background:var(--accent);margin-left:2px;vertical-align:-2px;animation:avp-blink 1s step-start infinite}
+  section,nav,footer{position:relative;z-index:1}
+  @media (max-width:860px){
+    .avp-desktop-nav{display:none !important}
+    .avp-hamburger{display:flex !important}
+    .avp-hero-head{font-size:clamp(44px,14vw,72px) !important}
+    .avp-grid-2{grid-template-columns:1fr !important}
+    .avp-grid-3{grid-template-columns:1fr !important}
+    .avp-section-pad{padding-left:24px !important;padding-right:24px !important}
+  }
+</style>
+</helmet>
+<div class="avp-root" ref="{{rootRef}}" style="min-height:100vh;position:relative;overflow-x:clip">
+
+  <!-- NAV -->
+  <nav class="avp-pillnav" ref="{{navRef}}" onMouseLeave="{{hideIndicator}}" style="position:fixed;top:22px;left:50%;z-index:100;display:flex;align-items:center;gap:4px;padding:7px;background:rgba(18,18,18,.72);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border:1px solid rgba(244,243,239,.1);border-radius:999px;box-shadow:0 22px 48px -24px rgba(0,0,0,.9)">
+    <span ref="{{indicatorRef}}" style="position:absolute;left:0;top:7px;height:38px;width:0;border-radius:999px;background:rgba(244,243,239,.09);opacity:0;transition:transform .38s cubic-bezier(.16,1,.3,1),width .38s cubic-bezier(.16,1,.3,1),opacity .25s ease;pointer-events:none"></span>
+    <a href="#hero" class="avp-monogram" aria-label="Home" style="position:relative;z-index:1;display:flex;align-items:center;justify-content:center;width:38px;height:38px;border-radius:999px;background:var(--fg);color:#0c0c0c;font-size:13px;font-weight:700;letter-spacing:-0.02em">AV</a>
+    <div class="avp-desktop-nav" style="display:flex;align-items:center;gap:2px">
+      <a class="avp-pilllink" href="#about" onMouseEnter="{{moveIndicator}}" style="position:relative;z-index:1;padding:10px 18px;border-radius:999px;font-size:14px;font-weight:500">About</a>
+      <a class="avp-pilllink" href="#education" onMouseEnter="{{moveIndicator}}" style="position:relative;z-index:1;padding:10px 18px;border-radius:999px;font-size:14px;font-weight:500">Education</a>
+      <a class="avp-pilllink" href="#skills" onMouseEnter="{{moveIndicator}}" style="position:relative;z-index:1;padding:10px 18px;border-radius:999px;font-size:14px;font-weight:500">Skills</a>
+      <a class="avp-pilllink" href="#work" onMouseEnter="{{moveIndicator}}" style="position:relative;z-index:1;padding:10px 18px;border-radius:999px;font-size:14px;font-weight:500">Work</a>
+      <a class="avp-pilllink" href="#writing" onMouseEnter="{{moveIndicator}}" style="position:relative;z-index:1;padding:10px 18px;border-radius:999px;font-size:14px;font-weight:500">Writing</a>
+      <a class="avp-pilllink" href="#contact" onMouseEnter="{{moveIndicator}}" style="position:relative;z-index:1;padding:10px 18px;border-radius:999px;font-size:14px;font-weight:500">Contact</a>
+      <a class="avp-copybtn" href="assets/Arnav-Verma-CV.pdf" download="" onMouseEnter="{{moveIndicator}}" style="position:relative;z-index:1;margin-left:6px;padding:10px 20px;border-radius:999px;background:var(--fg);color:#0c0c0c;font-size:14px;font-weight:600">CV</a>
+    </div>
+    <button class="avp-hamburger" onClick="{{toggleNav}}" aria-label="Menu" style="position:relative;z-index:1;width:38px;height:38px;border:none;border-radius:999px;background:rgba(244,243,239,.09);color:var(--fg);align-items:center;justify-content:center;cursor:pointer">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M3 12h18M3 18h18"></path></svg>
+    </button>
+  </nav>
+
+  <sc-if value="{{navOpen}}" hint-placeholder-val="{{false}}">
+    <div style="position:fixed;inset:0;z-index:90;background:var(--bg);display:flex;flex-direction:column;align-items:flex-start;justify-content:center;gap:28px;padding:48px" onClick="{{closeNav}}">
+      <a href="#about" style="font-size:36px;font-weight:700">About</a>
+      <a href="#education" style="font-size:36px;font-weight:700">Education</a>
+      <a href="#skills" style="font-size:36px;font-weight:700">Skills</a>
+      <a href="#work" style="font-size:36px;font-weight:700">Work</a>
+      <a href="#writing" style="font-size:36px;font-weight:700">Writing</a>
+      <a href="#contact" style="font-size:36px;font-weight:700">Contact</a>
+    </div>
+  </sc-if>
+
+  <!-- HERO -->
+  <section id="hero" style="min-height:100vh;display:flex;flex-direction:column;justify-content:center;padding:96px 48px 80px;position:relative;box-sizing:border-box" class="avp-section-pad">
+    <div style="max-width:1400px;margin:0 auto;width:100%;padding-bottom:72px">
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:28px" data-reveal="{{true}}" ref="{{revealRef0}}">
+        <span style="width:8px;height:8px;border-radius:999px;background:var(--accent)"></span>
+        <span style="font-size:13px;font-weight:600;letter-spacing:.08em;color:var(--fg-muted);text-transform:uppercase">{{typedText}}<span class="avp-cursor"></span></span>
+      </div>
+      <div class="avp-hero-head" data-parallax="-0.08" style="width:100%;height:clamp(200px,26vw,360px);will-change:transform">
+        <x-import component-from-global-scope="WarpText" from="./WarpText.jsx" text="{{heroName}}" color="#f4f3ef" font-family="'Instrument Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="{{heroFontSize}}" font-weight="{{heroFontWeight}}" letter-spacing="-0.035em" line-height="{{heroLineHeight}}" text-align="left" warp-strength="{{warpStrength}}" warp-scale="{{warpScale}}" speed="{{warpSpeed}}" pointer-influence="{{pointerInfluence}}" pointer-strength="{{pointerStrength}}" refraction="{{refraction}}" ripple="{{ripple}}" style="{{heroWarpStyle}}" hint-size="100%,340px"></x-import>
+      </div>
+      <div class="avp-grid-2" data-reveal="{{true}}" ref="{{revealRef2}}" style="display:grid;grid-template-columns:1.4fr 1fr;gap:40px;margin-top:40px;padding-top:32px;border-top:1px solid var(--border)">
+        <p style="font-size: clamp(18px,2.2vw,26px); line-height: 1.4; font-weight: 400; margin: 0; color: var(--fg-muted); max-width: 640px; text-align: justify">I build and evaluate large language models, from multi dimensional generalization research to production AI products used by real people.</p>
+        <div style="display:flex;flex-direction:column;gap:16px;align-items:flex-start">
+          <a href="#work" class="avp-btn" style="padding: 14px 28px; border-radius: 999px; background: var(--fg); color: var(--bg); font-size: 14px; font-weight: 600; position: relative; align-self: flex-end">View Work</a>
+          <a href="assets/Arnav-Verma-CV.pdf" download="" class="avp-navlink avp-link-arrow" style="font-size: 14px; font-weight: 600; display: flex; align-items: center; gap: 6px; text-align: left; align-self: flex-end">Download CV <span class="avp-arrow">↗</span></a>
+        </div>
+      </div>
+    </div>
+    <div data-parallax="0.35" style="position:absolute;bottom:40px;left:48px;font-size:12px;color:var(--fg-muted);letter-spacing:.08em;text-transform:uppercase;will-change:transform">Scroll — 01</div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about" class="avp-section-pad" style="padding:140px 48px;border-top:1px solid var(--border)">
+    <div style="max-width:1400px;margin:0 auto">
+      <div data-reveal="{{true}}" style="display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:64px;gap:24px;flex-wrap:wrap">
+        <h2 data-parallax="-0.04" style="font-size:clamp(36px,5vw,64px);font-weight:700;letter-spacing:-0.02em;margin:0;will-change:transform">About</h2>
+        <span style="font-size:13px;font-weight:600;letter-spacing:.08em;color:var(--fg-muted);text-transform:uppercase">Index — 02</span>
+      </div>
+      <div data-reveal="{{true}}" style="max-width:820px">
+        <div style="display: flex; flex-direction: column; gap: 24px; position: relative">
+          <p style="font-size: clamp(18px,2vw,24px); line-height: 1.5; margin: 0; font-weight: 400; text-align: justify">I'm a Master's student at NYU Courant researching how large language models generalize across domains, adversarial perturbations, and structural complexity — and I build production AI products on the side.</p>
+          <p style="font-size: 16px; line-height: 1.7; color: var(--fg-muted); margin: 0; text-align: left">Recent work spans a 42-configuration generalization study across LLaMA, Qwen and Mistral, fine-tuning RoBERTa/T5/GPT-2 baselines for sequence labeling, and shipping two full-stack AI products end to end.</p>
+          <a href="assets/Arnav-Verma-CV.pdf" download="" class="avp-btn" style="margin-top: 12px; padding: 14px 28px; border-radius: 999px; border: 1px solid var(--fg); background: transparent; color: var(--fg); font-size: 14px; font-weight: 600; width: fit-content">Download Full CV</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- EDUCATION -->
+  <section id="education" class="avp-section-pad" style="padding:140px 48px;border-top:1px solid var(--border)">
+    <div style="max-width:1400px;margin:0 auto">
+      <div data-reveal="{{true}}" style="display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:64px;gap:24px;flex-wrap:wrap">
+        <h2 data-parallax="-0.04" style="font-size:clamp(36px,5vw,64px);font-weight:700;letter-spacing:-0.02em;margin:0;will-change:transform">Education</h2>
+        <span data-parallax="-0.04" style="font-size:13px;font-weight:600;letter-spacing:.08em;color:var(--fg-muted);text-transform:uppercase;will-change:transform">Index — 03</span>
+      </div>
+
+      <sc-for list="{{education}}" as="school" hint-placeholder-count="2">
+        <div data-reveal="{{true}}" style="padding:40px 0;border-top:1px solid var(--border)">
+          <div class="avp-grid-2" style="display:grid;grid-template-columns:1.1fr 1fr;gap:56px;align-items:start">
+            <div style="display:flex;flex-direction:column;gap:14px">
+              <div style="display:flex;align-items:baseline;justify-content:space-between;gap:16px;flex-wrap:wrap">
+                <h3 style="font-size: clamp(24px,3vw,36px); font-weight: 700; letter-spacing: -0.015em; margin: 0; color: #F4F3EF">{{school.name}}</h3>
+                <span style="font-size:13px;color:var(--fg-muted);white-space:nowrap">{{school.period}}</span>
+              </div>
+              <div style="font-size:17px;color:var(--fg)">{{school.degree}}</div>
+              <div style="font-size:14px;color:var(--fg-muted)">{{school.meta}}</div>
+              <sc-if value="{{school.affiliations}}" hint-placeholder-val="{{true}}">
+                <div style="margin-top:14px">
+                  <div style="font-size:12px;font-weight:600;letter-spacing:.08em;color:var(--fg-muted);text-transform:uppercase;margin-bottom:12px">Affiliations</div>
+                  <div style="display:flex;flex-wrap:wrap;gap:8px">
+                    <sc-for list="{{school.affiliations}}" as="aff" hint-placeholder-count="3">
+                      <span style="font-size:13px;padding:7px 14px;border:1px solid var(--border);border-radius:999px;color:var(--fg)">{{aff}}</span>
+                    </sc-for>
+                  </div>
+                </div>
+              </sc-if>
+              <sc-if value="{{school.awards}}" hint-placeholder-val="{{true}}">
+                <div style="margin-top:18px">
+                  <div style="font-size:12px;font-weight:600;letter-spacing:.08em;color:var(--fg-muted);text-transform:uppercase;margin-bottom:12px">Awards &amp; Honors</div>
+                  <div style="display:flex;flex-direction:column;gap:10px">
+                    <sc-for list="{{school.awards}}" as="award" hint-placeholder-count="4">
+                      <div style="display:flex;align-items:baseline;gap:10px">
+                        <span style="width:6px;height:6px;border-radius:999px;background:var(--accent);flex-shrink:0"></span>
+                        <span style="font-size:15px;color:var(--fg)">{{award}}</span>
+                      </div>
+                    </sc-for>
+                  </div>
+                </div>
+              </sc-if>
+            </div>
+            <div>
+              <div style="font-size:12px;font-weight:600;letter-spacing:.08em;color:var(--fg-muted);text-transform:uppercase;margin-bottom:16px">Coursework</div>
+              <div style="display:flex;flex-direction:column">
+                <sc-for list="{{school.coursework}}" as="course" hint-placeholder-count="6">
+                  <div class="avp-course" style="display:flex;align-items:center;justify-content:space-between;gap:16px;padding:12px 0;border-bottom:1px solid var(--border)">
+                    <span style="font-size: 15px">{{course.name}}</span>
+                    <span style="font-size: 13px; font-weight: 600; color: #4ade80; white-space: nowrap">{{course.grade}}</span>
+                  </div>
+                </sc-for>
+              </div>
+            </div>
+          </div>
+        </div>
+      </sc-for>
+      <div style="border-top:1px solid var(--border)"></div>
+    </div>
+  </section>
+
+  <!-- SKILLS -->
+  <section id="skills" class="avp-section-pad" style="padding:140px 48px;border-top:1px solid var(--border)">
+    <div style="max-width:1400px;margin:0 auto">
+      <div data-reveal="{{true}}" style="display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:64px;gap:24px;flex-wrap:wrap">
+        <h2 data-parallax="-0.04" style="font-size:clamp(36px,5vw,64px);font-weight:700;letter-spacing:-0.02em;margin:0;will-change:transform">Skills</h2>
+        <span data-parallax="-0.04" style="font-size:13px;font-weight:600;letter-spacing:.08em;color:var(--fg-muted);text-transform:uppercase;will-change:transform">Index — 04</span>
+      </div>
+      <div data-reveal="{{true}}" style="display:flex;flex-wrap:wrap;gap:28px;margin-bottom:40px">
+        <div style="display:flex;align-items:center;gap:9px">
+          <span style="width:9px;height:9px;border-radius:999px;background:#4ade80"></span>
+          <span style="font-size:13px;color:var(--fg-muted)">Proficient · daily driver</span>
+        </div>
+        <div style="display:flex;align-items:center;gap:9px">
+          <span style="width:9px;height:9px;border-radius:999px;background:#60a5fa"></span>
+          <span style="font-size:13px;color:var(--fg-muted)">Working knowledge</span>
+        </div>
+        <div style="display:flex;align-items:center;gap:9px">
+          <span style="width:9px;height:9px;border-radius:999px;background:#6b6b6b"></span>
+          <span style="font-size:13px;color:var(--fg-muted)">Basic familiarity</span>
+        </div>
+      </div>
+      <div style="display:flex;flex-direction:column">
+        <sc-for list="{{skillGroups}}" as="group" hint-placeholder-count="4">
+          <div class="avp-grid-2" data-reveal="{{true}}" style="display:grid;grid-template-columns:220px 1fr;gap:32px;padding:32px 0;border-top:1px solid var(--border);align-items:start">
+            <div style="display:flex;align-items:baseline;gap:12px">
+              <span style="font-size:13px;color:var(--fg-muted);font-weight:600">{{group.index}}</span>
+              <span style="font-size:13px;font-weight:600;letter-spacing:.08em;text-transform:uppercase">{{group.label}}</span>
+            </div>
+            <div style="display:flex;flex-wrap:wrap;gap:10px">
+              <sc-for list="{{group.items}}" as="skill" hint-placeholder-count="6">
+                <span class="avp-skill {{skill.cls}}" style="font-size:14px;padding:9px 16px;border-width:1px;border-style:solid;border-radius:999px">{{skill.name}}</span>
+              </sc-for>
+            </div>
+          </div>
+        </sc-for>
+        <div style="border-top:1px solid var(--border)"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WORK -->
+  <section id="work" class="avp-section-pad" style="padding:140px 48px;border-top:1px solid var(--border)">
+    <div style="max-width:1400px;margin:0 auto">
+      <div data-reveal="{{true}}" ref="{{revealRef3}}" style="display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:64px;gap:24px;flex-wrap:wrap">
+        <h2 data-parallax="-0.04" style="font-size:clamp(36px,5vw,64px);font-weight:700;letter-spacing:-0.02em;margin:0;will-change:transform">Selected Work</h2>
+        <div style="display:flex;flex-direction:column;align-items:flex-end;gap:8px">
+          <span style="font-size:13px;font-weight:600;letter-spacing:.08em;color:var(--fg-muted);text-transform:uppercase">Index — 05</span>
+          <a href="Projects.dc.html" class="avp-link-arrow" style="font-size:14px;font-weight:600;display:flex;align-items:center;gap:5px">View all work <span class="avp-arrow">↗</span></a>
+        </div>
+      </div>
+      <div class="avp-grid-3" style="display:grid;grid-template-columns:repeat(3,1fr);gap:24px">
+        <sc-for list="{{projects}}" as="p" hint-placeholder-count="3">
+          <div class="avp-card" data-reveal="{{true}}" style="display:flex;flex-direction:column;gap:18px;padding:32px;border:1px solid var(--border);border-radius:4px;background:var(--bg-alt)">
+            <div style="display:flex;justify-content:space-between;align-items:flex-start">
+              <span style="font-size:13px;color:var(--fg-muted);font-weight:600">{{p.index}}</span>
+              <span style="font-size:13px;color:var(--fg-muted)">{{p.period}}</span>
+            </div>
+            <h3 style="font-size:26px;font-weight:700;margin:0;letter-spacing:-0.01em">{{p.title}}</h3>
+            <p style="font-size: 15px; line-height: 1.6; color: var(--fg-muted); margin: 0; flex: 1; text-align: left">{{p.description}}</p>
+            <div style="display:flex;flex-wrap:wrap;gap:8px">
+              <sc-for list="{{p.tags}}" as="tag" hint-placeholder-count="4">
+                <span style="font-size:11px;padding:5px 10px;border:1px solid var(--border);border-radius:999px;color:var(--fg-muted)">{{tag}}</span>
+              </sc-for>
+            </div>
+            <div style="display:flex;gap:20px;padding-top:12px;border-top:1px solid var(--border)">
+              <sc-if value="{{p.demo}}" hint-placeholder-val="{{true}}">
+                <a href="{{p.demo}}" target="_blank" rel="noopener" class="avp-link-arrow" style="font-size:13px;font-weight:600;display:flex;align-items:center;gap:5px">Demo <span class="avp-arrow">↗</span></a>
+              </sc-if>
+              <a href="{{p.code}}" target="_blank" rel="noopener" class="avp-link-arrow" style="font-size:13px;font-weight:600;display:flex;align-items:center;gap:5px">Code <span class="avp-arrow">↗</span></a>
+            </div>
+          </div>
+        </sc-for>
+      </div>
+    </div>
+  </section>
+
+  <!-- WRITING -->
+  <section id="writing" class="avp-section-pad" style="padding:140px 48px;border-top:1px solid var(--border)">
+    <div style="max-width:1400px;margin:0 auto">
+      <div data-reveal="{{true}}" style="display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:64px;gap:24px;flex-wrap:wrap">
+        <h2 data-parallax="-0.04" style="font-size:clamp(36px,5vw,64px);font-weight:700;letter-spacing:-0.02em;margin:0;will-change:transform">Writing</h2>
+        <div style="display:flex;flex-direction:column;align-items:flex-end;gap:8px">
+          <span style="font-size:13px;font-weight:600;letter-spacing:.08em;color:var(--fg-muted);text-transform:uppercase">Index — 06</span>
+          <a href="Blog.dc.html" class="avp-link-arrow" style="font-size:14px;font-weight:600;display:flex;align-items:center;gap:5px">View all writing <span class="avp-arrow">↗</span></a>
+        </div>
+      </div>
+      <div style="display:flex;flex-direction:column">
+        <sc-for list="{{posts}}" as="post" hint-placeholder-count="3">
+          <div data-reveal="{{true}}" style="display:flex;align-items:center;gap:24px;padding:28px 0;border-top:1px solid var(--border)">
+            <span style="font-size:13px;color:var(--fg-muted);width:90px;flex-shrink:0">{{post.status}}</span>
+            <h3 style="font-size:clamp(18px,2.4vw,28px);font-weight:600;margin:0;flex:1;letter-spacing:-0.01em">{{post.title}}</h3>
+            <span style="font-size:13px;color:var(--fg-muted);flex-shrink:0">{{post.topic}}</span>
+          </div>
+        </sc-for>
+        <div style="border-top:1px solid var(--border)"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact" class="avp-section-pad" style="padding:140px 48px 100px;border-top:1px solid var(--border)">
+    <div style="max-width:1400px;margin:0 auto" data-reveal="{{true}}">
+      <span data-parallax="-0.04" style="display:block;font-size:13px;font-weight:600;letter-spacing:.08em;color:var(--fg-muted);text-transform:uppercase;will-change:transform">Index — 07</span>
+      <h2 data-parallax="-0.04" style="font-size:clamp(36px,5vw,64px);font-weight:700;letter-spacing:-0.02em;margin:16px 0 48px;will-change:transform">Get in touch</h2>
+      <a href="mailto:av4445@nyu.edu" class="avp-link-arrow" data-parallax="-0.05" style="display:flex;align-items:center;gap:16px;font-size:clamp(28px,6vw,64px);font-weight:700;letter-spacing:-0.02em;margin-bottom:56px;width:fit-content;will-change:transform">av4445@nyu.edu <span class="avp-arrow" style="font-size:0.6em">↗</span></a>
+      <div style="display:flex;gap:40px;flex-wrap:wrap;padding-top:32px;border-top:1px solid var(--border)">
+        <a href="https://github.com/namesarnav" target="_blank" rel="noopener" style="font-size:14px;font-weight:600;color:#FFFFFF;display:inline-block;transition:transform .3s cubic-bezier(.2,.8,.2,1),opacity .3s ease;transform-origin:left center" style-hover="transform:scale(1.12);opacity:1">GitHub</a>
+        <a href="https://linkedin.com/in/namesarnav" target="_blank" rel="noopener" style="font-size:14px;font-weight:600;color:#C0DCFF;display:inline-block;transition:transform .3s cubic-bezier(.2,.8,.2,1),opacity .3s ease;transform-origin:left center" style-hover="transform:scale(1.12);opacity:1">LinkedIn</a>
+        <a href="https://huggingface.com/namesarnav" target="_blank" rel="noopener" style="font-size:14px;font-weight:600;color:#FFA744;display:inline-block;transition:transform .3s cubic-bezier(.2,.8,.2,1),opacity .3s ease;transform-origin:left center" style-hover="transform:scale(1.12);opacity:1">Hugging Face</a><a href="https://hashnode.com/@namesarnav" target="_blank" rel="noopener" style="font-size:14px;font-weight:600;color:#2CE2B2;display:inline-block;transition:transform .3s cubic-bezier(.2,.8,.2,1),opacity .3s ease;transform-origin:left center" style-hover="transform:scale(1.12);opacity:1">Hashnode</a><a href="https://leetcode.com/namesarnav" target="_blank" rel="noopener" style="font-size:14px;font-weight:600;color:#E85B03;display:inline-block;transition:transform .3s cubic-bezier(.2,.8,.2,1),opacity .3s ease;transform-origin:left center" style-hover="transform:scale(1.12);opacity:1">Leetcode</a><a href="https://x.com/namesarnav" target="_blank" rel="noopener" style="font-size:14px;font-weight:600;color:#FFFFFF;display:inline-block;transition:transform .3s cubic-bezier(.2,.8,.2,1),opacity .3s ease;transform-origin:left center" style-hover="transform:scale(1.12);opacity:1">𝕏</a>
+      </div>
+    </div>
+  </section>
+
+  <footer style="padding:32px 48px;display:flex;justify-content:space-between;align-items:center;border-top:1px solid var(--border);flex-wrap:wrap;gap:12px">
+    <span style="font-size:13px;color:var(--fg-muted)">© 2026 Arnav Verma</span>
+    <a href="#hero" style="font-size:13px;color:var(--fg-muted);font-weight:600">Back to top ↑</a>
+  </footer>
+
+</div>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;navStyle&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;default&quot;:&quot;glass&quot;,&quot;options&quot;:[&quot;glass&quot;,&quot;solid&quot;],&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Behavior&quot;},&quot;motionIntensity&quot;:{&quot;editor&quot;:&quot;range&quot;,&quot;default&quot;:0,&quot;min&quot;:0,&quot;max&quot;:2,&quot;step&quot;:0.25,&quot;unit&quot;:&quot;x&quot;,&quot;tsType&quot;:&quot;number&quot;,&quot;section&quot;:&quot;Behavior&quot;}}">
+class Component extends DCLogic {
+  state = { navOpen: false, typedText: '', copied: false };
+  rootRef = React.createRef();
+  navRef = React.createRef();
+  indicatorRef = React.createRef();
+  revealRef0 = React.createRef();
+  phrases = ['Machine Learning Engineer', 'LLM Researcher', 'Full-stack Builder', 'Open to opportunities'];
+
+  componentDidMount() {
+    this._observer = new IntersectionObserver((entries) => {
+      entries.forEach((e) => {
+        if (e.isIntersecting) {
+          e.target.classList.add('is-visible');
+          this._observer.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.15 });
+    if (this.rootRef.current) {
+      this.rootRef.current.querySelectorAll('[data-reveal]').forEach((el) => this._observer.observe(el));
+    }
+    this._runTypewriter(0, 0, 'typing');
+    const nodes = this.rootRef.current ? Array.from(this.rootRef.current.querySelectorAll('[data-parallax]')) : [];
+    this._parallaxEls = nodes.map((el) => ({
+      el,
+      speed: parseFloat(el.dataset.parallax) || 0,
+      fixed: getComputedStyle(el).position === 'fixed',
+      docTop: el.getBoundingClientRect().top + window.scrollY
+    }));
+    this._onScroll = () => {
+      if (this._rafPending) return;
+      this._rafPending = true;
+      requestAnimationFrame(() => {
+        const y = window.scrollY, vh = window.innerHeight;
+        this._parallaxEls.forEach((p) => {
+          const raw = p.fixed ? y * p.speed : (p.docTop - y - vh / 2) * p.speed;
+          const limit = p.fixed ? 70 : 30;
+          p.el.style.transform = `translateY(${Math.max(-limit, Math.min(limit, raw))}px)`;
+        });
+        this._rafPending = false;
+      });
+    };
+    window.addEventListener('scroll', this._onScroll, { passive: true });
+    this._onScroll();
+  }
+
+  componentWillUnmount() {
+    if (this._observer) this._observer.disconnect();
+    clearTimeout(this._typeTimer);
+    window.removeEventListener('scroll', this._onScroll);
+  }
+
+  _runTypewriter(phraseIndex, charLen, mode) {
+    let phrase = this.phrases[phraseIndex];
+    let delay = 55;
+    if (mode === 'typing') {
+      charLen += 1;
+      if (charLen >= phrase.length) { mode = 'pausing'; delay = 1400; }
+    } else if (mode === 'pausing') {
+      mode = 'deleting'; delay = 300;
+    } else {
+      charLen -= 1;
+      delay = 30;
+      if (charLen <= 0) { mode = 'typing'; phraseIndex = (phraseIndex + 1) % this.phrases.length; charLen = 0; delay = 300; }
+    }
+    this.setState({ typedText: phrase.slice(0, Math.max(charLen, 0)) });
+    this._typeTimer = setTimeout(() => this._runTypewriter(phraseIndex, charLen, mode), delay);
+  }
+
+  moveIndicator = (e) => {
+    const nav = this.navRef.current, ind = this.indicatorRef.current;
+    if (!nav || !ind) return;
+    const navRect = nav.getBoundingClientRect();
+    const rect = e.currentTarget.getBoundingClientRect();
+    ind.style.width = `${rect.width}px`;
+    ind.style.transform = `translateX(${rect.left - navRect.left}px)`;
+    ind.style.opacity = '1';
+  };
+  hideIndicator = () => {
+    if (this.indicatorRef.current) this.indicatorRef.current.style.opacity = '0';
+  };
+  copyEmail = () => {
+    const email = 'av4445@nyu.edu';
+    if (navigator.clipboard) navigator.clipboard.writeText(email).catch(() => {});
+    this.setState({ copied: true });
+    clearTimeout(this._copyTimer);
+    this._copyTimer = setTimeout(() => this.setState({ copied: false }), 1800);
+  };
+
+  toggleNav = () => this.setState((s) => ({ navOpen: !s.navOpen }));
+  closeNav = () => this.setState({ navOpen: false });
+
+
+  renderVals() {
+    const mk = (byLevel) => ['green', 'blue', 'gray'].flatMap((level) =>
+      (byLevel[level] || []).map((name) => ({ name, cls: `avp-lv-${level}` }))
+    );
+    const navStyle = this.props.navStyle ?? 'glass';
+    return {
+      navOpen: this.state.navOpen,
+      toggleNav: this.toggleNav,
+      closeNav: this.closeNav,
+      rootRef: this.rootRef,
+      navRef: this.navRef,
+      indicatorRef: this.indicatorRef,
+      moveIndicator: this.moveIndicator,
+      hideIndicator: this.hideIndicator,
+      copyEmail: this.copyEmail,
+      copyLabel: this.state.copied ? 'Copied!' : 'Copy this email',
+      dotSize: 10,
+      dotGap: 15,
+      dotProximity: 120,
+      dotShockRadius: 250,
+      dotShockStrength: 5,
+      dotResistance: 750,
+      dotReturnDuration: 1.5,
+      heroName: 'Arnav\nVerma.',
+      heroFontSize: 'clamp(64px, 10vw, 168px)',
+      heroFontWeight: 700,
+      heroLineHeight: 0.92,
+      heroWarpStyle: { height: 'clamp(200px, 26vw, 360px)' },
+      warpStrength: 0.09,
+      warpScale: 1.7,
+      warpSpeed: 0.55,
+      pointerInfluence: 0.42,
+      pointerStrength: 0.38,
+      refraction: 0.018,
+      ripple: true,
+      typedText: this.state.typedText,
+      navStyle,
+      projects: [
+        { index: '01', title: 'Polish', period: '2025', description: 'Full-stack AI resume SaaS with Claude & Gemini-powered feedback, full version control with diff comparison, and Dockerized CI/CD on Railway.', tags: ['Next.js', 'Express', 'PostgreSQL', 'Redis'], demo: 'https://polish-client-production.up.railway.app/', code: 'https://github.com/PolishAI-app/polish' },
+        { index: '02', title: 'Marigold', period: '2025', description: 'AI study app that turns uploaded PDFs into Gemini-generated flashcards and timed quizzes, secured with JWT rotation and httpOnly cookies.', tags: ['React', 'FastAPI', 'MongoDB', 'PyMuPDF'], demo: 'https://marigold-production.up.railway.app/', code: 'https://github.com/namesarnav/marigold' },
+        { index: '03', title: 'LLM Generalization Study', period: '2025–Present', description: 'Multi-dimensional generalization study across 42 model configurations (LLaMA, Qwen, Mistral), evaluating domain shift, adversarial robustness and compositionality on temporal extraction.', tags: ['PyTorch', 'HuggingFace', 'RoBERTa', 'T5'], demo: null, code: 'https://github.com/namesarnav' }
+      ],
+      posts: [
+        { status: 'Soon', title: 'What breaks when LLMs meet clinical text', topic: 'Generalization' },
+        { status: 'Soon', title: 'Fine-tuned PLMs vs. prompted LLMs: a fairer comparison', topic: 'NLP' },
+        { status: 'Soon', title: 'Shipping Polish: lessons from a resume SaaS', topic: 'Engineering' }
+      ],
+      education: [
+        {
+          name: 'New York University, Courant Institute of Mathematical Sciences',
+          degree: 'M.S. Computer Science',
+          period: 'Expected 05/28',
+          meta: 'Courant Institute of Mathematical Sciences · New York, NY',
+          affiliations: ['Tech@NYU', 'HackNYU'],
+          awards: null,
+          coursework: [
+            { name: 'Fundamental Algorithms', grade: 'In progress' },
+            { name: 'Machine Learning', grade: 'In progress' },
+            { name: 'Deep Learning', grade: 'In progress' }
+          ]
+        },
+        {
+          name: 'University of North Texas',
+          degree: 'B.S. Computer Science · Mathematics Minor',
+          period: '01/23 – 05/26',
+          meta: 'Denton, TX · GPA 3.70',
+          affiliations: ['IEEE Computer Society', 'UNT Computer Science Club', 'UNT AI Research Program'],
+          awards: [
+            "President's List",
+            "Dean's List",
+            'Undergraduate Research Fellowship',
+            'International Education Scholarship',
+            '1st Place — HackSMU \'24 & \'25, HackUNT \'23 & \'24',
+            '2nd Place — HackUTD \'24 · Runner-up — HackTX (UT Austin)'
+          ],
+          coursework: [
+            { name: 'Algorithms', grade: 'A+' },
+            { name: 'Artificial Intelligence', grade: 'A+' },
+            { name: 'Natural Language Processing', grade: 'A+' },
+            { name: 'Linear Algebra', grade: 'A+' },
+            { name: 'Data Structures', grade: 'A' },
+            { name: 'Operating Systems', grade: 'A' },
+            { name: 'Database Systems', grade: 'A' },
+            { name: 'Computer Networks', grade: 'A' },
+            { name: 'Discrete Mathematics', grade: 'A' },
+            { name: 'Probability & Statistics', grade: 'A' }
+          ]
+        }
+      ],
+      skillGroups: [
+        {
+          index: '01', label: 'Languages',
+          items: mk({ green: ['Python', 'C/C++'], blue: ['JavaScript', 'TypeScript'], gray: ['Rust', 'Flutter'] })
+        },
+        {
+          index: '02', label: 'AI / ML',
+          items: mk({
+            green: ['PyTorch', 'TensorFlow', 'Keras', 'Scikit-learn', 'NumPy', 'Pandas', 'HuggingFace', 'LangChain', 'LlamaIndex', 'Ollama', 'Pinecone', 'Chroma', 'Deep Learning', 'LLM Evaluation'],
+            blue: ['JAX', 'vLLM', 'TensorRT', 'n8n', 'Gradio', 'Streamlit'],
+            gray: ['OpenCV', 'YOLO', 'spaCy', 'ONNX']
+          })
+        },
+        {
+          index: '03', label: 'Libraries & Frameworks',
+          items: mk({
+            green: [],
+            blue: ['Flask', 'FastAPI', 'Express', 'Next.js', 'React', 'React Native'],
+            gray: []
+          })
+        },
+        {
+          index: '04', label: 'Tools',
+          items: mk({
+            green: ['Docker', 'Terraform', 'PostgreSQL', 'MongoDB'],
+            blue: ['Kubernetes', 'Jenkins', 'Ansible'],
+            gray: ['Google AI Studio']
+          })
+        },
+        {
+          index: '05', label: 'Concepts',
+          items: mk({
+            green: ['AI Agent Development', 'Software Development'],
+            blue: ['DevOps', 'API Development'],
+            gray: []
+          })
+        }
+      ]
+    };
+  }
+}
+
+</script>
+</body>
+</html>
