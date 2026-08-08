@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Instrument_Sans } from "next/font/google";
 import SmoothScroll from "@/components/SmoothScroll";
 import "./globals.css";
+import DotGrid from "@/components/DotGrid";
 
 const instrumentSans = Instrument_Sans({
   variable: "--font-instrument-sans",
@@ -21,6 +22,20 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html lang="en" className={`${instrumentSans.variable} h-full`}>
       <body className="min-h-full bg-bg text-fg antialiased">
+          <div style={{ width: '100%', height: '65%', position: 'absolute' }}>
+                  <DotGrid
+                    dotSize={5}
+                    gap={15}
+                    baseColor="#2F293A"
+                    activeColor="#ff5959"
+                    proximity={120}
+                    shockRadius={250}
+                    shockStrength={5}
+                    resistance={750}
+                    style={{marginRight: 'spacing' + 'em'}}
+                    returnDuration={1.5}
+                  />
+                </div>
         <SmoothScroll />
         {children}
       </body>

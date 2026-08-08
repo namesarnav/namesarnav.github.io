@@ -8,6 +8,8 @@ import Button from "@/components/Button";
 import ArrowLink from "@/components/ArrowLink";
 import SectionHeader from "@/components/SectionHeader";
 import ProjectCard from "@/components/ProjectCard";
+import DotGrid from '@/components/DotGrid';
+
 import {
   typewriterPhrases,
   heroIntro,
@@ -20,6 +22,10 @@ import {
   skillGroups,
   socials,
 } from "@/lib/content";
+
+
+
+
 
 export default function Home() {
   return (
@@ -34,6 +40,7 @@ export default function Home() {
             <Typewriter phrases={typewriterPhrases} />
           </Reveal>
 
+        
           <Parallax speed={-0.08} className="w-full" style={{ height: "clamp(240px, 30vw, 420px)" }}>
             <WarpText
               text={"Arnav\nVerma."}
