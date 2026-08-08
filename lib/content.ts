@@ -46,6 +46,8 @@ export interface Education {
 export interface Social {
   label: string;
   color: string;
+  /** Override color for light mode, for brand colors (near-white/pale) that lose contrast on a light background */
+  lightColor?: string;
   url: string;
 }
 
@@ -233,10 +235,10 @@ export const skillGroups: SkillGroup[] = [
 ];
 
 export const socials: Social[] = [
-  { label: "GitHub", color: "#FFFFFF", url: "https://github.com/namesarnav" },
-  { label: "LinkedIn", color: "#C0DCFF", url: "https://linkedin.com/in/namesarnav" },
+  { label: "GitHub", color: "#FFFFFF", lightColor: "#100f0c", url: "https://github.com/namesarnav" },
+  { label: "LinkedIn", color: "#C0DCFF", lightColor: "#0A66C2", url: "https://linkedin.com/in/namesarnav" },
   { label: "Hugging Face", color: "#FFA744", url: "https://huggingface.co/namesarnav" },
   { label: "Hashnode", color: "#2CE2B2", url: "https://hashnode.com/@namesarnav" },
   { label: "Leetcode", color: "#E85B03", url: "https://leetcode.com/namesarnav" },
-  { label: "𝕏", color: "#FFFFFF", url: "https://x.com/namesarnav" },
+  { label: "𝕏", color: "#FFFFFF", lightColor: "#100f0c", url: "https://x.com/namesarnav" },
 ];

@@ -44,7 +44,6 @@ export default function Home() {
           <Parallax speed={-0.08} className="w-full" style={{ height: "clamp(240px, 30vw, 420px)" }}>
             <WarpText
               text={"Arnav\nVerma."}
-              color="#f4f3ef"
               fontFamily="'Instrument Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif"
               fontSize="clamp(80px, 12vw, 200px)"
               fontWeight={700}
@@ -111,7 +110,7 @@ export default function Home() {
               <div className="grid grid-cols-[1.1fr_1fr] gap-16 max-[860px]:grid-cols-1">
                 <div className="flex flex-col gap-4">
                   <div className="flex flex-wrap items-baseline justify-between gap-4">
-                    <h3 className="m-0 text-[clamp(28px,3.6vw,44px)] font-bold tracking-[-0.015em] text-[#F4F3EF]">
+                    <h3 className="m-0 text-[clamp(28px,3.6vw,44px)] font-bold tracking-[-0.015em] text-fg">
                       {school.name}
                     </h3>
                     <span className="whitespace-nowrap text-sm text-fg-muted">{school.period}</span>
@@ -301,7 +300,7 @@ export default function Home() {
                 target="_blank"
                 rel="noopener"
                 className="avp-social text-base font-semibold"
-                style={{ color: social.color }}
+                style={{ color: `light-dark(${social.lightColor ?? social.color}, ${social.color})` }}
               >
                 {social.label}
               </a>

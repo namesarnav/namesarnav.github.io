@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Instrument_Sans } from "next/font/google";
+import { ThemeProvider } from "next-themes";
 import SmoothScroll from "@/components/SmoothScroll";
 import "./globals.css";
 import DotGrid from "@/components/DotGrid";
@@ -20,9 +21,10 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
-    <html lang="en" className={`${instrumentSans.variable} h-full`}>
+    <html lang="en" className={`${instrumentSans.variable} h-full`} suppressHydrationWarning>
       <body className="min-h-full bg-bg text-fg antialiased">
-          <div style={{ width: '100%', height: '65%', position: 'absolute' }}>
+        <ThemeProvider attribute="class" defaultTheme="dark" enableSystem disableTransitionOnChange>
+          {/* <div style={{ width: '100%', height: '65%', position: 'absolute' }}>
                   <DotGrid
                     dotSize={5}
                     gap={15}
@@ -35,9 +37,10 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
                     style={{marginRight: 'spacing' + 'em'}}
                     returnDuration={1.5}
                   />
-                </div>
-        <SmoothScroll />
-        {children}
+                </div> */}
+          <SmoothScroll />
+          {children}
+        </ThemeProvider>
       </body>
     </html>
   );

@@ -3,14 +3,14 @@
 @theme {
   --font-sans: var(--font-instrument-sans), "Helvetica Neue", Helvetica, Arial, sans-serif;
 
-  --color-bg: #0c0c0c;
-  --color-bg-alt: #161616;
-  --color-fg: #f4f3ef;
-  --color-fg-muted: #9a988f;
+  --color-bg: var(--av-bg);
+  --color-bg-alt: var(--av-bg-alt);
+  --color-fg: var(--av-fg);
+  --color-fg-muted: var(--av-fg-muted);
   --color-accent: #ff5147;
-  --color-border: rgba(244, 243, 239, 0.14);
-  --color-glass-bg: rgba(22, 22, 22, 0.5);
-  --color-glass-border: rgba(244, 243, 239, 0.1);
+  --color-border: var(--av-border);
+  --color-glass-bg: var(--av-glass-bg);
+  --color-glass-border: var(--av-glass-border);
 
   --color-lv-green: #4ade80;
   --color-lv-blue: #60a5fa;
@@ -20,6 +20,36 @@
 }
 
 @layer base {
+  :root {
+    color-scheme: dark;
+    --av-bg: #0c0c0c;
+    --av-bg-alt: #161616;
+    --av-fg: #f4f3ef;
+    --av-fg-rgb: 244, 243, 239;
+    --av-fg-muted: #9a988f;
+    --av-border: rgba(244, 243, 239, 0.14);
+    --av-glass-bg: rgba(22, 22, 22, 0.5);
+    --av-glass-border: rgba(244, 243, 239, 0.1);
+    --av-nav-bg: rgba(18, 18, 18, 0.72);
+    --av-nav-border: rgba(244, 243, 239, 0.1);
+    --av-pill-hover: rgba(244, 243, 239, 0.09);
+  }
+
+  .light {
+    color-scheme: light;
+    --av-bg: #f7f6f2;
+    --av-bg-alt: #ececE5;
+    --av-fg: #100f0c;
+    --av-fg-rgb: 16, 15, 12;
+    --av-fg-muted: #6f6b60;
+    --av-border: rgba(16, 15, 12, 0.12);
+    --av-glass-bg: rgba(247, 246, 242, 0.6);
+    --av-glass-border: rgba(16, 15, 12, 0.08);
+    --av-nav-bg: rgba(255, 255, 255, 0.72);
+    --av-nav-border: rgba(16, 15, 12, 0.1);
+    --av-pill-hover: rgba(16, 15, 12, 0.06);
+  }
+
   html {
     scroll-behavior: smooth;
   }
@@ -45,6 +75,20 @@
   footer {
     position: relative;
     z-index: 1;
+  }
+
+  /* View Transitions theme wipe — see ThemeTogglerButton. Disable the
+     default cross-fade so only our clip-path animation is visible. */
+  ::view-transition-old(root),
+  ::view-transition-new(root) {
+    animation: none;
+    mix-blend-mode: normal;
+  }
+  ::view-transition-old(root) {
+    z-index: 1;
+  }
+  ::view-transition-new(root) {
+    z-index: 2;
   }
 
   /* Lenis smooth-scroll: let it own scroll-behavior once active, and honor its stop/prevent states */
@@ -176,7 +220,7 @@
     transform: translateY(-3px);
   }
   .avp-lv-gray:hover {
-    border-color: rgba(244, 243, 239, 0.45);
+    border-color: rgba(var(--av-fg-rgb), 0.45);
   }
   .avp-lv-green {
     border-color: rgba(74, 222, 128, 0.45);

@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { useRef, useState, type MouseEvent } from "react";
+import ThemeTogglerButton from "@/components/ThemeTogglerButton";
 
 const links = [
   { href: "#about", label: "About" },
@@ -46,21 +47,21 @@ export default function PillNav({ home = true }: PillNavProps) {
         onMouseLeave={hideIndicator}
         className="avp-pillnav fixed top-6 left-1/2 z-[100] flex items-center gap-1 rounded-full border p-2 shadow-[0_22px_48px_-24px_rgba(0,0,0,0.9)]"
         style={{
-          background: "rgba(18,18,18,.72)",
+          background: "var(--av-nav-bg)",
           backdropFilter: "blur(20px)",
           WebkitBackdropFilter: "blur(20px)",
-          borderColor: "rgba(244,243,239,.1)",
+          borderColor: "var(--av-nav-border)",
         }}
       >
         <span
           ref={indicatorRef}
           className="pointer-events-none absolute left-0 top-2 h-11 w-0 rounded-full opacity-0 transition-[transform,width] duration-[.38s] ease-[cubic-bezier(.16,1,.3,1)]"
-          style={{ background: "rgba(244,243,239,.09)", transitionProperty: "transform, width, opacity" }}
+          style={{ background: "var(--av-pill-hover)", transitionProperty: "transform, width, opacity" }}
         />
         <Link
           href={`${prefix}#hero`}
           aria-label="Home"
-          className="avp-monogram relative z-[1] flex h-11 w-11 items-center justify-center rounded-full bg-fg text-sm font-bold tracking-[-0.02em] text-[#0c0c0c]"
+          className="avp-monogram relative z-[1] flex h-11 w-11 items-center justify-center rounded-full bg-fg text-sm font-bold tracking-[-0.02em] text-bg"
         >
           AV
         </Link>
@@ -79,17 +80,18 @@ export default function PillNav({ home = true }: PillNavProps) {
             href="/Arnav-Verma-CV.pdf"
             download
             onMouseEnter={moveIndicator}
-            className="avp-copybtn relative z-[1] ml-2 rounded-full bg-fg px-6 py-3 text-[15px] font-semibold text-[#0c0c0c]"
+            className="avp-copybtn relative z-[1] ml-2 rounded-full bg-fg px-6 py-3 text-[15px] font-semibold text-bg"
           >
             CV
           </a>
+          <ThemeTogglerButton className="ml-1" />
         </div>
         <button
           type="button"
           aria-label="Menu"
           onClick={() => setNavOpen((v) => !v)}
           className="relative z-[1] flex h-11 w-11 items-center justify-center rounded-full text-fg min-[861px]:hidden"
-          style={{ background: "rgba(244,243,239,.09)" }}
+          style={{ background: "var(--av-pill-hover)" }}
         >
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
             <path d="M3 6h18M3 12h18M3 18h18" />
@@ -107,6 +109,7 @@ export default function PillNav({ home = true }: PillNavProps) {
               {link.label}
             </Link>
           ))}
+          <ThemeTogglerButton className="mt-4" />
         </div>
       )}
     </>

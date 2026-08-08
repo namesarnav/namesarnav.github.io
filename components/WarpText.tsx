@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, type CSSProperties } from "react";
 import { Renderer, Program, Mesh, Triangle, Texture, type OGLRenderingContext } from "ogl";
+import { useTheme } from "next-themes";
 
 const vertex = `#version 300 es
 in vec2 position;
@@ -263,7 +264,7 @@ const syncUniforms = (program: Program, props: WarpTextTuneableProps) => {
 
 export default function WarpText({
   text = "Bend the moment",
-  color = "#f8f5ff",
+  color,
   warpStrength = 0.08,
   warpScale = 1.7,
   speed = 0.55,
@@ -280,10 +281,15 @@ export default function WarpText({
   className = "",
   style,
 }: WarpTextProps) {
+  const { resolvedTheme } = useTheme();
+  // Falls back to the current theme's ink color when no explicit `color` is passed,
+  // so the canvas text stays legible after a light/dark toggle.
+  const resolvedColor = color ?? (resolvedTheme === "light" ? "#100f0c" : "#f4f3ef");
+
   const containerRef = useRef<HTMLDivElement | null>(null);
   const propsRef = useRef<WarpTextTuneableProps>({
     text,
-    color,
+    color: resolvedColor,
     fontSize,
     fontWeight,
     fontFamily,
@@ -304,7 +310,7 @@ export default function WarpText({
   // eslint-disable-next-line react-hooks/refs
   propsRef.current = {
     text,
-    color,
+    color: resolvedColor,
     fontSize,
     fontWeight,
     fontFamily,
@@ -327,7 +333,7 @@ export default function WarpText({
     }
   }, [
     text,
-    color,
+    resolvedColor,
     fontSize,
     fontWeight,
     fontFamily,
