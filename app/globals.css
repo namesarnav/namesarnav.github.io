@@ -300,6 +300,16 @@
     white-space: nowrap;
     border: 0;
   }
+
+  /* Vibe button equalizer bars */
+  .avp-eq-bar {
+    transform-origin: bottom;
+    animation: avp-eq 0.9s ease-in-out infinite;
+  }
+
+  .avp-vibe-dot {
+    animation: avp-pulse 1.4s ease-in-out infinite;
+  }
 }
 
 @keyframes avp-navdrop {
@@ -321,6 +331,28 @@
   50%,
   100% {
     opacity: 0;
+  }
+}
+
+@keyframes avp-eq {
+  0%,
+  100% {
+    transform: scaleY(0.3);
+  }
+  50% {
+    transform: scaleY(1);
+  }
+}
+
+@keyframes avp-pulse {
+  0%,
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.4;
+    transform: scale(0.75);
   }
 }
 

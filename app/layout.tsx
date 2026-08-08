@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Instrument_Sans } from "next/font/google";
 import { ThemeProvider } from "next-themes";
 import SmoothScroll from "@/components/SmoothScroll";
+import VibeButton from "@/components/VibeButton";
 import "./globals.css";
 import DotGrid from "@/components/DotGrid";
 
@@ -39,6 +40,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
                   />
                 </div> */}
           <SmoothScroll />
+          <VibeButton />
           {children}
         </ThemeProvider>
       </body>
