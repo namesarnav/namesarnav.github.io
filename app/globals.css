@@ -19,194 +19,230 @@
   --radius-card: 4px;
 }
 
-html {
-  scroll-behavior: smooth;
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    margin: 0;
+    background: var(--color-bg);
+    color: var(--color-fg);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+  }
+
+  a {
+    color: var(--color-fg);
+    text-decoration: none;
+  }
+  a:hover {
+    color: var(--color-accent);
+  }
+
+  section,
+  nav,
+  footer {
+    position: relative;
+    z-index: 1;
+  }
 }
 
-body {
-  margin: 0;
-  background: var(--color-bg);
-  color: var(--color-fg);
-  font-family: var(--font-sans);
-  -webkit-font-smoothing: antialiased;
+@layer components {
+  /* Nav text link — growing underline */
+  .avp-navlink {
+    position: relative;
+    padding-bottom: 2px;
+  }
+  .avp-navlink::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 0;
+    height: 1px;
+    background: var(--color-accent);
+    transition: width 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .avp-navlink:hover::after {
+    width: 100%;
+  }
+
+  /* Trailing arrow nudge */
+  .avp-arrow {
+    display: inline-block;
+    transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .avp-link-arrow:hover .avp-arrow {
+    transform: translate(3px, -3px);
+  }
+
+  /* Solid/outline button sweep */
+  .avp-btn {
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
+    transition:
+      transform 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+      color 0.3s ease,
+      border-color 0.3s ease;
+  }
+  .avp-btn::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: var(--color-accent);
+    transform: scaleX(0);
+    transform-origin: left center;
+    transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+    z-index: -1;
+  }
+  .avp-btn:hover::after {
+    transform: scaleX(1);
+  }
+  .avp-btn:hover {
+    transform: translateY(-3px);
+    border-color: var(--color-accent);
+    color: #fff;
+  }
+  .avp-btn:active {
+    transform: translateY(0) scale(0.97);
+  }
+
+  /* Work card — lift + gradient ring */
+  .avp-card {
+    position: relative;
+    isolation: isolate;
+    transition: transform 0.55s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .avp-card::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: var(--radius-card);
+    padding: 1.5px;
+    background: linear-gradient(125deg, var(--color-accent), transparent 45%, transparent 55%, var(--color-accent));
+    -webkit-mask:
+      linear-gradient(#fff 0 0) content-box,
+      linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+    pointer-events: none;
+  }
+  .avp-card:hover {
+    transform: translateY(-10px) scale(1.012);
+  }
+  .avp-card:hover::before {
+    opacity: 1;
+  }
+
+  /* Writing-index row hover */
+  .avp-row {
+    transition:
+      padding-left 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+      border-color 0.3s ease;
+  }
+  .avp-row:hover {
+    padding-left: 12px;
+    border-color: var(--color-fg);
+  }
+
+  /* Skill pills */
+  .avp-skill {
+    color: var(--color-fg);
+    border-color: var(--color-border);
+    transition:
+      border-color 0.3s ease,
+      transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .avp-skill:hover {
+    transform: translateY(-3px);
+  }
+  .avp-lv-gray:hover {
+    border-color: rgba(244, 243, 239, 0.45);
+  }
+  .avp-lv-green {
+    border-color: rgba(74, 222, 128, 0.45);
+  }
+  .avp-lv-green:hover {
+    border-color: var(--color-lv-green);
+  }
+  .avp-lv-blue {
+    border-color: rgba(96, 165, 250, 0.45);
+  }
+  .avp-lv-blue:hover {
+    border-color: var(--color-lv-blue);
+  }
+
+  /* Pill nav */
+  .avp-pilllink {
+    color: var(--color-fg-muted);
+    transition: color 0.25s ease;
+  }
+  .avp-pilllink:hover {
+    color: var(--color-fg);
+  }
+  .avp-monogram {
+    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .avp-monogram:hover {
+    transform: rotate(-8deg) scale(1.06);
+  }
+  .avp-copybtn {
+    transition:
+      transform 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+      background-color 0.3s ease,
+      color 0.3s ease;
+  }
+  .avp-copybtn:hover {
+    transform: translateY(-1px);
+    background: var(--color-accent);
+    color: #fff !important;
+  }
+  .avp-copybtn:active {
+    transform: scale(0.96);
+  }
+
+  .avp-pillnav {
+    animation: avp-navdrop 0.7s cubic-bezier(0.16, 1, 0.3, 1) both;
+  }
+
+  /* Social link scale */
+  .avp-social {
+    display: inline-block;
+    transform-origin: left center;
+    transition: transform 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
+  }
+  .avp-social:hover {
+    transform: scale(1.12);
+  }
+
+  .avp-cursor {
+    display: inline-block;
+    width: 2px;
+    height: 0.85em;
+    background: var(--color-accent);
+    margin-left: 2px;
+    vertical-align: -2px;
+    animation: avp-blink 1s step-start infinite;
+  }
+
+  /* Visually-hidden (a11y fallback text) */
+  .avp-sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+  }
 }
 
-a {
-  color: var(--color-fg);
-  text-decoration: none;
-}
-a:hover {
-  color: var(--color-accent);
-}
-
-section,
-nav,
-footer {
-  position: relative;
-  z-index: 1;
-}
-
-/* Scroll-reveal fallback for no-JS / motion-reduced contexts handled by Framer Motion in components */
-
-/* Nav text link — growing underline */
-.avp-navlink {
-  position: relative;
-  padding-bottom: 2px;
-}
-.avp-navlink::after {
-  content: "";
-  position: absolute;
-  left: 0;
-  bottom: 0;
-  width: 0;
-  height: 1px;
-  background: var(--color-accent);
-  transition: width 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-}
-.avp-navlink:hover::after {
-  width: 100%;
-}
-
-/* Trailing arrow nudge */
-.avp-arrow {
-  display: inline-block;
-  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-}
-.avp-link-arrow:hover .avp-arrow {
-  transform: translate(3px, -3px);
-}
-
-/* Solid/outline button sweep */
-.avp-btn {
-  position: relative;
-  isolation: isolate;
-  overflow: hidden;
-  transition:
-    transform 0.35s cubic-bezier(0.16, 1, 0.3, 1),
-    color 0.3s ease,
-    border-color 0.3s ease;
-}
-.avp-btn::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: var(--color-accent);
-  transform: scaleX(0);
-  transform-origin: left center;
-  transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1);
-  z-index: -1;
-}
-.avp-btn:hover::after {
-  transform: scaleX(1);
-}
-.avp-btn:hover {
-  transform: translateY(-3px);
-  border-color: var(--color-accent);
-  color: #fff;
-}
-.avp-btn:active {
-  transform: translateY(0) scale(0.97);
-}
-
-/* Work card — lift + gradient ring */
-.avp-card {
-  position: relative;
-  isolation: isolate;
-  transition: transform 0.55s cubic-bezier(0.16, 1, 0.3, 1);
-}
-.avp-card::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  border-radius: var(--radius-card);
-  padding: 1.5px;
-  background: linear-gradient(125deg, var(--color-accent), transparent 45%, transparent 55%, var(--color-accent));
-  -webkit-mask:
-    linear-gradient(#fff 0 0) content-box,
-    linear-gradient(#fff 0 0);
-  -webkit-mask-composite: xor;
-  mask-composite: exclude;
-  opacity: 0;
-  transition: opacity 0.5s ease;
-  pointer-events: none;
-}
-.avp-card:hover {
-  transform: translateY(-10px) scale(1.012);
-}
-.avp-card:hover::before {
-  opacity: 1;
-}
-
-/* Writing-index row hover */
-.avp-row {
-  transition:
-    padding-left 0.3s cubic-bezier(0.16, 1, 0.3, 1),
-    border-color 0.3s ease;
-}
-.avp-row:hover {
-  padding-left: 12px;
-  border-color: var(--color-fg);
-}
-
-/* Skill pills */
-.avp-skill {
-  color: var(--color-fg);
-  border-color: var(--color-border);
-  transition:
-    border-color 0.3s ease,
-    transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-}
-.avp-skill:hover {
-  transform: translateY(-3px);
-}
-.avp-lv-gray:hover {
-  border-color: rgba(244, 243, 239, 0.45);
-}
-.avp-lv-green {
-  border-color: rgba(74, 222, 128, 0.45);
-}
-.avp-lv-green:hover {
-  border-color: var(--color-lv-green);
-}
-.avp-lv-blue {
-  border-color: rgba(96, 165, 250, 0.45);
-}
-.avp-lv-blue:hover {
-  border-color: var(--color-lv-blue);
-}
-
-/* Pill nav */
-.avp-pilllink {
-  color: var(--color-fg-muted);
-  transition: color 0.25s ease;
-}
-.avp-pilllink:hover {
-  color: var(--color-fg);
-}
-.avp-monogram {
-  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-}
-.avp-monogram:hover {
-  transform: rotate(-8deg) scale(1.06);
-}
-.avp-copybtn {
-  transition:
-    transform 0.3s cubic-bezier(0.16, 1, 0.3, 1),
-    background-color 0.3s ease,
-    color 0.3s ease;
-}
-.avp-copybtn:hover {
-  transform: translateY(-1px);
-  background: var(--color-accent);
-  color: #fff !important;
-}
-.avp-copybtn:active {
-  transform: scale(0.96);
-}
-
-.avp-pillnav {
-  animation: avp-navdrop 0.7s cubic-bezier(0.16, 1, 0.3, 1) both;
-}
 @keyframes avp-navdrop {
   from {
     opacity: 0;
@@ -218,17 +254,6 @@ footer {
   }
 }
 
-/* Social link scale */
-.avp-social {
-  display: inline-block;
-  transform-origin: left center;
-  transition: transform 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
-}
-.avp-social:hover {
-  transform: scale(1.12);
-}
-
-/* Typewriter caret */
 @keyframes avp-blink {
   0%,
   49% {
@@ -238,26 +263,4 @@ footer {
   100% {
     opacity: 0;
   }
-}
-.avp-cursor {
-  display: inline-block;
-  width: 2px;
-  height: 0.85em;
-  background: var(--color-accent);
-  margin-left: 2px;
-  vertical-align: -2px;
-  animation: avp-blink 1s step-start infinite;
-}
-
-/* Visually-hidden (a11y fallback text) */
-.avp-sr-only {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  padding: 0;
-  margin: -1px;
-  overflow: hidden;
-  clip: rect(0, 0, 0, 0);
-  white-space: nowrap;
-  border: 0;
 }
