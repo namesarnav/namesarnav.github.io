@@ -11,7 +11,7 @@ interface ButtonProps {
 }
 
 export default function Button({ href, children, variant = "solid", download = false, className = "", style }: ButtonProps) {
-  const base = "avp-btn inline-block rounded-full px-7 py-3.5 text-sm font-semibold";
+  const base = "avp-btn inline-block rounded-full px-8 py-4 text-base font-semibold";
   const variantClass =
     variant === "solid" ? "bg-fg text-bg" : "bg-transparent text-fg border border-fg";
   const classes = `${base} ${variantClass} ${className}`.trim();

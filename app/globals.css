@@ -46,6 +46,21 @@
     position: relative;
     z-index: 1;
   }
+
+  /* Lenis smooth-scroll: let it own scroll-behavior once active, and honor its stop/prevent states */
+  html.lenis,
+  html.lenis body {
+    height: auto;
+  }
+  html.lenis.lenis-smooth {
+    scroll-behavior: auto !important;
+  }
+  html.lenis.lenis-smooth [data-lenis-prevent] {
+    overscroll-behavior: contain;
+  }
+  html.lenis.lenis-stopped {
+    overflow: hidden;
+  }
 }
 
 @layer components {
