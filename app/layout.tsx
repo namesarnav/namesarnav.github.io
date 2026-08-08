@@ -3,6 +3,7 @@ import { Instrument_Sans } from "next/font/google";
 import { ThemeProvider } from "next-themes";
 import SmoothScroll from "@/components/SmoothScroll";
 import VibeButton from "@/components/VibeButton";
+import { getPlaylist } from "@/lib/playlist";
 import "./globals.css";
 import DotGrid from "@/components/DotGrid";
 
@@ -21,6 +22,8 @@ export const metadata: Metadata = {
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
+  const playlist = getPlaylist();
+
   return (
     <html lang="en" className={`${instrumentSans.variable} h-full`} suppressHydrationWarning>
       <body className="min-h-full bg-bg text-fg antialiased">
@@ -40,7 +43,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
                   />
                 </div> */}
           <SmoothScroll />
-          <VibeButton />
+          <VibeButton playlist={playlist} />
           {children}
         </ThemeProvider>
       </body>

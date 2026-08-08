@@ -31,9 +31,16 @@ function EqIcon() {
   );
 }
 
-export default function VibeButton() {
+interface VibeButtonProps {
+  /** Public URL paths to audio files, e.g. ["/vibe/one.mp3", "/vibe/two.mp3"] */
+  playlist: string[];
+}
+
+export default function VibeButton({ playlist }: VibeButtonProps) {
   const audioRef = useRef<HTMLAudioElement | null>(null);
   const buttonRef = useRef<HTMLButtonElement | null>(null);
+  const lastTrackRef = useRef<string | null>(null);
+  const [currentTrack, setCurrentTrack] = useState<string | null>(null);
   const [playing, setPlaying] = useState(false);
   const [tilt, setTilt] = useState({ rx: 0, ry: 0 });
 
@@ -42,14 +49,47 @@ export default function VibeButton() {
     return () => audio?.pause();
   }, []);
 
-  const toggle = () => {
+  const pickTrack = (exclude: string | null) => {
+    if (playlist.length === 0) return null;
+    if (playlist.length === 1) return playlist[0];
+    const candidates = exclude ? playlist.filter((track) => track !== exclude) : playlist;
+    return candidates[Math.floor(Math.random() * candidates.length)];
+  };
+
+  const playTrack = (track: string) => {
     const audio = audioRef.current;
     if (!audio) return;
+    lastTrackRef.current = track;
+    setCurrentTrack(track);
+    audio.src = track;
+    audio.play().then(() => setPlaying(true)).catch(() => setPlaying(false));
+  };
+
+  const handleEnded = () => {
+    const next = pickTrack(lastTrackRef.current);
+    if (next) {
+      playTrack(next);
+    } else {
+      setPlaying(false);
+    }
+  };
+
+  const toggle = () => {
+    if (playlist.length === 0) return;
+    const audio = audioRef.current;
+    if (!audio) return;
+
     if (playing) {
       audio.pause();
       setPlaying(false);
-    } else {
+      return;
+    }
+
+    if (currentTrack) {
       audio.play().then(() => setPlaying(true)).catch(() => setPlaying(false));
+    } else {
+      const track = pickTrack(lastTrackRef.current);
+      if (track) playTrack(track);
     }
   };
 
@@ -87,7 +127,7 @@ export default function VibeButton() {
         {playing ? <EqIcon /> : <NoteIcon />}
         {playing && <span className="avp-vibe-dot absolute -top-0.5 -right-0.5 h-2 w-2 rounded-full bg-accent" />}
       </button>
-      <audio ref={audioRef} src="/vibe.mp3" loop preload="none" onEnded={() => setPlaying(false)} />
+      <audio ref={audioRef} preload="none" onEnded={handleEnded} />
     </div>
   );
 }
