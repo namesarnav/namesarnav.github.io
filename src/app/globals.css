@@ -372,6 +372,23 @@
     font-size: 13.5px;
     line-height: 1.6;
   }
+  /*
+    A diagram is a picture, not a code listing, so it drops the panel chrome the
+    other blocks get. Before mermaid runs — or if it never does, with JS off —
+    the source is still readable as plain text, which is the honest fallback.
+  */
+  .markdown pre.mermaid {
+    background: none;
+    border: 0;
+    padding: 0;
+    text-align: center;
+    line-height: 1.4;
+  }
+  .markdown pre.mermaid svg {
+    max-width: 100%;
+    height: auto;
+  }
+
   .markdown pre code {
     background: none;
     padding: 0;

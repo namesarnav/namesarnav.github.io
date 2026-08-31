@@ -13,6 +13,34 @@ const POSTS_DIR = path.join(process.cwd(), "content", "blog");
 const marked = new Marked({ gfm: true, breaks: false });
 
 /**
+ * A ```mermaid fence becomes `<pre class="mermaid">` holding the diagram
+ * source, which is the shape mermaid itself looks for. Drawing it needs a
+ * browser, so the source is passed through here and the client component picks
+ * it up — see `MermaidDiagrams`.
+ */
+marked.use({
+  renderer: {
+    code({ text, lang }) {
+      if (lang?.trim().toLowerCase() !== "mermaid") return false;
+      return `<pre class="mermaid">${escapeHtml(text)}</pre>\n`;
+    },
+  },
+});
+
+function escapeHtml(text: string) {
+  return text
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;");
+}
+
+/** Whether a rendered post needs the mermaid bundle loaded at all. */
+export function hasMermaid(html?: string) {
+  return !!html && html.includes('<pre class="mermaid">');
+}
+
+/**
  * A post's body lives at `content/blog/<slug>.md` — drop the file in and the
  * page exists. Nothing needs registering; the slug in blogs.yaml is the link
  * between the entry and its file.

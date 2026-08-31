@@ -3,6 +3,9 @@ import Image from "next/image";
 import Link from "next/link";
 import type { ReactNode } from "react";
 
+import { MermaidDiagrams } from "@/components/mermaid-diagrams";
+import { hasMermaid } from "@/lib/markdown";
+
 
 export type DetailBlock = { heading?: string; body: string };
 
@@ -99,6 +102,9 @@ export function DetailArticle({
           dangerouslySetInnerHTML={{ __html: html }}
         />
       ) : null}
+
+      {/* Mounted only when there is a diagram, so the bundle is never idle weight. */}
+      {hasMermaid(html) ? <MermaidDiagrams /> : null}
 
       <div className="mt-12 space-y-10">
         {blocks.map((block, index) => (
