@@ -76,3 +76,10 @@ groups:
       - { name: "Software Development", level: proficient }
       - { name: "DevOps", level: working }
       - { name: "API Development", level: working }
+
+# The GitHub contribution strip under the skill groups. The squares are
+# regenerated on every deploy; only these settings live here. Delete the block
+# and the strip disappears.
+activity:
+  label: "Last year on GitHub"
+  months: 12

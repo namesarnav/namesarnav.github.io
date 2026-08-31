@@ -266,6 +266,38 @@
   `details:` post read as the same page.
 */
 @layer components {
+  /*
+    Contribution squares. The ramp is four steps of green mixed against the
+    surface, built from --grade — the green already used for course marks — so
+    it is Notion's green rather than GitHub's, and it lightens in dark mode with
+    the rest of the palette instead of needing its own second set of values.
+  */
+  .activity-cell {
+    display: block;
+    width: 11px;
+    height: 11px;
+    border-radius: 2px;
+    background: var(--surface);
+    box-shadow: inset 0 0 0 1px var(--rule);
+  }
+  .activity-cell[data-level="1"] {
+    background: color-mix(in oklab, var(--grade) 26%, var(--surface));
+    box-shadow: none;
+  }
+  .activity-cell[data-level="2"] {
+    background: color-mix(in oklab, var(--grade) 50%, var(--surface));
+    box-shadow: none;
+  }
+  .activity-cell[data-level="3"] {
+    background: color-mix(in oklab, var(--grade) 74%, var(--surface));
+    box-shadow: none;
+  }
+  .activity-cell[data-level="4"] {
+    background: var(--grade);
+    box-shadow: none;
+  }
+
+
   .markdown {
     font-size: 16px;
     line-height: 1.7;

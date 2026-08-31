@@ -1,3 +1,4 @@
+import { ActivityStrip } from "@/components/activity-strip";
 import { Section } from "@/components/section";
 import { getSkills, SKILL_LEVELS, type SkillLevel } from "@/lib/content";
 import { cn } from "@/lib/utils";
@@ -72,6 +73,13 @@ export function SkillsSection() {
           </div>
         ))}
       </div>
+
+      {skills.activity ? (
+        <ActivityStrip
+          label={skills.activity.label}
+          months={skills.activity.months}
+        />
+      ) : null}
     </Section>
   );
 }
