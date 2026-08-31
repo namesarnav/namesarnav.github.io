@@ -1,9 +1,9 @@
 import { ArrowRight, Code2, ExternalLink } from "lucide-react";
-import Image from "next/image";
 
 import { LinkButton } from "@/components/link-button";
 import { ExpandableList } from "@/components/expandable-list";
 import { Section } from "@/components/section";
+import { Thumbnail } from "@/components/thumbnail";
 import { getProjects, readMoreHref, type Project } from "@/lib/content";
 
 /**
@@ -17,17 +17,7 @@ function ProjectRow({ project }: { project: Project }) {
 
   return (
     <div className="flex flex-col gap-4 py-7 sm:flex-row sm:gap-6">
-      {project.thumbnail ? (
-        <div className="relative aspect-video w-full shrink-0 overflow-hidden rounded-lg border border-rule bg-surface sm:w-[280px] lg:w-[340px]">
-          <Image
-            src={project.thumbnail}
-            alt=""
-            fill
-            sizes="(max-width: 640px) 100vw, 340px"
-            className="object-cover"
-          />
-        </div>
-      ) : null}
+      <Thumbnail src={project.thumbnail} />
 
       <div className="min-w-0 flex-1">
         <h3 className="text-[18px] font-semibold leading-[1.35] tracking-[-0.015em] text-foreground">

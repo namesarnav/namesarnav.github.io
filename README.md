@@ -60,38 +60,46 @@ how it went, then optional blocks for affiliations, awards, and coursework.
 
 ### The vibe button
 
-The top bar carries a **Click here to vibe** button that plays a track, with a
-waveform that dances while it runs and music notes drifting off the top. It is
-configured in `site.yaml`:
+The top bar carries a **Click here to vibe** button that plays music, with a
+waveform that dances while it runs and notes drifting off the bottom.
+
+**Adding songs: drop the file into `public/audio/`.** That is the whole process —
+no YAML edit. Every audio file in that folder becomes a track, in name order
+(`.mp3`, `.m4a`, `.aac`, `.ogg`, `.opus`, `.wav`, `.flac`, `.webm`).
+
+**Name files `Song Name, Artist.mp3`.** The name and artist are read from the
+filename, split on the last comma, and shown under the button while the track
+plays. A file with no comma is all title and no artist. The split takes the
+*last* comma, so `Hello, Goodbye, The Beatles.mp3` still resolves correctly.
+Capitalisation and hyphens are kept exactly as you type them.
+
+With more than one track the button gains a skip control, and each track rolls
+into the next when it ends. Settings live in `site.yaml`:
 
 ```yaml
 vibe:
-  src: "/audio/placeholder-vibe.wav"   # a file in public/, or a full URL
-  # title: "Something Nicer"           # overrides the name read from the filename
   label: "Click here to vibe"
   playing_label: "Vibing"
-  loop: true
+  loop: true       # start over at the top when the last track ends
+  shuffle: false   # play in a random order each time
   volume: 0.7
 ```
 
-While a track plays, its name appears in small light type just below the button,
-read from the filename:
-`placeholder-vibe.wav` becomes **Placeholder Vibe**. A leading track number is
-dropped (`01_midnight-drive.mp3` → *Midnight Drive*) and words you already
-capitalised are left alone (`LoFi_study-mix.mp3` → *LoFi Study Mix*). Set
-`title:` when the filename does not make a good name.
+To fix the order, or override a name, list the tracks explicitly instead:
 
-`public/audio/placeholder-vibe.wav` is a generated placeholder loop — swap in
-your own mp3, m4a, ogg or wav and point `src` at it. Delete the `vibe:` block (or
-just its `src`) and the button disappears entirely.
+```yaml
+  tracks:
+    - "/audio/first.mp3"
+    - { src: "/audio/second.mp3", title: "A Nicer Name", artist: "Someone" }
+```
+
+Delete every file from `public/audio/` (and leave `tracks` out) and the button
+disappears. Nothing downloads until someone clicks, so the music costs ordinary
+visitors nothing. The animation stops under `prefers-reduced-motion`.
 
 On a wide screen the button pins itself to the very top-right corner of the
 viewport, clear of the nav; on narrower screens it tucks back into the header row
-as a compact waveform, since there is no spare corner there.
-
-Nothing downloads until someone clicks (`preload="none"`), so the track costs
-visitors nothing unless they want it. The animation stops under
-`prefers-reduced-motion`.
+as a compact waveform.
 
 ### Research
 

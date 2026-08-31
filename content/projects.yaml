@@ -9,18 +9,18 @@ initial_count: 3
 items:
 ## ------------------------------------------------------------------------------------------- ##
   # `slug` is the URL for the detail page: /projects/<slug>. Keep it unique.
-  - slug: "spectral-distill"
+  - slug: "semantic-video-search-engine"
     title: "Semantic Video Search Engine"
     description: >
       A distillation recipe that keeps 94% of teacher accuracy at a twelfth of the
       parameter count, by matching intermediate spectral statistics instead of logits.
-    thumbnail: "/projects/placeholder.svg"     # optional; a neutral panel shows if omitted
-    tags: ["PyTorch", "CLIP", "Distillation", "CUDA"]
+    thumbnail: "/projects/sv-engine.png"     # optional; a neutral panel shows if omitted
+    tags: ["PyTorch", "CLIP", "CUDA"]
     links:
-      code: "https://github.com/namesarnav/"
+      code: "https://github.com/namesarnav/semantic-video-search-engine"
       demo: "https://huggingface.co/spaces/namesarnav/spectral-distill"
     # Delete `details` to hide the "Read more" button. Present = a page is generated
-    # at /projects/spectral-distill from the blocks below.
+    # at /projects/semantic-video-search-engine from the blocks below.
     details:
       - heading: "The problem"
         body: >
@@ -45,15 +45,15 @@ items:
 ## ------------------------------------------------------------------------------------------- ##
   # `slug` is the URL for the detail page: /projects/<slug>. Keep it unique.
   - slug: "spectral-distill"
-    title: "Spectral Distillation for Small Speech Models"
+    title: "Polish - Cursor like AI Document Editor "
     description: >
       A distillation recipe that keeps 94% of teacher accuracy at a twelfth of the
       parameter count, by matching intermediate spectral statistics instead of logits.
-    thumbnail: "/projects/placeholder.svg"     # optional; a neutral panel shows if omitted
+    thumbnail: "/projects/polish.png"     # optional; a neutral panel shows if omitted
     tags: ["PyTorch", "Speech", "Distillation", "CUDA"]
     links:
-      code: "https://github.com/namesarnav/"
-      demo: "https://huggingface.co/spaces/namesarnav/spectral-distill"
+      code: "https://github.com/PolishAI-app/polish"
+      demo: "https://polish-client-production.up.railway.app/"
     # Delete `details` to hide the "Read more" button. Present = a page is generated
     # at /projects/spectral-distill from the blocks below.
     details:

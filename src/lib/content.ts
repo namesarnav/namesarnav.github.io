@@ -16,6 +16,7 @@ import { z } from "zod";
  */
 
 const CONTENT_DIR = path.join(process.cwd(), "content");
+const PUBLIC_DIR = path.join(process.cwd(), "public");
 
 /** A string that is present and not just whitespace. Blank values are treated as absent. */
 const nonEmpty = z.string().trim().min(1);
@@ -64,16 +65,34 @@ const siteSchema = z.object({
    */
   vibe: z
     .object({
-      src: optionalText,
-      /** Overrides the name derived from the filename. */
-      title: optionalText,
+      /**
+       * Leave this out and every audio file in `public/audio/` is picked up,
+       * sorted by name — dropping a file in is all it takes. Set it to take
+       * control of the order, or to name a track something other than its
+       * filename.
+       */
+      tracks: z
+        .array(
+          z.union([
+            nonEmpty.transform((src) => ({
+              src,
+              title: undefined as string | undefined,
+              artist: undefined as string | undefined,
+            })),
+            z.object({ src: nonEmpty, title: optionalText, artist: optionalText }),
+          ]),
+        )
+        .optional(),
       label: optionalText,
       playing_label: optionalText,
+      /** Start again at the top of the playlist when the last track ends. */
       loop: z.boolean().optional().default(true),
+      /** Play in a random order each time. */
+      shuffle: z.boolean().optional().default(false),
       volume: z.number().min(0).max(1).optional().default(0.7),
     })
     .optional()
-    .default({ loop: true, volume: 0.7 }),
+    .default({ loop: true, shuffle: false, volume: 0.7 }),
 });
 
 // ---------------------------------------------------------------- hero
@@ -197,7 +216,14 @@ const projectsSchema = z.object({
   blurb: optionalText,
   /** How many rows show before the "View more" button. 0 shows everything. */
   initial_count: z.number().int().min(0).optional().default(3),
-  items: z.array(projectSchema).optional().default([]),
+  items: z
+    .array(projectSchema)
+    .optional()
+    .default([])
+    .refine(
+      (items) => new Set(items.map((item) => item.slug)).size === items.length,
+      { message: "two projects share a slug — each one is a URL, so they must be unique" },
+    ),
 });
 
 // ---------------------------------------------------------------- blogs
@@ -352,6 +378,35 @@ function readYaml(file: string): unknown {
   }
 }
 
+/**
+ * A thumbnail pointing into `public/` has to actually be there. A missing file
+ * renders as an empty frame and reports nothing, which is easy to ship without
+ * noticing — so it fails the build instead.
+ */
+function assertAssetsExist(file: string, paths: (string | undefined)[]) {
+  const referenced = [...new Set(paths.filter((p): p is string => !!p))];
+  const missing = referenced
+    .filter((p) => p.startsWith("/"))
+    // The YAML holds a URL path, so %20 and friends have to come back out
+    // before it can be matched against a filename on disk.
+    .filter((p) => {
+      let filePath = p;
+      try {
+        filePath = decodeURIComponent(p);
+      } catch {
+        // A malformed escape just falls through to the literal path.
+      }
+      return !fs.existsSync(path.join(PUBLIC_DIR, filePath));
+    });
+
+  if (missing.length > 0) {
+    throw new Error(
+      `content/${file}.yaml points at files that are not in public/:\n` +
+        missing.map((p) => `  \u2022 ${p}`).join("\n"),
+    );
+  }
+}
+
 function load<T extends z.ZodType>(file: string, schema: T): z.infer<T> {
   const result = schema.safeParse(readYaml(file));
   if (result.success) return result.data;
@@ -362,12 +417,53 @@ function load<T extends z.ZodType>(file: string, schema: T): z.infer<T> {
   throw new Error(`content/${file}.yaml does not match the expected shape:\n${problems}`);
 }
 
-export const getSite = () => load("site", siteSchema);
+const AUDIO_DIR = path.join(PUBLIC_DIR, "audio");
+const AUDIO_EXTENSIONS = new Set([".mp3", ".m4a", ".aac", ".ogg", ".oga", ".opus", ".wav", ".flac", ".webm"]);
+
+/**
+ * Everything in `public/audio/`, in name order. Filenames go into a URL, so each
+ * one is encoded — spaces and other awkward characters survive the trip.
+ */
+function discoverTracks(): { src: string; title?: string }[] {
+  let files: string[];
+  try {
+    files = fs.readdirSync(AUDIO_DIR);
+  } catch {
+    return [];
+  }
+
+  return files
+    .filter((file) => AUDIO_EXTENSIONS.has(path.extname(file).toLowerCase()))
+    .sort((a, b) => a.localeCompare(b, "en", { numeric: true, sensitivity: "base" }))
+    .map((file) => ({
+      src: `/audio/${encodeURIComponent(file)}`,
+      title: undefined,
+      artist: undefined,
+    }));
+}
+
+export const getSite = () => {
+  const site = load("site", siteSchema);
+
+  // An explicit list wins; otherwise the folder is the playlist.
+  const tracks = site.vibe.tracks ?? discoverTracks();
+  assertAssetsExist("site", tracks.map((track) => track.src));
+
+  return { ...site, vibe: { ...site.vibe, tracks } };
+};
 export const getHero = () => load("hero", heroSchema);
 export const getEducation = () => load("education", educationSchema);
 export const getResearch = () => load("research", researchSchema);
-export const getProjects = () => load("projects", projectsSchema);
-export const getBlogs = () => load("blogs", blogsSchema);
+export const getProjects = () => {
+  const projects = load("projects", projectsSchema);
+  assertAssetsExist("projects", projects.items.map((item) => item.thumbnail));
+  return projects;
+};
+export const getBlogs = () => {
+  const blogs = load("blogs", blogsSchema);
+  assertAssetsExist("blogs", blogs.items.map((item) => item.thumbnail));
+  return blogs;
+};
 export const getSkills = () => load("skills", skillsSchema);
 export const getContact = () => load("contact", contactSchema);
 

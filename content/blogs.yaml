@@ -9,7 +9,7 @@ initial_count: 3
 items:
   # `slug` is only needed when the post has a `details:` block below.
   - slug: "attention-is-a-lookup-table"
-    title: "Attention Is a Lookup Table (And That's a Useful Lie)"
+    title: "Adapting LlaMa for Named Entity Recognition Tasks"
     description: >
       A mental model for self-attention that survives contact with the code:
       soft key lookup, and where the analogy quietly breaks down.
@@ -22,15 +22,15 @@ items:
     url: "https://yourhandle.hashnode.dev/attention-is-a-lookup-table"
 
   - slug: "profiling-before-optimising"
-    title: "I Spent Three Weeks Optimising the Wrong Loop"
+    title: "Language Model Distillation"
     description: >
       What a flame graph would have told me on day one, and the habit I built
       afterwards for deciding what is actually worth speeding up.
     date: "2026-03-18"
     reading_time: "6 min read"
     thumbnail: "/projects/placeholder.svg"
-    tags: ["Performance", "Engineering"]
-    url: "https://yourhandle.hashnode.dev/profiling-before-optimising"
+    tags: ["NLP", "LLM"]
+    url: "https://arnavverma.hashnode.dev/model-distillation"
     # `details` generates a page at /blog/<slug> and adds a "Read more" button,
     # exactly like projects. Use it for posts you want hosted here.
     details:
@@ -44,11 +44,12 @@ items:
           per-sample JSON parse that ran once per epoch per worker.
 
   # A minimal entry: no thumbnail, no tags, no detail page — just a link out.
-  - title: "Notes on Reading Papers Faster"
+  - title: "Building a Semantic Video Search Engine"
     description: >
       The three-pass method, and the two passes most people skip.
     date: "2026-01-22"
-    url: "https://yourhandle.hashnode.dev/reading-papers-faster"
+    tags: ['NLP', 'RAG']
+    url: "https://arnavverma.hashnode.dev/building-a-semantic-video-search-engine"
 
   - title: "What a Year of Reviewing Taught Me About Writing"
     description: >

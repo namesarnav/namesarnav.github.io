@@ -32,11 +32,16 @@ footer: "Built with Next.js. Content lives in YAML."
 # Point `src` at an audio file in `public/` — mp3, m4a, ogg and wav all work —
 # or at a full URL. The bundled track is a placeholder loop; swap in your own.
 vibe:
-  src: "/audio/placeholder-vibe.wav"
-  # The track name shown while it plays is read from the filename —
-  # "placeholder-vibe.wav" becomes "Placeholder Vibe". Set `title:` to override.
-  # title: "Something Nicer"
   label: "Click here to vibe"
   playing_label: "Vibing"
-  loop: true
+  loop: true       # start over at the top when the last track ends
+  shuffle: false   # play in a random order each time
   volume: 0.7
+
+  # Leave `tracks` out and every audio file in public/audio/ is used, in name
+  # order — just drop files in. List them here to fix the order, or to give a
+  # track a name other than its filename:
+  #
+  # tracks:
+  #   - "/audio/first.mp3"
+  #   - { src: "/audio/second.mp3", title: "A Nicer Name" }
