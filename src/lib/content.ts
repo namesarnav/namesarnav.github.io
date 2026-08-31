@@ -62,6 +62,23 @@ const siteSchema = z.object({
     .default([]),
   footer: optionalText,
   /**
+   * Copy for the 404 page. Every field falls back to a sensible default, so the
+   * block can be trimmed to just the lines worth changing.
+   */
+  not_found: z
+    .object({
+      code: optionalText,
+      heading: optionalText,
+      message: optionalText,
+      home_label: optionalText,
+      /** Links offered under the message. Falls back to the main nav. */
+      links: z
+        .array(z.object({ label: nonEmpty, href: nonEmpty }))
+        .optional(),
+    })
+    .optional()
+    .default({}),
+  /**
    * The "click here to vibe" button in the header. Drop the whole block — or
    * just `src` — and the button never renders.
    */

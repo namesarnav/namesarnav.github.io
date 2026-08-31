@@ -6,7 +6,7 @@ description: "Portfolio of Arnav Verma — machine learning research and enginee
 url: "https://example.com"
 
 # Shown in the top-left of the sticky header. Falls back to `title` if omitted.
-brand: "Arnav Verma"
+brand: "AV"
 
 # Top bar links. Remove any entry to drop it from the nav.
 nav:
@@ -26,7 +26,17 @@ nav:
     href: "#contact"
 
 # Optional. Shown centred at the very bottom of the page.
-footer: "Built with Next.js. Content lives in YAML."
+footer: "Built with ❤️ by Arnav ;)"
+
+# The 404 page. Delete any line to fall back to its default; delete the whole
+# block and the page still works. `links` defaults to the nav above.
+not_found:
+  code: "404"
+  heading: "This page wandered off"
+  message: >
+    The link is broken, or the page moved. Nothing here is lost — the rest of
+    the site is one click away.
+  home_label: "Back to the homepage"
 
 # The "click here to vibe" button in the top bar. Delete this block (or just the
 # `src:` line) and the button disappears.

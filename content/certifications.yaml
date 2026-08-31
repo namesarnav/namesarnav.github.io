@@ -8,11 +8,12 @@ blurb: "Courses and credentials I've completed."
 # both come out whole. Put the issuer in `description`.
 #
 # The whole section hides itself while `items` is empty.
-items: []
-  # - title: "Deep Learning Specialization"
-  #   thumbnail: "/certifications/deeplearning-ai.png"
-  #   description: >
-  #     DeepLearning.AI · five courses covering neural networks, optimisation,
-  #     convolutional models and sequence models.
-  #   date: "2026-03-14"          # or free text: "Issued Mar 2026"
-  #   credential: "https://coursera.org/verify/XXXXXXXX"
+items:
+  - title:  "Deep Learning Specialization"
+    thumbnail: "/certifications/placeholder.svg"
+    description: >
+      DeepLearning.AI · five courses covering neural networks, optimisation,
+      convolutional models and sequence models.
+    date: "2026-03-14"          # or free text: "Issued Mar 2026"
+    credential: "https://coursera.org/verify/XXXXXXXX"
+
