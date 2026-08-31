@@ -17,30 +17,62 @@ groups:
   - name: "Languages"
     items:
       - { name: "Python", level: proficient }
-      - { name: "TypeScript", level: proficient }
-      - { name: "SQL", level: working }
-      - { name: "C++", level: working }
+      - { name: "C/C++", level: proficient }
+      - { name: "JavaScript", level: working }
+      - { name: "TypeScript", level: working }
       - { name: "Rust", level: beginner }
+      - { name: "Flutter", level: beginner }
 
-  - name: "Machine Learning"
+  - name: "AI / ML"
     items:
       - { name: "PyTorch", level: proficient }
-      - { name: "Hugging Face", level: proficient }
-      - { name: "scikit-learn", level: working }
-      - { name: "Weights & Biases", level: working }
-      - { name: "JAX", level: beginner }
+      - { name: "TensorFlow", level: proficient }
+      - { name: "Keras", level: proficient }
+      - { name: "Scikit-learn", level: proficient }
+      - { name: "NumPy", level: proficient }
+      - { name: "Pandas", level: proficient }
+      - { name: "HuggingFace", level: proficient }
+      - { name: "LangChain", level: proficient }
+      - { name: "LlamaIndex", level: proficient }
+      - { name: "Ollama", level: proficient }
+      - { name: "Pinecone", level: proficient }
+      - { name: "JAX", level: working }
+      - { name: "vLLM", level: working }
+      - { name: "TensorRT", level: working }
+      - { name: "n8n", level: working }
+      - { name: "Gradio", level: working }
+      - { name: "Streamlit", level: working }
+      - { name: "Chroma", level: working }
+      - { name: "OpenCV", level: beginner }
+      - { name: "YOLO", level: beginner }
+      - { name: "spaCy", level: beginner }
+      - { name: "ONNX", level: beginner }
 
-  - name: "Systems & Infra"
+  - name: "Libraries & Frameworks"
+    items:
+      - { name: "Flask", level: working }
+      - { name: "FastAPI", level: working }
+      - { name: "Express", level: working }
+      - { name: "Next.js", level: working }
+      - { name: "React", level: working }
+      - { name: "React Native", level: working }
+
+  - name: "Tools"
     items:
       - { name: "Docker", level: proficient }
-      - { name: "AWS", level: working }
-      - { name: "Postgres", level: working }
-      - { name: "Ray", level: beginner }
-      - { name: "Kubernetes", level: beginner }
+      - { name: "Terraform", level: proficient }
+      - { name: "PostgreSQL", level: proficient }
+      - { name: "MongoDB", level: proficient }
+      - { name: "Claude Code", level: proficient }
+      - { name: "OpenClaw", level: proficient }
+      - { name: "Kubernetes", level: working }
+      - { name: "Jenkins", level: working }
+      - { name: "Ansible", level: working }
+      - { name: "Google AI Studio", level: beginner }
 
-  - name: "Web"
+  - name: "Concepts"
     items:
-      - { name: "React", level: proficient }
-      - { name: "Next.js", level: proficient }
-      - { name: "Tailwind CSS", level: proficient }
-      - { name: "FastAPI", level: working }
+      - { name: "AI Agent Development", level: proficient }
+      - { name: "Software Development", level: proficient }
+      - { name: "DevOps", level: working }
+      - { name: "API Development", level: working }

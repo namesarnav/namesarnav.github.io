@@ -51,7 +51,12 @@ export function SkillsSection() {
                 {group.name}
               </h3>
 
-              <ul className="flex flex-wrap gap-2">
+              {/*
+                items-start matters: this list is a flex item in the row, so it
+                stretches to the label's height when the label wraps to two
+                lines — and would stretch the pills with it.
+              */}
+              <ul className="flex flex-wrap items-start gap-2">
                 {group.items.map((item) => (
                   <li
                     key={item.name}
