@@ -25,34 +25,24 @@ items:
       classification with LoRA adapters and 4-bit quantization, on a single GPU.
     date: "2025-09-24"            # quoted; free-form text also works
     reading_time: "7 min read"    # optional
-    thumbnail: "/projects/placeholder.svg"
+    thumbnail: "/projects/llama-ner.png"
     tags: ["Large Language Models", "LLM Finetuning", "NLP", "AI", "Llama 3"]
     # Where the post is also published. Renders a "Read post" button that opens
     # in a new tab. Delete it if the post only lives on this site.
     # url: "https://medium.com/@namesarnav/..."
 
-  - slug: "profiling-before-optimising"
+  - slug: "lm-distill"
     title: "Language Model Distillation"
     description: >
-      What a flame graph would have told me on day one, and the habit I built
-      afterwards for deciding what is actually worth speeding up.
+      Language model distillation and how to do it on your own. Train your own student model. 
     date: "2026-03-18"
     reading_time: "6 min read"
-    thumbnail: "/projects/placeholder.svg"
+    thumbnail: "/projects/lmd.png"
     tags: ["NLP", "LLM"]
     url: "https://arnavverma.hashnode.dev/model-distillation"
     # `details` generates a page at /blog/<slug> and adds a "Read more" button,
     # exactly like projects. Use it for posts you want hosted here.
-    details:
-      - heading: "The setup"
-        body: >
-          The training loop was slow, the GPU was busy, and I assumed those two
-          facts were related. They were not.
-      - heading: "What the profiler said"
-        body: >
-          Ninety-one percent of wall time was in the data loader, waiting on a
-          per-sample JSON parse that ran once per epoch per worker.
-
+    
   - slug: "sv-engine"
     title: "Building a Semantic Video Search Engine"
     description: >
@@ -65,19 +55,26 @@ items:
     tags: ["CLIP", "Vector Search", "Python", "NLP"]
     url: "https://arnavverma.hashnode.dev/building-a-semantic-video-search-engine"
 
-  - title: "What a Year of Reviewing Taught Me About Writing"
+  - slug: "k8s-pods"
+    title: "Kubernetes Pods Explained"
     description: >
-      Reviewers are tired and skimming. Here is what survives that.
-    date: "2025-11-09"
-    reading_time: "7 min read"
-    url: "https://yourhandle.hashnode.dev/reviewing-and-writing"
+      Point it at a folder of videos, type "a red car driving at night", and get
+      back exact timestamps across every video you own — each one playable at the
+      moment it matched.
+    date: "2026-08-02"
+    reading_time: "24 min read"
+    thumbnail: "/projects/sv-engine.png"
+    tags: ["CLIP", "Vector Search", "Python", "NLP"]
+    url: "https://arnavverma.hashnode.dev/kubernetes-pods"
 
-  - title: "The Dataloader Is Always the Problem"
-    description: >
-      Four training pipelines, four different bottlenecks, all of them upstream
-      of the model.
-    date: "2025-09-30"
-    reading_time: "5 min read"
-    thumbnail: "/projects/placeholder.svg"
-    tags: ["Performance"]
-    url: "https://yourhandle.hashnode.dev/dataloader-problem"
+  # - slug: "Polish - AI Document Editor"
+  #   title: "Kubernetes Pods Explained"
+  #   description: >
+  #     Point it at a folder of videos, type "a red car driving at night", and get
+  #     back exact timestamps across every video you own — each one playable at the
+  #     moment it matched.
+  #   date: "2026-08-02"
+  #   reading_time: "24 min read"
+  #   thumbnail: "/projects/sv-engine.png"
+  #   tags: ["CLIP", "Vector Search", "Python", "NLP"]
+  #   url: "https://arnavverma.hashnode.dev/kubernetes-pods"
