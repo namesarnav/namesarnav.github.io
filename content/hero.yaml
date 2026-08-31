@@ -2,10 +2,11 @@
 # `tagline`, `location` and `actions` are all optional — delete what you don't need.
 
 name: "Arnav Verma"
-title: "ML Engineer & Researcher"
+title: "AI Engineering & Research"
 
 tagline: >
-  I work on representation learning and the systems that make it practical.
+  I work on language model safety and evaluations representation learning and the systems that make it practical.
+  Currently a Masters student at NYU Courant.
   Currently focused on efficient training and evaluation of multimodal models.
 
 location: "📍 New York, NY"

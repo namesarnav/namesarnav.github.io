@@ -18,7 +18,7 @@ initial_count: 3
 items:
 ## ------------------------------------------------------------------------------------------- ##
   # `slug` is the URL for the detail page: /projects/<slug>. Keep it unique.
-  - slug: "semantic-video-search-engine"
+  - slug: "sv-engine"
     title: "Semantic Video Search Engine"
     description: >
       A distillation recipe that keeps 94% of teacher accuracy at a twelfth of the
@@ -28,94 +28,74 @@ items:
     links:
       code: "https://github.com/namesarnav/semantic-video-search-engine"
       demo: "https://huggingface.co/spaces/namesarnav/spectral-distill"
-    # Delete `details` to hide the "Read more" button. Present = a page is generated
-    # at /projects/semantic-video-search-engine from the blocks below.
-    details:
-      - heading: "The problem"
-        body: >
-          On-device speech models are latency-bound long before they are
-          accuracy-bound. Standard logit distillation collapses the teacher's
-          frequency-selective behaviour, which is exactly what the small student
-          needs to keep.
-      - heading: "Approach"
-        body: >
-          We match second-order statistics of intermediate activations in the
-          mel-frequency basis, adding a single term to the loss and no new
-          parameters. Training cost rises about 8%.
-      - heading: "Results"
-        body: >
-          12x fewer parameters, 94% of teacher WER-relative accuracy, and a 3.4x
-          real-time factor improvement on a Pixel 7.
 
 
 
-
-
-## ------------------------------------------------------------------------------------------- ##
-  # `slug` is the URL for the detail page: /projects/<slug>. Keep it unique.
-  - slug: "spectral-distill"
-    title: "Polish - Cursor like AI Document Editor "
-    description: >
-      A distillation recipe that keeps 94% of teacher accuracy at a twelfth of the
-      parameter count, by matching intermediate spectral statistics instead of logits.
-    thumbnail: "/projects/polish.png"     # optional; a neutral panel shows if omitted
-    tags: ["PyTorch", "Speech", "Distillation", "CUDA"]
-    links:
-      code: "https://github.com/PolishAI-app/polish"
-      demo: "https://polish-client-production.up.railway.app/"
-    # Delete `details` to hide the "Read more" button. Present = a page is generated
-    # at /projects/spectral-distill from the blocks below.
-    details:
-      - heading: "The problem"
-        body: >
-          On-device speech models are latency-bound long before they are
-          accuracy-bound. Standard logit distillation collapses the teacher's
-          frequency-selective behaviour, which is exactly what the small student
-          needs to keep.
-      - heading: "Approach"
-        body: >
-          We match second-order statistics of intermediate activations in the
-          mel-frequency basis, adding a single term to the loss and no new
-          parameters. Training cost rises about 8%.
-      - heading: "Results"
-        body: >
-          12x fewer parameters, 94% of teacher WER-relative accuracy, and a 3.4x
-          real-time factor improvement on a Pixel 7.
+# ## ------------------------------------------------------------------------------------------- ##
+#   # `slug` is the URL for the detail page: /projects/<slug>. Keep it unique.
+#   - slug: "spectral-distill"
+#     title: "Polish - Cursor like AI Document Editor "
+#     description: >
+#       A distillation recipe that keeps 94% of teacher accuracy at a twelfth of the
+#       parameter count, by matching intermediate spectral statistics instead of logits.
+#     thumbnail: "/projects/polish.png"     # optional; a neutral panel shows if omitted
+#     tags: ["PyTorch", "Speech", "Distillation", "CUDA"]
+#     links:
+#       code: "https://github.com/PolishAI-app/polish"
+#       demo: "https://polish-client-production.up.railway.app/"
+#     # Delete `details` to hide the "Read more" button. Present = a page is generated
+#     # at /projects/spectral-distill from the blocks below.
+#     details:
+#       - heading: "The problem"
+#         body: >
+#           On-device speech models are latency-bound long before they are
+#           accuracy-bound. Standard logit distillation collapses the teacher's
+#           frequency-selective behaviour, which is exactly what the small student
+#           needs to keep.
+#       - heading: "Approach"
+#         body: >
+#           We match second-order statistics of intermediate activations in the
+#           mel-frequency basis, adding a single term to the loss and no new
+#           parameters. Training cost rises about 8%.
+#       - heading: "Results"
+#         body: >
+#           12x fewer parameters, 94% of teacher WER-relative accuracy, and a 3.4x
+#           real-time factor improvement on a Pixel 7.
 
 
 
-## ------------------------------------------------------------------------------------------- ##
+# ## ------------------------------------------------------------------------------------------- ##
 
-  - slug: "ledger"
-    title: "Ledger — a Query Planner for Small Analytical Workloads"
-    description: >
-      A single-binary columnar query engine with a cost-based planner, written to
-      understand what actually makes analytical queries fast at gigabyte scale.
-    thumbnail: "/projects/placeholder.svg"
-    tags: ["Rust", "Databases", "Query Planning"]
-    links:
-      code: "https://github.com/yourhandle/ledger"
-    details:
-      - heading: "Why"
-        body: >
-          Most analytical workloads never leave one machine. Ledger asks how far a
-          careful planner and a tight vectorised executor can go before you need a
-          cluster at all.
-      - heading: "Design"
-        body: >
-          Arrow-backed columnar storage, a Volcano-style planner with histogram
-          statistics, and morsel-driven parallelism across cores.
+#   - slug: "ledger"
+#     title: "Ledger — a Query Planner for Small Analytical Workloads"
+#     description: >
+#       A single-binary columnar query engine with a cost-based planner, written to
+#       understand what actually makes analytical queries fast at gigabyte scale.
+#     thumbnail: "/projects/placeholder.svg"
+#     tags: ["Rust", "Databases", "Query Planning"]
+#     links:
+#       code: "https://github.com/yourhandle/ledger"
+#     details:
+#       - heading: "Why"
+#         body: >
+#           Most analytical workloads never leave one machine. Ledger asks how far a
+#           careful planner and a tight vectorised executor can go before you need a
+#           cluster at all.
+#       - heading: "Design"
+#         body: >
+#           Arrow-backed columnar storage, a Volcano-style planner with histogram
+#           statistics, and morsel-driven parallelism across cores.
 
-## ------------------------------------------------------------------------------------------- ##
+# ## ------------------------------------------------------------------------------------------- ##
 
-  - slug: "paper-radar"
-    title: "Paper Radar"
-    description: >
-      A weekly digest that ranks new arXiv preprints against the papers already
-      in my library.
-    thumbnail: "/projects/placeholder.svg"
-    tags: ["Python", "Recommenders"]
-    links:
-      code: "https://github.com/yourhandle/paper-radar"
-      demo: "https://paper-radar.example.com"
-## ------------------------------------------------------------------------------------------- ##
+#   - slug: "paper-radar"
+#     title: "Paper Radar"
+#     description: >
+#       A weekly digest that ranks new arXiv preprints against the papers already
+#       in my library.
+#     thumbnail: "/projects/placeholder.svg"
+#     tags: ["Python", "Recommenders"]
+#     links:
+#       code: "https://github.com/yourhandle/paper-radar"
+#       demo: "https://paper-radar.example.com"
+# ## ------------------------------------------------------------------------------------------- ##
