@@ -1,7 +1,7 @@
 heading: "Education"
 
 items:
-  - institution: "NEW YORK UNIVERSITY - COURANT INSTITUTE OF MATHEMATICAL SCIENCES"
+  - institution: "New York University, Courant Institute of Mathematical Sciences"
     # The school's own colour, hex only. In dark mode it is lightened
     # automatically so it stays legible; set `color_dark` to override that.
     color: "#57068C"        # NYU violet
@@ -21,7 +21,7 @@ items:
       - { name: "Machine Learning - Kyunghyun Cho", grade: "In progress" }
       - { name: "Deep Learning - Yann LeCunn", grade: "In progress" }
 
-  - institution: "UNIVERSITY OF NORTH TEXAS"
+  - institution: "University of North Texas"
     color: "#00693C"        # UNT green
     dates: "01/23 – 05/26"
     degree: "B.S. Computer Science"
