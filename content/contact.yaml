@@ -1,0 +1,19 @@
+heading: "Contact"
+
+blurb: "Happy to talk about research, collaborations, or interesting problems."
+
+email: "you@example.com"
+phone: "+91 98765 43210"
+
+# Every social below is optional. Delete a line — or leave it blank — and its
+# button disappears from the page. No placeholder is ever rendered.
+socials:
+  github: "https://github.com/yourhandle"
+  linkedin: "https://linkedin.com/in/yourhandle"
+  huggingface: "https://huggingface.co/yourhandle"
+  hashnode: "https://yourhandle.hashnode.dev"
+  youtube: "https://youtube.com/@yourhandle"
+  google_scholar: "https://scholar.google.com/citations?user=XXXX"
+  open_review: "https://openreview.net/profile?id=~Your_Name1"
+  instagram: "https://instagram.com/yourhandle"
+  spotify: "https://open.spotify.com/user/yourhandle"

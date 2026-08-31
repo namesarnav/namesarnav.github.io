@@ -1,26 +1,255 @@
 @import "tailwindcss";
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
+@custom-variant dark (&:is(.dark *));
+
+/*
+  Notion's palette, transcribed.
+  Light: page #FFFFFF, ink rgb(55,53,47), rules rgba(55,53,47,0.09).
+  Dark:  page #191919, ink rgba(255,255,255,0.81), rules rgba(255,255,255,0.13).
+  Nothing here is decorative — Notion gets its structure from type and hairlines.
+*/
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --font-sans: var(--font-instrument-sans);
+  --font-mono: var(--font-mono-stack);
+  --font-heading: var(--font-instrument-sans);
+  --color-ring: var(--ring);
+  --color-input: var(--input);
+  --color-border: var(--border);
+  --color-destructive: var(--destructive);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-accent: var(--accent);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-muted: var(--muted);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-secondary: var(--secondary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary: var(--primary);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-popover: var(--popover);
+  --color-card-foreground: var(--card-foreground);
+  --color-card: var(--card);
+
+  /* Notion extras the shadcn token set has no name for. */
+  --color-rule: var(--rule);
+  --color-surface: var(--surface);
+  --color-surface-hover: var(--surface-hover);
+  --color-tag: var(--tag);
+  --color-tag-foreground: var(--tag-foreground);
+  --color-link: var(--link);
+
+  /* Notion's green and blue tag colours, used for skill proficiency. */
+  --color-level-proficient: var(--level-proficient);
+  --color-level-proficient-foreground: var(--level-proficient-foreground);
+  --color-level-working: var(--level-working);
+  --color-level-working-foreground: var(--level-working-foreground);
+  --color-level-beginner: var(--level-beginner);
+  --color-level-beginner-foreground: var(--level-beginner-foreground);
+  --color-grade: var(--grade);
+
+  --radius-sm: calc(var(--radius) * 0.6);
+  --radius-md: calc(var(--radius) * 0.8);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) * 1.4);
+  --radius-2xl: calc(var(--radius) * 1.8);
+  --radius-3xl: calc(var(--radius) * 2.2);
+  --radius-4xl: calc(var(--radius) * 2.6);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+:root {
+  --radius: 0.375rem;
+  --font-mono-stack: ui-monospace, SFMono-Regular, "SF Mono", Menlo, monospace;
+
+  --background: #ffffff;
+  --foreground: #37352f;
+
+  --card: #ffffff;
+  --card-foreground: #37352f;
+  --popover: #ffffff;
+  --popover-foreground: #37352f;
+
+  --primary: #37352f;
+  --primary-foreground: #ffffff;
+
+  --secondary: #f7f6f3;
+  --secondary-foreground: #37352f;
+
+  --muted: #f7f6f3;
+  --muted-foreground: #787774;
+
+  --accent: #f1f1ef;
+  --accent-foreground: #37352f;
+
+  --destructive: #d44c47;
+
+  --border: rgba(55, 53, 47, 0.09);
+  --input: rgba(55, 53, 47, 0.16);
+  --ring: rgba(35, 131, 226, 0.57);
+
+  --rule: rgba(55, 53, 47, 0.09);
+  --surface: #f7f6f3;
+  --surface-hover: rgba(55, 53, 47, 0.06);
+  --tag: #e3e2e0;
+  --tag-foreground: #37352f;
+  --link: #337ea9;
+
+  --level-proficient: #dbeddb;
+  --level-proficient-foreground: #1c3829;
+  --level-working: #d3e5ef;
+  --level-working-foreground: #183347;
+  --level-beginner: #e3e2e0;
+  --level-beginner-foreground: #37352f;
+
+  /* Course grades. */
+  --grade: #448361;
+
+  --selection: rgba(35, 131, 226, 0.28);
+}
+
+.dark {
+  --background: #191919;
+  --foreground: rgba(255, 255, 255, 0.81);
+
+  --card: #202020;
+  --card-foreground: rgba(255, 255, 255, 0.81);
+  --popover: #252525;
+  --popover-foreground: rgba(255, 255, 255, 0.81);
+
+  --primary: rgba(255, 255, 255, 0.88);
+  --primary-foreground: #191919;
+
+  --secondary: #252525;
+  --secondary-foreground: rgba(255, 255, 255, 0.81);
+
+  --muted: #202020;
+  --muted-foreground: rgba(255, 255, 255, 0.46);
+
+  --accent: #2c2c2c;
+  --accent-foreground: rgba(255, 255, 255, 0.81);
+
+  --destructive: #ff7369;
+
+  --border: rgba(255, 255, 255, 0.13);
+  --input: rgba(255, 255, 255, 0.16);
+  --ring: rgba(82, 156, 202, 0.6);
+
+  --rule: rgba(255, 255, 255, 0.13);
+  --surface: #202020;
+  --surface-hover: rgba(255, 255, 255, 0.055);
+  --tag: rgba(255, 255, 255, 0.094);
+  --tag-foreground: rgba(255, 255, 255, 0.81);
+  --link: #529cca;
+
+  --level-proficient: #2d4838;
+  --level-proficient-foreground: #c8e5ce;
+  --level-working: #143a4e;
+  --level-working-foreground: #cee7f7;
+  --level-beginner: rgba(255, 255, 255, 0.094);
+  --level-beginner-foreground: rgba(255, 255, 255, 0.81);
+
+  --grade: #6cc98a;
+
+  --selection: rgba(82, 156, 202, 0.35);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+
+  html {
+    @apply font-sans;
+    scroll-behavior: smooth;
+    /* The sticky header must not cover an anchored section heading. */
+    scroll-padding-top: 5.5rem;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-feature-settings: "kern" 1, "liga" 1, "calt" 1;
+    text-rendering: optimizeLegibility;
+  }
+
+  ::selection {
+    background: var(--selection);
+  }
+
+  a {
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+/* ---------------------------------------------------------------- the vibe button */
+
+@keyframes vibe-bar {
+  0%,
+  100% {
+    transform: scaleY(0.28);
+  }
+  50% {
+    transform: scaleY(1);
+  }
+}
+
+@keyframes vibe-note {
+  0% {
+    opacity: 0;
+    transform: translate(0, -4px) rotate(0deg) scale(0.7);
+  }
+  18% {
+    opacity: 0.9;
+  }
+  100% {
+    opacity: 0;
+    transform: translate(var(--drift, 6px), 32px) rotate(var(--spin, 14deg)) scale(1.05);
+  }
+}
+
+@layer utilities {
+  /*
+    An institution's own colour, handed in as `--brand`. Dark mode mixes it
+    toward white, since a colour picked for print on white is usually too dark
+    to read on #191919.
+  */
+  .brand-ink {
+    color: var(--brand, currentColor);
+  }
+
+  .dark .brand-ink {
+    color: var(--brand-dark, color-mix(in oklab, var(--brand, currentColor) 55%, white));
+  }
+
+  .vibe-bar {
+    transform-origin: center;
+  }
+
+  /* Bars idle at a low, still height and only dance while the track plays. */
+  [data-playing="true"] .vibe-bar {
+    animation: vibe-bar var(--beat, 0.85s) ease-in-out infinite;
+  }
+
+  .vibe-note {
+    animation: vibe-note 1.9s linear infinite;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    [data-playing="true"] .vibe-bar,
+    .vibe-note {
+      animation: none;
+    }
+    .vibe-note {
+      display: none;
+    }
+  }
 }

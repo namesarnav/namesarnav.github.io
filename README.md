@@ -1,36 +1,196 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Portfolio
 
-## Getting Started
+A single-scroll portfolio site. **All copy lives in `content/*.yaml`** — the code
+in `src/` is template only and hardcodes no text. To change what the site says,
+edit YAML; you never need to open a `.tsx` file.
 
-First, run the development server:
+Built with Next.js (App Router), Tailwind CSS v4, and shadcn/ui.
+
+## Running it
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npm run dev     # http://localhost:3000
+npm run build   # production build; fails loudly if the YAML is malformed
+npm start
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Editing content
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+| File | What it controls |
+| --- | --- |
+| `content/site.yaml` | Page title, description, top-bar nav links, footer |
+| `content/hero.yaml` | Your name, title, tagline, location, hero buttons |
+| `content/education.yaml` | Education entries |
+| `content/research.yaml` | Papers and preprints |
+| `content/projects.yaml` | Project tiles **and** their detail pages |
+| `content/blogs.yaml` | Blog posts |
+| `content/skills.yaml` | Skill groups |
+| `content/contact.yaml` | Email, phone, social links |
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Every file is commented. Three rules cover almost everything:
 
-## Learn More
+1. **Optional means optional.** Delete a field you don't want and it renders
+   nothing — no empty label, no placeholder. A blank value (`grade: ""`) counts
+   as deleted.
+2. **Lists grow and shrink.** Add or remove entries under `items:` / `groups:`
+   freely; the layout adapts.
+3. **Buttons follow the data.** A project's *Code* and *Demo* buttons appear only
+   when `links.code` / `links.demo` exist. Contact's social buttons work the same
+   way: list only the socials you actually use.
 
-To learn more about Next.js, take a look at the following resources:
+### Education
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Each entry carries the institution and dates, the qualification, where it was and
+how it went, then optional blocks for affiliations, awards, and coursework.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+- `dates` is free text, so `"01/23 – 05/26"` and `"Expected 05/28"` both work. It
+  sits beside the institution name, dropping below it when the name is long.
+- `degree` and `field` join with a middot (`B.S. Computer Science · Mathematics
+  Minor`), as do `location` and `grade` (`Denton, TX · GPA 3.70`).
+- `color` tints the institution name in its own school colour — hex only, since
+  it is written into a style attribute. Dark mode lightens it automatically so it
+  stays readable on the dark page; `color_dark` overrides that if you want a
+  specific shade. Omit both and the name renders in the normal text colour.
+- `transcript` adds a quiet **View transcript** button at the foot of the entry.
+  Point it at a file in `public/` (`/documents/unt-transcript.pdf`) or a full URL;
+  external links open in a new tab. Omit it and no button appears.
+- `affiliations` render as pills, `awards` as a marked list. Both optional.
+- `coursework` is a list of `{ name, grade }`. The grade prints in green and is
+  free text — `A+`, `In progress`, whatever fits. Omit `grade` for a bare row.
 
-## Deploy on Vercel
+### The vibe button
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+The top bar carries a **Click here to vibe** button that plays a track, with a
+waveform that dances while it runs and music notes drifting off the top. It is
+configured in `site.yaml`:
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+```yaml
+vibe:
+  src: "/audio/placeholder-vibe.wav"   # a file in public/, or a full URL
+  # title: "Something Nicer"           # overrides the name read from the filename
+  label: "Click here to vibe"
+  playing_label: "Vibing"
+  loop: true
+  volume: 0.7
+```
+
+While a track plays, its name appears in small light type just below the button,
+read from the filename:
+`placeholder-vibe.wav` becomes **Placeholder Vibe**. A leading track number is
+dropped (`01_midnight-drive.mp3` → *Midnight Drive*) and words you already
+capitalised are left alone (`LoFi_study-mix.mp3` → *LoFi Study Mix*). Set
+`title:` when the filename does not make a good name.
+
+`public/audio/placeholder-vibe.wav` is a generated placeholder loop — swap in
+your own mp3, m4a, ogg or wav and point `src` at it. Delete the `vibe:` block (or
+just its `src`) and the button disappears entirely.
+
+On a wide screen the button pins itself to the very top-right corner of the
+viewport, clear of the nav; on narrower screens it tucks back into the header row
+as a compact waveform, since there is no spare corner there.
+
+Nothing downloads until someone clicks (`preload="none"`), so the track costs
+visitors nothing unless they want it. The animation stops under
+`prefers-reduced-motion`.
+
+### Research
+
+Each entry is a paper. `status` carries the whole truth about where it stands —
+`"Under review, 2026"` while it is out, the venue (`"NeurIPS 2026"`) once it is
+accepted. Nothing else changes when that happens.
+
+Naming the venue while a paper is under review is only safe if that venue's
+anonymity policy allows it; `"Under review, 2026"` with no venue is the option
+that works everywhere.
+
+`highlight_author` is your name, bolded automatically wherever it appears in an
+`authors` list — write it exactly as it appears there. Links (`pdf`, `arxiv`,
+`code`, `doi`) each add a button, and only when present.
+
+### Projects
+
+Each entry under `items:` becomes one full-width row — thumbnail on the left,
+then title, description, tag pills, and buttons — laid out like a video search
+result. Rows stack vertically on phones.
+
+`initial_count: 3` sets how many rows show before a **View more** button appears
+below the list; the button carries the number still hidden. Set it to `0` to show
+everything with no button. Writing takes the same option. Hidden rows stay in the
+page's HTML, so search engines still see the full list.
+
+- `slug` — lowercase-with-hyphens; it becomes the detail page URL.
+- `thumbnail` — a path under `public/`, e.g. `/projects/my-shot.png`. Omit it and
+  the tile renders without an image. Roughly 16:7 crops best.
+- `details` — a list of `{ heading, body }` blocks. **If `details` is present, a
+  page is generated at `/projects/<slug>` and a "Read more" button appears.** If
+  it's absent, no button and no page. To point "Read more" somewhere external
+  instead, set `links.read_more`.
+
+Blank lines inside a `body` become paragraph breaks.
+
+### Writing
+
+Posts render as the same rows as projects, with a date and reading time under the
+title. Each entry has two independent ways to be read, and shows a button for
+whichever it has:
+
+- `url:` — where the post is published (Hashnode, Medium, wherever). Adds a
+  **Read post** button that opens in a new tab.
+- `details:` — the same `{ heading, body }` blocks projects use. Adds a **Read
+  more** button and generates a page at `/blog/<slug>`. A post with `details`
+  needs a `slug`; one that only links out does not.
+
+A post can have both, in which case it shows both buttons. `date`, `reading_time`,
+`thumbnail`, and `tags` are all optional. Posts appear in the order you list them,
+so put the newest first.
+
+### Skills
+
+Each item is either a plain string or a `{ name, level }` pair. Levels shade the
+pill: `proficient` green, `working` blue, `beginner` grey. A plain string means
+`working`.
+
+```yaml
+items:
+  - { name: "Python", level: proficient }
+  - "SQL"                                  # same as level: working
+```
+
+The colour key at the top of the section is drawn from `legend:`. Rename the
+labels to whatever you like, delete one to drop it from the key, or delete the
+whole `legend:` block to hide the key.
+
+### Contact socials
+
+Supported keys, rendered in this order:
+`github`, `linkedin`, `huggingface`, `hashnode`, `youtube`, `google_scholar`,
+`open_review`, `instagram`, `spotify`.
+
+### If the YAML is wrong
+
+The site fails with a message naming the file, the field, and the problem — for
+example a `slug` with spaces in it. It never renders half-broken.
+
+## How it's put together
+
+```
+content/                     ← the only files you edit day to day
+public/projects/             ← project thumbnails
+public/audio/                ← the vibe button's track
+src/lib/content.ts           ← reads + validates the YAML (one schema per file)
+src/components/section.tsx   ← the shared section shell
+src/components/expandable-list.tsx ← the View more behaviour
+src/components/sections/     ← one component per section
+src/app/globals.css          ← Notion's palette as CSS variables
+src/app/projects/[slug]/     ← generated project detail pages
+src/app/blog/[slug]/         ← generated post pages
+```
+
+**Design notes.** Light theme by default, with a toggle in the top bar (the OS
+preference does not override it). Colours are Notion's: `#FFFFFF` / `rgb(55,53,47)`
+in light, `#191919` / `rgba(255,255,255,0.81)` in dark, with the same hairline
+rules Notion uses instead of shadows or boxes. Type is Instrument Sans (variable).
+There is no scroll animation — the page is a straight linear scroll.
+
+**Adding a field.** Extend the schema in `src/lib/content.ts`, then read it in the
+matching component under `src/components/sections/`.

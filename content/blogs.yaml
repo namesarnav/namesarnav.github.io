@@ -1,0 +1,68 @@
+heading: "Writing"
+
+blurb: "Posts on things I've worked through and wanted to explain properly."
+
+# How many rows show before the "View more" button appears.
+# Set to 0 to always show everything.
+initial_count: 3
+
+items:
+  # `slug` is only needed when the post has a `details:` block below.
+  - slug: "attention-is-a-lookup-table"
+    title: "Attention Is a Lookup Table (And That's a Useful Lie)"
+    description: >
+      A mental model for self-attention that survives contact with the code:
+      soft key lookup, and where the analogy quietly breaks down.
+    date: "2026-05-04"            # quoted; free-form text also works
+    reading_time: "9 min read"    # optional
+    thumbnail: "/projects/placeholder.svg"
+    tags: ["Transformers", "Explainers"]
+    # Where the post is published. Renders a "Read post" button that opens in a
+    # new tab. Delete it if the post only lives on this site.
+    url: "https://yourhandle.hashnode.dev/attention-is-a-lookup-table"
+
+  - slug: "profiling-before-optimising"
+    title: "I Spent Three Weeks Optimising the Wrong Loop"
+    description: >
+      What a flame graph would have told me on day one, and the habit I built
+      afterwards for deciding what is actually worth speeding up.
+    date: "2026-03-18"
+    reading_time: "6 min read"
+    thumbnail: "/projects/placeholder.svg"
+    tags: ["Performance", "Engineering"]
+    url: "https://yourhandle.hashnode.dev/profiling-before-optimising"
+    # `details` generates a page at /blog/<slug> and adds a "Read more" button,
+    # exactly like projects. Use it for posts you want hosted here.
+    details:
+      - heading: "The setup"
+        body: >
+          The training loop was slow, the GPU was busy, and I assumed those two
+          facts were related. They were not.
+      - heading: "What the profiler said"
+        body: >
+          Ninety-one percent of wall time was in the data loader, waiting on a
+          per-sample JSON parse that ran once per epoch per worker.
+
+  # A minimal entry: no thumbnail, no tags, no detail page — just a link out.
+  - title: "Notes on Reading Papers Faster"
+    description: >
+      The three-pass method, and the two passes most people skip.
+    date: "2026-01-22"
+    url: "https://yourhandle.hashnode.dev/reading-papers-faster"
+
+  - title: "What a Year of Reviewing Taught Me About Writing"
+    description: >
+      Reviewers are tired and skimming. Here is what survives that.
+    date: "2025-11-09"
+    reading_time: "7 min read"
+    url: "https://yourhandle.hashnode.dev/reviewing-and-writing"
+
+  - title: "The Dataloader Is Always the Problem"
+    description: >
+      Four training pipelines, four different bottlenecks, all of them upstream
+      of the model.
+    date: "2025-09-30"
+    reading_time: "5 min read"
+    thumbnail: "/projects/placeholder.svg"
+    tags: ["Performance"]
+    url: "https://yourhandle.hashnode.dev/dataloader-problem"

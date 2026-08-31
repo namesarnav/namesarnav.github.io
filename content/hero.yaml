@@ -1,0 +1,20 @@
+# The opening screen: name and title.
+# `tagline`, `location` and `actions` are all optional — delete what you don't need.
+
+name: "Arnav Verma"
+title: "ML Engineer & Researcher"
+
+tagline: >
+  I work on representation learning and the systems that make it practical.
+  Currently focused on efficient training and evaluation of multimodal models.
+
+location: "New York, NY"
+
+# Optional buttons under the tagline. Delete the whole `actions:` block to hide them.
+actions:
+  - label: "View My Work"
+    href: "#projects"
+    variant: "primary"
+  - label: "Get in Touch"
+    href: "#contact"
+    variant: "secondary"

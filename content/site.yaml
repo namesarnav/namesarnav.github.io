@@ -1,0 +1,42 @@
+# Site-wide metadata and navigation.
+# Everything here feeds <head> and the sticky top bar.
+
+title: "Arnav Verma"
+description: "Portfolio of Arnav Verma — machine learning research and engineering."
+url: "https://example.com"
+
+# Shown in the top-left of the sticky header. Falls back to `title` if omitted.
+brand: "Arnav Verma"
+
+# Top bar links. Remove any entry to drop it from the nav.
+nav:
+  - label: "Education"
+    href: "#education"
+  - label: "Research"
+    href: "#research"
+  - label: "Projects"
+    href: "#projects"
+  - label: "Writing"
+    href: "#blogs"
+  - label: "Skills"
+    href: "#skills"
+  - label: "Contact"
+    href: "#contact"
+
+# Optional. Shown centred at the very bottom of the page.
+footer: "Built with Next.js. Content lives in YAML."
+
+# The "click here to vibe" button in the top bar. Delete this block (or just the
+# `src:` line) and the button disappears.
+#
+# Point `src` at an audio file in `public/` — mp3, m4a, ogg and wav all work —
+# or at a full URL. The bundled track is a placeholder loop; swap in your own.
+vibe:
+  src: "/audio/placeholder-vibe.wav"
+  # The track name shown while it plays is read from the filename —
+  # "placeholder-vibe.wav" becomes "Placeholder Vibe". Set `title:` to override.
+  # title: "Something Nicer"
+  label: "Click here to vibe"
+  playing_label: "Vibing"
+  loop: true
+  volume: 0.7

@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 525" width="1200" height="525" role="img" aria-label="Placeholder">
+  <rect width="1200" height="525" fill="#f7f6f3"/>
+  <g fill="none" stroke="rgba(55,53,47,0.10)" stroke-width="1">
+    <path d="M0 131.25h1200M0 262.5h1200M0 393.75h1200M300 0v525M600 0v525M900 0v525"/>
+  </g>
+  <text x="600" y="272" text-anchor="middle" font-family="system-ui, sans-serif" font-size="17" fill="rgba(55,53,47,0.45)">
+    Replace with public/projects/your-image.png
+  </text>
+</svg>

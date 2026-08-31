@@ -1,0 +1,46 @@
+heading: "Skills"
+
+# Optional line under the heading.
+blurb: "Tools I reach for most often, shaded by how well I know them."
+
+# The colour key. Delete a label to drop it from the legend; delete the whole
+# `legend:` block to hide the key entirely.
+legend:
+  proficient: "Daily driver"
+  working: "Working knowledge"
+  beginner: "Beginner"
+
+# Each item is either a plain string — which means `working` — or a
+# `{ name, level }` pair. Levels: proficient (green), working (blue),
+# beginner (grey).
+groups:
+  - name: "Languages"
+    items:
+      - { name: "Python", level: proficient }
+      - { name: "TypeScript", level: proficient }
+      - { name: "SQL", level: working }
+      - { name: "C++", level: working }
+      - { name: "Rust", level: beginner }
+
+  - name: "Machine Learning"
+    items:
+      - { name: "PyTorch", level: proficient }
+      - { name: "Hugging Face", level: proficient }
+      - { name: "scikit-learn", level: working }
+      - { name: "Weights & Biases", level: working }
+      - { name: "JAX", level: beginner }
+
+  - name: "Systems & Infra"
+    items:
+      - { name: "Docker", level: proficient }
+      - { name: "AWS", level: working }
+      - { name: "Postgres", level: working }
+      - { name: "Ray", level: beginner }
+      - { name: "Kubernetes", level: beginner }
+
+  - name: "Web"
+    items:
+      - { name: "React", level: proficient }
+      - { name: "Next.js", level: proficient }
+      - { name: "Tailwind CSS", level: proficient }
+      - { name: "FastAPI", level: working }
