@@ -6,6 +6,8 @@ import path from "node:path";
 import { load as parseYaml } from "js-yaml";
 import { z } from "zod";
 
+import { hasPostBody, listPostBodies } from "@/lib/markdown";
+
 /**
  * Every piece of copy on this site comes from `content/*.yaml`.
  * Nothing below hardcodes text — it only describes the shape the YAML must take.
@@ -95,6 +97,43 @@ const siteSchema = z.object({
     .default({ loop: true, shuffle: false, volume: 0.7 }),
 });
 
+export const SOCIAL_KEYS = [
+  "github",
+  "linkedin",
+  "huggingface",
+  "hashnode",
+  "medium",
+  "youtube",
+  "google_scholar",
+  "open_review",
+  "instagram",
+  "spotify",
+] as const;
+
+export type SocialKey = (typeof SOCIAL_KEYS)[number];
+
+/**
+ * The "View GitHub" / "View Google Scholar" buttons that sit at the foot of a
+ * section. Naming a `social` borrows that platform's icon and label, so
+ * `{ social: github, href: ... }` renders as "View GitHub" with the right mark.
+ * A `label` overrides the generated text; an entry with no `social` is a plain
+ * button and gets no icon.
+ */
+const sectionActionsSchema = z
+  .array(
+    z
+      .object({
+        social: z.enum(SOCIAL_KEYS).optional(),
+        label: optionalText,
+        href: nonEmpty,
+      })
+      .refine((action) => action.social || action.label, {
+        message: "needs a `social` or a `label` — otherwise the button has no text",
+      }),
+  )
+  .optional()
+  .default([]);
+
 // ---------------------------------------------------------------- hero
 
 const heroSchema = z.object({
@@ -102,6 +141,13 @@ const heroSchema = z.object({
   title: nonEmpty,
   tagline: optionalText,
   location: optionalText,
+  /** A file in `public/` (or a full URL). Omit it and the hero is text only. */
+  photo: optionalText,
+  /**
+   * Screen-reader description. Defaults to the name, which is the right answer
+   * for a portrait — override it only if the picture is of something else.
+   */
+  photo_alt: optionalText,
   actions: z
     .array(
       z.object({
@@ -118,6 +164,7 @@ const heroSchema = z.object({
 
 const educationSchema = z.object({
   heading: nonEmpty,
+  actions: sectionActionsSchema,
   blurb: optionalText,
   items: z
     .array(
@@ -179,6 +226,7 @@ const paperSchema = z.object({
 
 const researchSchema = z.object({
   heading: nonEmpty,
+  actions: sectionActionsSchema,
   blurb: optionalText,
   /** Bolded wherever it turns up in an author list. */
   highlight_author: optionalText,
@@ -213,6 +261,7 @@ const projectSchema = z.object({
 
 const projectsSchema = z.object({
   heading: nonEmpty,
+  actions: sectionActionsSchema,
   blurb: optionalText,
   /** How many rows show before the "View more" button. 0 shows everything. */
   initial_count: z.number().int().min(0).optional().default(3),
@@ -252,6 +301,7 @@ const blogSchema = z.object({
 
 const blogsSchema = z.object({
   heading: nonEmpty,
+  actions: sectionActionsSchema,
   blurb: optionalText,
   /** How many rows show before the "View more" button. 0 shows everything. */
   initial_count: z.number().int().min(0).optional().default(3),
@@ -286,6 +336,7 @@ const skillItemSchema = z.union([
 
 const skillsSchema = z.object({
   heading: nonEmpty,
+  actions: sectionActionsSchema,
   blurb: optionalText,
   /**
    * Labels for the colour key. Drop a level's label and it vanishes from the
@@ -316,22 +367,9 @@ const skillsSchema = z.object({
  * The order here is the order the buttons render in. A social is shown only when
  * the YAML carries a non-blank value for it.
  */
-export const SOCIAL_KEYS = [
-  "github",
-  "linkedin",
-  "huggingface",
-  "hashnode",
-  "youtube",
-  "google_scholar",
-  "open_review",
-  "instagram",
-  "spotify",
-] as const;
-
-export type SocialKey = (typeof SOCIAL_KEYS)[number];
-
 const contactSchema = z.object({
   heading: nonEmpty,
+  actions: sectionActionsSchema,
   blurb: optionalText,
   email: optionalText,
   phone: optionalText,
@@ -451,7 +489,11 @@ export const getSite = () => {
 
   return { ...site, vibe: { ...site.vibe, tracks } };
 };
-export const getHero = () => load("hero", heroSchema);
+export const getHero = () => {
+  const hero = load("hero", heroSchema);
+  assertAssetsExist("hero", [hero.photo]);
+  return hero;
+};
 export const getEducation = () => load("education", educationSchema);
 export const getResearch = () => load("research", researchSchema);
 export const getProjects = () => {
@@ -462,6 +504,31 @@ export const getProjects = () => {
 export const getBlogs = () => {
   const blogs = load("blogs", blogsSchema);
   assertAssetsExist("blogs", blogs.items.map((item) => item.thumbnail));
+
+  const slugs = new Set(blogs.items.flatMap((item) => (item.slug ? [item.slug] : [])));
+
+  // A .md file with no matching entry would never be linked from anywhere, so
+  // say so rather than leaving the post silently unreachable.
+  const orphans = listPostBodies().filter((slug) => !slugs.has(slug));
+  if (orphans.length > 0) {
+    throw new Error(
+      `content/blog/ has ${orphans.length > 1 ? "files" : "a file"} with no entry in ` +
+        `blogs.yaml, so nothing links to ${orphans.length > 1 ? "them" : "it"}:\n` +
+        orphans.map((slug) => `  - ${slug}.md (add an item with slug: "${slug}")`).join("\n"),
+    );
+  }
+
+  // Two bodies for one post means one of them is dead text.
+  const doubled = blogs.items.filter(
+    (item) => item.details.length > 0 && hasPostBody(item.slug),
+  );
+  if (doubled.length > 0) {
+    throw new Error(
+      "these posts have both a `details:` block and a Markdown file — keep one:\n" +
+        doubled.map((item) => `  - ${item.slug} (drop the details: block, or delete content/blog/${item.slug}.md)`).join("\n"),
+    );
+  }
+
   return blogs;
 };
 export const getSkills = () => load("skills", skillsSchema);
@@ -479,7 +546,10 @@ export function getBlog(slug: string): Blog | undefined {
 
 /** The on-site page for a post, when it has one. */
 export function blogDetailHref(post: Blog): string | undefined {
-  return post.details.length > 0 && post.slug ? `/blog/${post.slug}` : undefined;
+  if (!post.slug) return undefined;
+  // Either source of a body earns the post a page here.
+  const hosted = post.details.length > 0 || hasPostBody(post.slug);
+  return hosted ? `/blog/${post.slug}` : undefined;
 }
 
 /**
@@ -505,3 +575,5 @@ export function readMoreHref(project: Project): string | undefined {
   if (project.details.length > 0) return `/projects/${project.slug}`;
   return undefined;
 }
+
+export type SectionAction = z.infer<typeof sectionActionsSchema>[number];
