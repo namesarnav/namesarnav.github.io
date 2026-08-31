@@ -1,4 +1,5 @@
 import { BlogsSection } from "@/components/sections/blogs";
+import { CertificationsSection } from "@/components/sections/certifications";
 import { ContactSection } from "@/components/sections/contact";
 import { EducationSection } from "@/components/sections/education";
 import { HeroSection } from "@/components/sections/hero";
@@ -16,6 +17,7 @@ export default function HomePage() {
       <ProjectsSection />
       <BlogsSection />
       <SkillsSection />
+      <CertificationsSection />
       <ContactSection />
     </main>
   );

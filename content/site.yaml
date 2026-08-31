@@ -20,6 +20,8 @@ nav:
     href: "#blogs"
   - label: "Skills"
     href: "#skills"
+  - label: "Certifications"
+    href: "#certifications"
   - label: "Contact"
     href: "#contact"
 

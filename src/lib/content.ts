@@ -359,6 +359,45 @@ const skillsSchema = z.object({
     )
     .optional()
     .default([]),
+  /**
+   * The contribution strip under the skill groups. The squares come from
+   * content/generated/github-activity.json, refreshed on every deploy — only
+   * the settings live here. Drop the block and the strip disappears.
+   */
+  activity: z
+    .object({
+      label: optionalText,
+      /** How far back the strip reaches. Twelve is the full GitHub year. */
+      months: z.number().int().min(1).max(12).optional().default(6),
+    })
+    .optional(),
+});
+
+// ---------------------------------------------------------------- certifications
+
+const certificationsSchema = z.object({
+  heading: nonEmpty,
+  actions: sectionActionsSchema,
+  blurb: optionalText,
+  items: z
+    .array(
+      z.object({
+        title: nonEmpty,
+        /**
+         * A badge or certificate image in `public/`. Badges are square and
+         * certificates are landscape, so the frame letterboxes rather than
+         * crops — nothing is cut off whichever you have.
+         */
+        thumbnail: optionalText,
+        description: optionalText,
+        /** Free text, so "Issued Mar 2026" and "2026-03-14" both work. */
+        date: optionalText,
+        /** Renders the "View credential" button. Omit it and no button shows. */
+        credential: optionalText,
+      }),
+    )
+    .optional()
+    .default([]),
 });
 
 // ---------------------------------------------------------------- contact
@@ -384,6 +423,7 @@ const contactSchema = z.object({
 // ---------------------------------------------------------------- types
 
 export type Site = z.infer<typeof siteSchema>;
+export type Certification = z.infer<typeof certificationsSchema>["items"][number];
 export type Hero = z.infer<typeof heroSchema>;
 export type Education = z.infer<typeof educationSchema>;
 export type Research = z.infer<typeof researchSchema>;
@@ -532,6 +572,14 @@ export const getBlogs = () => {
   return blogs;
 };
 export const getSkills = () => load("skills", skillsSchema);
+export const getCertifications = () => {
+  const certifications = load("certifications", certificationsSchema);
+  assertAssetsExist(
+    "certifications",
+    certifications.items.map((item) => item.thumbnail),
+  );
+  return certifications;
+};
 export const getContact = () => load("contact", contactSchema);
 
 /** Looks up one project by its slug, for the generated detail pages. */
