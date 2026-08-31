@@ -76,7 +76,7 @@ export function BlogsSection() {
   if (blogs.items.length === 0) return null;
 
   return (
-    <Section id="blogs" heading={blogs.heading} blurb={blogs.blurb}>
+    <Section id="blogs" heading={blogs.heading} blurb={blogs.blurb} actions={blogs.actions}>
       <ExpandableList initialCount={blogs.initial_count}>
         {blogs.items.map((post) => (
           <BlogRow key={post.slug ?? post.title} post={post} />

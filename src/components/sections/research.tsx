@@ -101,7 +101,7 @@ export function ResearchSection() {
   if (research.items.length === 0) return null;
 
   return (
-    <Section id="research" heading={research.heading} blurb={research.blurb}>
+    <Section id="research" heading={research.heading} blurb={research.blurb} actions={research.actions}>
       <ol className="divide-y divide-rule border-t border-rule">
         {research.items.map((paper, index) => (
           <li key={`${paper.title}-${index}`}>

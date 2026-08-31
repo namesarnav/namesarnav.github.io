@@ -2,6 +2,15 @@ heading: "Projects"
 
 blurb: "A few things I've built and written up."
 
+# Buttons at the foot of the section. Naming a `social` borrows that platform's
+# icon and gives you "View <Name>" for free; add `label:` to say something else.
+# Delete the block and no buttons render.
+actions:
+  - social: github
+    href: "https://github.com/namesarnav"
+  - social: huggingface
+    href: "https://huggingface.co/namesarnav"
+
 # How many rows show before the "View more" button appears.
 # Set to 0 to always show everything.
 initial_count: 3

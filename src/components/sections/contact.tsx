@@ -15,7 +15,7 @@ export function ContactSection() {
   });
 
   return (
-    <Section id="contact" heading={contact.heading} blurb={contact.blurb}>
+    <Section id="contact" heading={contact.heading} blurb={contact.blurb} actions={contact.actions}>
       {contact.email || contact.phone ? (
         <div className="divide-y divide-rule border-y border-rule">
           {contact.email ? (

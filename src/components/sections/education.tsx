@@ -19,7 +19,7 @@ export function EducationSection() {
   if (education.items.length === 0) return null;
 
   return (
-    <Section id="education" heading={education.heading} blurb={education.blurb}>
+    <Section id="education" heading={education.heading} blurb={education.blurb} actions={education.actions}>
       <ol className="divide-y divide-rule border-t border-rule">
         {education.items.map((item) => {
           // "B.S. Computer Science · Mathematics Minor"
@@ -99,11 +99,17 @@ export function EducationSection() {
               {item.coursework.length > 0 ? (
                 <div className="mt-5">
                   <Label>Coursework</Label>
-                  <ul className="mt-2 divide-y divide-rule border-y border-rule">
+
+                  {/*
+                    Two columns of course/grade rows rather than one long list —
+                    ten courses stack into five lines instead of ten. Rows fill
+                    left to right, so reading order still runs down the page.
+                  */}
+                  <ul className="mt-2 grid grid-cols-1 border-t border-rule sm:grid-cols-2 sm:gap-x-10">
                     {item.coursework.map((course) => (
                       <li
                         key={course.name}
-                        className="flex items-baseline justify-between gap-6 py-2.5"
+                        className="flex items-baseline justify-between gap-4 border-b border-rule py-2"
                       >
                         <span className="text-[15px] leading-[1.4] text-foreground/85">
                           {course.name}
@@ -122,8 +128,8 @@ export function EducationSection() {
               {item.transcript ? (
                 <div className="mt-5">
                   <LinkButton href={item.transcript} variant="ghost">
-                    <FileText data-icon="inline-start" />
-                    View transcript
+                    {/* <FileText data-icon="inline-start" /> */}
+                    📑 View transcript
                   </LinkButton>
                 </div>
               ) : null}

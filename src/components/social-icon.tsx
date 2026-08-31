@@ -4,6 +4,7 @@ import {
   siHashnode,
   siHuggingface,
   siInstagram,
+  siMedium,
   siSpotify,
   siYoutube,
 } from "simple-icons";
@@ -66,6 +67,7 @@ export const SOCIALS: Record<SocialKey, Social> = {
   linkedin: { label: "LinkedIn", Icon: () => <LetterIcon letters="in" /> },
   huggingface: { label: "Hugging Face", Icon: brand(siHuggingface.path) },
   hashnode: { label: "Hashnode", Icon: brand(siHashnode.path) },
+  medium: { label: "Medium", Icon: brand(siMedium.path) },
   youtube: { label: "YouTube", Icon: brand(siYoutube.path) },
   google_scholar: { label: "Google Scholar", Icon: brand(siGooglescholar.path) },
   open_review: { label: "OpenReview", Icon: ScrollText },

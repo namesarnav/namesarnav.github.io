@@ -77,7 +77,7 @@ export function ProjectsSection() {
   if (projects.items.length === 0) return null;
 
   return (
-    <Section id="projects" heading={projects.heading} blurb={projects.blurb}>
+    <Section id="projects" heading={projects.heading} blurb={projects.blurb} actions={projects.actions}>
       <ExpandableList initialCount={projects.initial_count}>
         {projects.items.map((project) => (
           <ProjectRow key={project.slug} project={project} />

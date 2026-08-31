@@ -2,6 +2,15 @@ heading: "Research"
 
 blurb: "Papers and preprints. Status is stated on each — nothing here claims more than it is."
 
+# Buttons at the foot of the section. Naming a `social` borrows that platform's
+# icon and gives you "View <Name>" for free; add `label:` to say something else.
+# Delete the block and no buttons render.
+actions:
+  - social: huggingface
+    href: "https://huggingface.co/namesarnav"
+  - social: google_scholar
+    href: "https://scholar.google.com/citations?user=XXXX"
+
 # Your name, bolded automatically wherever it appears in an author list.
 # Write it exactly as it appears in `authors` below.
 highlight_author: "Arnav Verma"

@@ -2,6 +2,12 @@ heading: "Contact"
 
 blurb: "Happy to talk about research, collaborations, or interesting problems."
 
+# Buttons at the foot of the section. A `social` borrows that platform's icon
+# and label; `label` on its own makes a plain button.
+actions:
+  - label: "View Resume"
+    href: "/documents/resume.pdf"
+
 email: "you@example.com"
 phone: "+91 98765 43210"
 
@@ -12,6 +18,7 @@ socials:
   linkedin: "https://linkedin.com/in/yourhandle"
   huggingface: "https://huggingface.co/yourhandle"
   hashnode: "https://yourhandle.hashnode.dev"
+  medium: "https://medium.com/@yourhandle"
   youtube: "https://youtube.com/@yourhandle"
   google_scholar: "https://scholar.google.com/citations?user=XXXX"
   open_review: "https://openreview.net/profile?id=~Your_Name1"

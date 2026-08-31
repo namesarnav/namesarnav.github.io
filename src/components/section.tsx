@@ -1,5 +1,8 @@
 import type { ReactNode } from "react";
 
+import { SectionActions } from "@/components/section-actions";
+
+import type { SectionAction } from "@/lib/content";
 import { cn } from "@/lib/utils";
 
 /** Every section is the same column, the same rhythm, separated by one hairline. */
@@ -7,12 +10,14 @@ export function Section({
   id,
   heading,
   blurb,
+  actions = [],
   children,
   className,
 }: {
   id: string;
   heading: string;
   blurb?: string;
+  actions?: SectionAction[];
   children: ReactNode;
   className?: string;
 }) {
@@ -32,6 +37,8 @@ export function Section({
         </div>
 
         {children}
+
+        <SectionActions actions={actions} />
       </div>
     </section>
   );

@@ -26,7 +26,7 @@ export function SkillsSection() {
   });
 
   return (
-    <Section id="skills" heading={skills.heading} blurb={skills.blurb}>
+    <Section id="skills" heading={skills.heading} blurb={skills.blurb} actions={skills.actions}>
       {legend.length > 0 ? (
         <ul className="mb-8 flex flex-wrap items-center gap-x-5 gap-y-2">
           {legend.map(({ level, label }) => (
