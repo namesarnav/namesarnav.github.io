@@ -6,7 +6,7 @@ import path from "node:path";
 import { load as parseYaml } from "js-yaml";
 import { z } from "zod";
 
-import { hasPostBody, listPostBodies } from "@/lib/markdown";
+import { hasBody, listBodies } from "@/lib/markdown";
 
 /**
  * Every piece of copy on this site comes from `content/*.yaml`.
@@ -556,38 +556,56 @@ export const getResearch = () => load("research", researchSchema);
 export const getProjects = () => {
   const projects = load("projects", projectsSchema);
   assertAssetsExist("projects", projects.items.map((item) => item.thumbnail));
+  assertBodiesMatch("projects", "projects.yaml", projects.items);
   return projects;
 };
 export const getBlogs = () => {
   const blogs = load("blogs", blogsSchema);
   assertAssetsExist("blogs", blogs.items.map((item) => item.thumbnail));
 
-  const slugs = new Set(blogs.items.flatMap((item) => (item.slug ? [item.slug] : [])));
-
-  // A .md file with no matching entry would never be linked from anywhere, so
-  // say so rather than leaving the post silently unreachable.
-  const orphans = listPostBodies().filter((slug) => !slugs.has(slug));
-  if (orphans.length > 0) {
-    throw new Error(
-      `content/blog/ has ${orphans.length > 1 ? "files" : "a file"} with no entry in ` +
-        `blogs.yaml, so nothing links to ${orphans.length > 1 ? "them" : "it"}:\n` +
-        orphans.map((slug) => `  - ${slug}.md (add an item with slug: "${slug}")`).join("\n"),
-    );
-  }
-
-  // Two bodies for one post means one of them is dead text.
-  const doubled = blogs.items.filter(
-    (item) => item.details.length > 0 && hasPostBody(item.slug),
-  );
-  if (doubled.length > 0) {
-    throw new Error(
-      "these posts have both a `details:` block and a Markdown file — keep one:\n" +
-        doubled.map((item) => `  - ${item.slug} (drop the details: block, or delete content/blog/${item.slug}.md)`).join("\n"),
-    );
-  }
+  assertBodiesMatch("blog", "blogs.yaml", blogs.items);
 
   return blogs;
 };
+/**
+ * A Markdown file with no matching entry is unreachable, and an entry with both
+ * a `details:` block and a file has one body that is dead text. Both are silent
+ * failures, so both stop the build.
+ */
+function assertBodiesMatch(
+  collection: "blog" | "projects",
+  yamlFile: string,
+  items: { slug?: string; details: unknown[] }[],
+) {
+  const slugs = new Set(items.flatMap((item) => (item.slug ? [item.slug] : [])));
+
+  const orphans = listBodies(collection).filter((slug) => !slugs.has(slug));
+  if (orphans.length > 0) {
+    throw new Error(
+      `content/${collection}/ has ${orphans.length > 1 ? "files" : "a file"} with no entry in ` +
+        `${yamlFile}, so nothing links to ${orphans.length > 1 ? "them" : "it"}:\n` +
+        orphans
+          .map((slug) => `  - ${slug}.md (add an item with slug: "${slug}")`)
+          .join("\n"),
+    );
+  }
+
+  const doubled = items.filter(
+    (item) => item.details.length > 0 && hasBody(collection, item.slug),
+  );
+  if (doubled.length > 0) {
+    throw new Error(
+      "these entries have both a `details:` block and a Markdown file — keep one:\n" +
+        doubled
+          .map(
+            (item) =>
+              `  - ${item.slug} (drop the details: block, or delete content/${collection}/${item.slug}.md)`,
+          )
+          .join("\n"),
+    );
+  }
+}
+
 export const getSkills = () => load("skills", skillsSchema);
 export const getCertifications = () => {
   const certifications = load("certifications", certificationsSchema);
@@ -613,7 +631,7 @@ export function getBlog(slug: string): Blog | undefined {
 export function blogDetailHref(post: Blog): string | undefined {
   if (!post.slug) return undefined;
   // Either source of a body earns the post a page here.
-  const hosted = post.details.length > 0 || hasPostBody(post.slug);
+  const hosted = post.details.length > 0 || hasBody("blog", post.slug);
   return hosted ? `/blog/${post.slug}` : undefined;
 }
 
@@ -637,7 +655,10 @@ export function formatDate(value?: string): string | undefined {
 /** The URL for a project's "Read more", or `undefined` when there is nothing to read. */
 export function readMoreHref(project: Project): string | undefined {
   if (project.links.read_more) return project.links.read_more;
-  if (project.details.length > 0) return `/projects/${project.slug}`;
+  // Either source of a body earns the project a page here.
+  if (project.details.length > 0 || hasBody("projects", project.slug)) {
+    return `/projects/${project.slug}`;
+  }
   return undefined;
 }
 

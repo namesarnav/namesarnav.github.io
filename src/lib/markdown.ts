@@ -3,7 +3,15 @@ import path from "node:path";
 
 import { Marked } from "marked";
 
-const POSTS_DIR = path.join(process.cwd(), "content", "blog");
+/**
+ * Long-form bodies live in a folder named after what they belong to:
+ * `content/blog/<slug>.md` for a post, `content/projects/<slug>.md` for a
+ * project write-up. Both render the same way.
+ */
+export type Collection = "blog" | "projects";
+
+const collectionDir = (collection: Collection) =>
+  path.join(process.cwd(), "content", collection);
 
 /**
  * GFM, so tables, strikethrough and task lists work the way they do on
@@ -41,32 +49,28 @@ export function hasMermaid(html?: string) {
 }
 
 /**
- * A post's body lives at `content/blog/<slug>.md` — drop the file in and the
- * page exists. Nothing needs registering; the slug in blogs.yaml is the link
+ * A body lives at `content/<collection>/<slug>.md` — drop the file in and the
+ * page exists. Nothing needs registering; the slug in the YAML is the link
  * between the entry and its file.
  */
-export function postBodyPath(slug: string) {
-  return path.join(POSTS_DIR, `${slug}.md`);
+export function bodyPath(collection: Collection, slug: string) {
+  return path.join(collectionDir(collection), `${slug}.md`);
 }
 
-export function hasPostBody(slug?: string) {
-  return !!slug && fs.existsSync(postBodyPath(slug));
+export function hasBody(collection: Collection, slug?: string) {
+  return !!slug && fs.existsSync(bodyPath(collection, slug));
 }
 
-/** Every slug that has a Markdown file, whether or not blogs.yaml knows it. */
-export function listPostBodies(): string[] {
-  if (!fs.existsSync(POSTS_DIR)) return [];
+/** Every slug with a Markdown file, whether or not the YAML knows about it. */
+export function listBodies(collection: Collection): string[] {
+  const dir = collectionDir(collection);
+  if (!fs.existsSync(dir)) return [];
   return fs
-    .readdirSync(POSTS_DIR)
+    .readdirSync(dir)
     .filter((name) => name.endsWith(".md"))
     .map((name) => name.slice(0, -".md".length));
 }
 
-/**
- * Renders the post to HTML at build time. The Markdown is the site owner's own
- * file from this repo, so it is trusted and raw HTML in it is passed through
- * deliberately — that is what makes an embed or a footnote possible.
- */
 /**
  * Hashnode writes images as `![](url align="center")`. That trailing attribute
  * is not Markdown — the standard only allows a quoted title there — so `marked`
@@ -81,8 +85,13 @@ function stripImageAttributes(source: string) {
   );
 }
 
-export function renderPostBody(slug: string): string | undefined {
-  if (!hasPostBody(slug)) return undefined;
-  const source = fs.readFileSync(postBodyPath(slug), "utf8");
+/**
+ * Renders the body to HTML at build time. The Markdown is the site owner's own
+ * file from this repo, so it is trusted and raw HTML in it is passed through
+ * deliberately — that is what makes an embed or a footnote possible.
+ */
+export function renderBody(collection: Collection, slug: string): string | undefined {
+  if (!hasBody(collection, slug)) return undefined;
+  const source = fs.readFileSync(bodyPath(collection, slug), "utf8");
   return marked.parse(stripImageAttributes(source), { async: false });
 }

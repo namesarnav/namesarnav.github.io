@@ -14,6 +14,7 @@ items:
     affiliations:
       - "Tech@NYU"
       - "HackNYU"
+      - "IEEE Computer Society"
 
     coursework:
       - { name: "Fundamental Algorithms", grade: "In progress" }
