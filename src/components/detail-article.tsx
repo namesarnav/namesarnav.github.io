@@ -19,7 +19,8 @@ export function DetailArticle({
   tags,
   thumbnail,
   actions,
-  blocks,
+  blocks = [],
+  html,
 }: {
   backHref: string;
   backLabel: string;
@@ -29,7 +30,9 @@ export function DetailArticle({
   tags: string[];
   thumbnail?: string;
   actions?: ReactNode;
-  blocks: DetailBlock[];
+  blocks?: DetailBlock[];
+  /** Post body rendered from Markdown, used instead of `blocks`. */
+  html?: string;
 }) {
   return (
     <main className="mx-auto w-full max-w-[760px] px-6 pt-12 pb-24 sm:pt-16">
@@ -83,6 +86,18 @@ export function DetailArticle({
             priority
           />
         </div>
+      ) : null}
+
+      {html ? (
+        /*
+          The Markdown is our own file, rendered at build time. `markdown` in
+          globals.css styles the tags it produces — there are no classes to
+          hang on them, since marked emits plain HTML.
+        */
+        <div
+          className="markdown mt-12"
+          dangerouslySetInnerHTML={{ __html: html }}
+        />
       ) : null}
 
       <div className="mt-12 space-y-10">

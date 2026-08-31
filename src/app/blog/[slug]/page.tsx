@@ -5,14 +5,17 @@ import { notFound } from "next/navigation";
 import { DetailArticle } from "@/components/detail-article";
 import { LinkButton } from "@/components/link-button";
 import { formatDate, getBlog, getBlogs } from "@/lib/content";
+import { hasPostBody, renderPostBody } from "@/lib/markdown";
 
 /**
- * One page per post that has a `details:` block in blogs.yaml. Posts that only
- * link out never route here.
+ * One page per post with a body — either a `details:` block in blogs.yaml or a
+ * `content/blog/<slug>.md` file. Posts that only link out never route here.
  */
 export function generateStaticParams() {
   return getBlogs()
-    .items.filter((post) => post.details.length > 0 && post.slug)
+    .items.filter(
+      (post) => post.slug && (post.details.length > 0 || hasPostBody(post.slug)),
+    )
     .map((post) => ({ slug: post.slug as string }));
 }
 
@@ -29,7 +32,10 @@ export async function generateMetadata({
 export default async function BlogPage({ params }: PageProps<"/blog/[slug]">) {
   const { slug } = await params;
   const post = getBlog(slug);
-  if (!post || post.details.length === 0) notFound();
+  if (!post) notFound();
+
+  const html = renderPostBody(slug);
+  if (!html && post.details.length === 0) notFound();
 
   const meta = [formatDate(post.date), post.reading_time].filter(Boolean).join(" · ");
 
@@ -43,6 +49,7 @@ export default async function BlogPage({ params }: PageProps<"/blog/[slug]">) {
       tags={post.tags}
       thumbnail={post.thumbnail}
       blocks={post.details}
+      html={html}
       actions={
         post.url ? (
           <LinkButton href={post.url}>
