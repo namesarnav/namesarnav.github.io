@@ -34,11 +34,14 @@ items:
   - slug: "lm-distill"
     title: "Language Model Distillation"
     description: >
-      Language model distillation and how to do it on your own. Train your own student model. 
+      Training a small student model to behave like a large teacher: what the
+      soft probabilities actually carry, how to transfer attention patterns
+      when the two models are different sizes, and how to tell whether it
+      worked.
     date: "2026-03-18"
-    reading_time: "6 min read"
+    reading_time: "13 min read"
     thumbnail: "/projects/lmd.png"
-    tags: ["NLP", "LLM"]
+    tags: ["Knowledge Distillation", "LLM", "Model Compression", "PyTorch"]
     url: "https://arnavverma.hashnode.dev/model-distillation"
     # `details` generates a page at /blog/<slug> and adds a "Read more" button,
     # exactly like projects. Use it for posts you want hosted here.
@@ -50,21 +53,21 @@ items:
       back exact timestamps across every video you own — each one playable at the
       moment it matched.
     date: "2026-08-02"
-    reading_time: "24 min read"
+    reading_time: "31 min read"
     thumbnail: "/projects/sv-engine.png"
-    tags: ["CLIP", "Vector Search", "Python", "NLP"]
+    tags: ["CLIP", "FAISS", "Vector Search", "Python", "TypeScript"]
     url: "https://arnavverma.hashnode.dev/building-a-semantic-video-search-engine"
 
   - slug: "k8s-pods"
     title: "Kubernetes Pods Explained"
     description: >
-      Point it at a folder of videos, type "a red car driving at night", and get
-      back exact timestamps across every video you own — each one playable at the
-      moment it matched.
+      What a Pod actually is, starting from the pause container nobody mentions:
+      the lifecycle and its phases, imperative versus declarative creation, the
+      manifest field by field, and the multi-container patterns worth knowing.
     date: "2026-08-02"
-    reading_time: "24 min read"
-    thumbnail: "/projects/sv-engine.png"
-    tags: ["CLIP", "Vector Search", "Python", "NLP"]
+    reading_time: "26 min read"
+    thumbnail: "/projects/k8s.png"
+    tags: ["Kubernetes", "Containers", "DevOps", "Infrastructure"]
     url: "https://arnavverma.hashnode.dev/kubernetes-pods"
 
   # - slug: "Polish - AI Document Editor"

@@ -9,50 +9,36 @@ actions:
   - social: huggingface
     href: "https://huggingface.co/namesarnav"
   - social: google_scholar
-    href: "https://scholar.google.com/citations?user=XXXX"
+    href: "https://scholar.google.com/citations?user=SCkOVRYAAAAJ&hl=en"
 
-# Your name, bolded automatically wherever it appears in an author list.
-# Write it exactly as it appears in `authors` below.
-highlight_author: "Arnav Verma"
+# Bolded wherever it appears in an author list. It has to match an entry in
+# `authors` exactly, so it follows the same "Surname, Initial." style.
+highlight_author: "Verma, A."
 
 items:
-  # `status` carries the whole truth about where a paper stands. Use
-  # "Under review, 2026" while it is out for review — naming the venue is only
-  # safe if that venue's anonymity policy allows it — and swap in the venue
-  # ("NeurIPS 2026") once it is accepted. Nothing else needs to change.
-  - title: "Spectral Distillation for Small Speech Models"
+  # `status` carries the whole truth about where a paper stands. Naming the
+  # venue while a paper is out for review is only safe if that venue's
+  # anonymity policy allows it, which is why these say "A* conference" instead.
+  # Swap in the venue once a paper is accepted; nothing else needs to change.
+  #
+  # `links` is left out entirely for now — a button appears only for a link
+  # that is actually filled in, so there are no dead buttons.
+  - title: >
+      Evaluating Multi-Dimensional Generalization of Large Language Models in
+      Temporal Extraction Tasks
     authors:
-      - "Arnav Verma"
-      - "A. Collaborator"
-      - "B. Advisor"
-    status: "Under review, 2026"
-    year: 2026
-    summary: >
-      A distillation objective that matches intermediate spectral statistics
-      rather than logits, keeping frequency-selective behaviour the student
-      would otherwise lose.
-    # Every link is optional; buttons appear only for the ones you fill in.
-    links:
-      arxiv: "https://arxiv.org/abs/0000.00000"
-      code: "https://github.com/yourhandle/spectral-distill"
+      - "Iqbal, F."
+      - "Verma, A."
+      - "Dutt, R."
+      - "Das, S."
+      - "Ray Choudhury, S."
+    status: "Under review at A* conference"
 
-  - title: "On the Sample Efficiency of Morsel-Parallel Query Planners"
+  - title: >
+      Do Large Language Models Reason Causally, or Just Pattern Match?
+      A Multi-Strategy Evaluation
     authors:
-      - "C. Coauthor"
-      - "Arnav Verma"
-    status: "Under review, 2026"
-    year: 2026
-    summary: >
-      Cost models for single-machine analytical workloads, and where the usual
-      cardinality assumptions stop holding.
-
-  # An accepted paper looks the same — only `status` differs.
-  - title: "Warm-Starting Research Environments at Scale"
-    authors:
-      - "Arnav Verma"
-      - "D. Coauthor"
-    status: "Workshop on ML Systems, 2025"
-    year: 2025
-    links:
-      pdf: "/papers/warm-starting.pdf"
-      doi: "https://doi.org/10.0000/000000"
+      - "Verma, A."
+      - "Iqbal, F."
+      - "Ray Choudhury, S."
+    status: "Under review at A* conference"

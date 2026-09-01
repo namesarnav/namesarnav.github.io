@@ -1,5 +1,3 @@
-# Kubernetes Pods
-
 ## 1\. Understanding Pods as the Smallest Deployable Unit
 
 ### What Exactly Is a Pod?

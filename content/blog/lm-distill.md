@@ -1,5 +1,3 @@
-# Language Model Distillation
-
 Knowledge distillation is a technique for training smaller neural networks to perform like larger ones. The basic idea is simple: train a small "student" model to copy the behavior of a large "teacher" model. This lets you compress years of training and billions of parameters into something you can actually deploy. But making this work well requires understanding probability matching, intermediate representations, and training dynamics.
 
 ## How Distillation Works
