@@ -24,7 +24,7 @@ function CertificationRow({ item }: { item: Certification }) {
           />
         ) : (
           <span aria-hidden className="absolute inset-0 grid place-items-center">
-            <BadgeCheck className="size-5 text-muted-foreground/35" />
+            <BadgeCheck className="size-6 text-muted-foreground/35" />
           </span>
         )}
       </div>
@@ -45,6 +45,13 @@ function CertificationRow({ item }: { item: Certification }) {
             {item.description}
           </p>
         ) : null}
+        
+        {item.credential_id ? (
+          <p className="mt-2 text-[15px] leading-[1.6] text-foreground/85">
+            <b>Credential ID:</b> {item.credential_id}
+          </p>
+        ) : null}
+
 
         {item.credential ? (
           <div className="mt-3">

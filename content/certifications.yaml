@@ -9,11 +9,20 @@ blurb: "Courses and credentials I've completed."
 #
 # The whole section hides itself while `items` is empty.
 items:
-  - title:  "Deep Learning Specialization"
-    thumbnail: "/certifications/placeholder.svg"
+  - title:  "CNCF - Certified Kubernetes Application Developer"
+    thumbnail: "/projects/ckad-logo.png"
     description: >
-      DeepLearning.AI · five courses covering neural networks, optimisation,
-      convolutional models and sequence models.
-    date: "2026-03-14"          # or free text: "Issued Mar 2026"
-    credential: "https://coursera.org/verify/XXXXXXXX"
+      Cloud Native Computing Foundation's Certified Kubernetes Application Developer. 
+    date: "2026-09-02"          # or free text: "Issued Mar 2026"
+    credential_id: "LF-5ridapwt2z"
+    credential: "https://ti-user-certificates.s3.amazonaws.com/e0df7fbf-a057-42af-8a1f-590912be5460/155486a0-ede3-43a7-a73f-7ad3d556fb2d-arnav-verma-642a8c8e-a9a5-49ab-a8d7-9cc1086df300-certificate.pdf"
 
+  - title:  "Anthropic -"
+    thumbnail: "/projects/ckad-logo.png"
+    description: >
+      Cloud Native Computing Foundation's Certified Kubernetes Application Developer. 
+    date: "2026-09-02"          # or free text: "Issued Mar 2026"
+    credential_id: "LF-5ridapwt2z"
+    credential: "https://ti-user-certificates.s3.amazonaws.com/e0df7fbf-a057-42af-8a1f-590912be5460/155486a0-ede3-43a7-a73f-7ad3d556fb2d-arnav-verma-642a8c8e-a9a5-49ab-a8d7-9cc1086df300-certificate.pdf"
+
+  

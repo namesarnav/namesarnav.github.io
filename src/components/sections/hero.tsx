@@ -35,6 +35,47 @@ export function HeroSection() {
             <p className="mt-5 text-[14px] text-muted-foreground">{hero.location}</p>
           ) : null}
 
+          {hero.badges.length > 0 ? (
+            <ul className="mt-6 flex flex-wrap items-center gap-2">
+              {hero.badges.map((badge) => {
+                const chip = (
+                  <>
+                    {/*
+                      The badge art is a transparent square, so it gets no frame
+                      of its own — object-contain keeps a wide or tall logo from
+                      being cropped into the box.
+                    */}
+                    <Image
+                      src={badge.image}
+                      alt=""
+                      width={28}
+                      height={28}
+                      className="size-7 shrink-0 object-contain"
+                    />
+                    <span>{badge.label}</span>
+                  </>
+                );
+
+                return (
+                  <li key={`${badge.label}-${badge.image}`}>
+                    {badge.href ? (
+                      <Link
+                        href={badge.href}
+                        className="flex items-center gap-2 rounded-md border border-rule bg-surface py-1.5 pr-3 pl-1.5 text-[13px] leading-[1.3] text-foreground/85 transition-colors hover:bg-surface-hover"
+                      >
+                        {chip}
+                      </Link>
+                    ) : (
+                      <span className="flex items-center gap-2 rounded-md border border-rule bg-surface py-1.5 pr-3 pl-1.5 text-[13px] leading-[1.3] text-foreground/85">
+                        {chip}
+                      </span>
+                    )}
+                  </li>
+                );
+              })}
+            </ul>
+          ) : null}
+
           {hero.actions.length > 0 ? (
             <div className="mt-9 flex flex-wrap items-center gap-2.5">
               {hero.actions.map((action) => (

@@ -165,6 +165,20 @@ const heroSchema = z.object({
    * for a portrait — override it only if the picture is of something else.
    */
   photo_alt: optionalText,
+  /**
+   * Credential badges under the tagline — a logo and its name. `href` makes the
+   * whole chip a link to the credential. Drop the block and none render.
+   */
+  badges: z
+    .array(
+      z.object({
+        image: nonEmpty,
+        label: nonEmpty,
+        href: optionalText,
+      }),
+    )
+    .optional()
+    .default([]),
   actions: z
     .array(
       z.object({
@@ -410,6 +424,7 @@ const certificationsSchema = z.object({
         /** Free text, so "Issued Mar 2026" and "2026-03-14" both work. */
         date: optionalText,
         /** Renders the "View credential" button. Omit it and no button shows. */
+        credential_id: optionalText,
         credential: optionalText,
       }),
     )
@@ -548,7 +563,7 @@ export const getSite = () => {
 };
 export const getHero = () => {
   const hero = load("hero", heroSchema);
-  assertAssetsExist("hero", [hero.photo]);
+  assertAssetsExist("hero", [hero.photo, ...hero.badges.map((b) => b.image)]);
   return hero;
 };
 export const getEducation = () => load("education", educationSchema);
