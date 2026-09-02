@@ -3,7 +3,16 @@
 
 title: "Arnav Verma"
 description: "Portfolio of Arnav Verma — machine learning research and engineering."
-url: "https://example.com"
+# The canonical origin. This is what absolute URLs in <head> are built from —
+# Open Graph images especially, since Slack and LinkedIn will not follow a
+# relative path. Get it wrong and every link preview breaks.
+url: "https://namesarnav.com"
+
+# The image social platforms show when someone shares a link to the site.
+# Regenerate it with `npm run og` after changing your name, title, description
+# or hero photo — it is rendered from exactly those fields.
+og_image: "/og.png"
+# og_image_alt: "Arnav Verma — AI Engineering & Research"
 
 # Shown in the top-left of the sticky header. Falls back to `title` if omitted.
 brand: "AV"

@@ -55,6 +55,12 @@ const siteSchema = z.object({
   title: nonEmpty,
   description: optionalText,
   url: optionalText,
+  /**
+   * The link-preview card, as a path in `public/`. Regenerate it with
+   * `npm run og` after changing the name, title, description or portrait.
+   */
+  og_image: optionalText,
+  og_image_alt: optionalText,
   brand: optionalText,
   nav: z
     .array(z.object({ label: nonEmpty, href: nonEmpty }))

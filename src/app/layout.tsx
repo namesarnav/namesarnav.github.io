@@ -15,14 +15,33 @@ const instrumentSans = Instrument_Sans({
 
 export function generateMetadata(): Metadata {
   const site = getSite();
+  /*
+    Slack, LinkedIn and X will not follow a relative image path, so the card
+    only works if `url` in site.yaml is the real origin — metadataBase is what
+    turns "/og.png" into an absolute URL here.
+  */
+  const image = site.og_image ?? "/og.png";
+  const alt = site.og_image_alt ?? site.title;
+
   return {
     title: site.title,
     description: site.description,
     metadataBase: site.url ? new URL(site.url) : undefined,
+    alternates: { canonical: "/" },
     openGraph: {
       title: site.title,
       description: site.description,
+      siteName: site.title,
+      url: "/",
+      locale: "en_US",
       type: "website",
+      images: [{ url: image, width: 1200, height: 630, alt }],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: site.title,
+      description: site.description,
+      images: [{ url: image, alt }],
     },
   };
 }
