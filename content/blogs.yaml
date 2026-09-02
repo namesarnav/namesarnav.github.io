@@ -13,7 +13,7 @@ actions:
 
 # How many rows show before the "View more" button appears.
 # Set to 0 to always show everything.
-initial_count: 3
+initial_count: 5
 
 items:
   # `slug` is only needed when the post has a body — a `details:` block below,

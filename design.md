@@ -19,7 +19,8 @@ scroll
     - Light theme and dark theme. Light by Default
     - Font:
       -  Instrument Sans - variable
-      -  Colors: Exactly like notion.
+      -  Colors: Exactly like notion
+  
 
 
 ### Sections - all the info in this must be taken from yaml files. Keep the template as code and content from yaml

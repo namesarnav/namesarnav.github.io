@@ -13,7 +13,7 @@ actions:
 
 # How many rows show before the "View more" button appears.
 # Set to 0 to always show everything.
-initial_count: 3
+initial_count: 5
 
 items:
 ## ------------------------------------------------------------------------------------------- ##
@@ -27,40 +27,53 @@ items:
     tags: ["PyTorch", "CLIP", "CUDA"]
     links:
       code: "https://github.com/namesarnav/semantic-video-search-engine"
-      demo: "https://huggingface.co/spaces/namesarnav/spectral-distill"
+      demo: "https://www.loom.com/share/adc1e9a402644b0f9ffeb3c7754e141a"
 
 
 
 # ## ------------------------------------------------------------------------------------------- ##
 #   # `slug` is the URL for the detail page: /projects/<slug>. Keep it unique.
-#   - slug: "spectral-distill"
-#     title: "Polish - Cursor like AI Document Editor "
-#     description: >
-#       A distillation recipe that keeps 94% of teacher accuracy at a twelfth of the
-#       parameter count, by matching intermediate spectral statistics instead of logits.
-#     thumbnail: "/projects/polish.png"     # optional; a neutral panel shows if omitted
-#     tags: ["PyTorch", "Speech", "Distillation", "CUDA"]
-#     links:
-#       code: "https://github.com/PolishAI-app/polish"
-#       demo: "https://polish-client-production.up.railway.app/"
-#     # Delete `details` to hide the "Read more" button. Present = a page is generated
-#     # at /projects/spectral-distill from the blocks below.
-#     details:
-#       - heading: "The problem"
-#         body: >
-#           On-device speech models are latency-bound long before they are
-#           accuracy-bound. Standard logit distillation collapses the teacher's
-#           frequency-selective behaviour, which is exactly what the small student
-#           needs to keep.
-#       - heading: "Approach"
-#         body: >
-#           We match second-order statistics of intermediate activations in the
-#           mel-frequency basis, adding a single term to the loss and no new
-#           parameters. Training cost rises about 8%.
-#       - heading: "Results"
-#         body: >
-#           12x fewer parameters, 94% of teacher WER-relative accuracy, and a 3.4x
-#           real-time factor improvement on a Pixel 7.
+  - slug: "polish"
+    title: "Polish — a Cursor-like AI Document Editor"
+    description: >
+      Upload a document in any format, edit it inline with an AI assistant that sees
+      the surrounding text, and export back out to PDF, DOCX or LaTeX. Version history
+      means an aggressive rewrite is never a one-way door.
+    thumbnail: "/projects/polish.png"     # optional; a neutral panel shows if omitted
+    tags: ["Next.js", "TypeScript", "Express", "PostgreSQL", "Gemini"]
+    links:
+      code: "https://github.com/PolishAI-app/polish"
+      demo: "https://polish-client-production.up.railway.app/"
+
+# ## ------------------------------------------------------------------------------------------- ##
+
+    
+  # `slug` is the URL for the detail page: /projects/<slug>. Keep it unique.
+  - slug: "marigold"
+    title: "Marigold - Turn Lecture Notes to Timed Quizzes and Flashcards"
+    description: >
+      Upload a document in any format, edit it inline with an AI assistant that sees
+      the surrounding text, and export back out to PDF, DOCX or LaTeX. Version history
+      means an aggressive rewrite is never a one-way door.
+    thumbnail: "/projects/marigold.png"     # optional; a neutral panel shows if omitted
+    tags: ["Next.js", "TypeScript", "Express", "PostgreSQL", "Gemini"]
+    links:
+      code: "https://github.com/namesarnav/marigold"
+      demo: "https://marigold-production.up.railway.app/"
+
+
+
+# ## ------------------------------------------------------------------------------------------- ##
+
+  - slug: "folio"
+    title: "Folio - Learning Tracker for Students with ADHD"
+    description: >
+      If you're like me who's got ADHD and struggle a lot managing multiple resources to study. I built
+      this for you, all of your study material at one place. Youtube, Books, PDFs, No juggling around. 
+    thumbnail: "/projects/folio.png"     # optional; a neutral panel shows if omitted
+    tags: ["React", "FastAPI", "MongoDB", "Docker", "Cloudflare R2"]
+    links:
+      code: "https://github.com/namesarnav/folio"
 
 
 
