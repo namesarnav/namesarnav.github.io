@@ -17,12 +17,12 @@ items:
     credential_id: "LF-5ridapwt2z"
     credential: "https://ti-user-certificates.s3.amazonaws.com/e0df7fbf-a057-42af-8a1f-590912be5460/155486a0-ede3-43a7-a73f-7ad3d556fb2d-arnav-verma-642a8c8e-a9a5-49ab-a8d7-9cc1086df300-certificate.pdf"
 
-  - title:  "Anthropic -"
-    thumbnail: "/projects/ckad-logo.png"
+  - title:  "Anthropic -  Introduction to agent skills"
+    thumbnail: "/projects/anthropic-logo.png"
     description: >
-      Cloud Native Computing Foundation's Certified Kubernetes Application Developer. 
-    date: "2026-09-02"          # or free text: "Issued Mar 2026"
-    credential_id: "LF-5ridapwt2z"
-    credential: "https://ti-user-certificates.s3.amazonaws.com/e0df7fbf-a057-42af-8a1f-590912be5460/155486a0-ede3-43a7-a73f-7ad3d556fb2d-arnav-verma-642a8c8e-a9a5-49ab-a8d7-9cc1086df300-certificate.pdf"
+      Anthropic's Introduction to AI Agents Course
+    date: "2026-06-06"          # or free text: "Issued Mar 2026"
+    # credential_id: "LF-5ridapwt2z"
+    credential: "https://verify.skilljar.com/c/82etxsa6jwbk"
 
   
