@@ -21,8 +21,9 @@ items:
   - slug: "sv-engine"
     title: "Semantic Video Search Engine"
     description: >
-      A distillation recipe that keeps 94% of teacher accuracy at a twelfth of the
-      parameter count, by matching intermediate spectral statistics instead of logits.
+      Point it at a folder of videos and type "a red car driving at night". It returns
+      the exact timestamps, ranked across every video you own, each one playable at the
+      moment it matched — searching the picture itself, not filenames or transcripts.
     thumbnail: "/projects/sv-engine.png"     # optional; a neutral panel shows if omitted
     tags: ["PyTorch", "CLIP", "CUDA"]
     links:

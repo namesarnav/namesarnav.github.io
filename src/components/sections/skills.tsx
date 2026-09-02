@@ -10,10 +10,14 @@ const LEVEL_STYLES: Record<SkillLevel, string> = {
   beginner: "bg-level-beginner text-level-beginner-foreground",
 };
 
+/*
+  Deliberately not the pill's own colours: its background is too pale to read at
+  8px, and its foreground is near-black ink for all three levels.
+*/
 const LEVEL_SWATCHES: Record<SkillLevel, string> = {
-  proficient: "bg-level-proficient-foreground",
-  working: "bg-level-working-foreground",
-  beginner: "bg-level-beginner-foreground",
+  proficient: "bg-level-proficient-swatch",
+  working: "bg-level-working-swatch",
+  beginner: "bg-level-beginner-swatch",
 };
 
 export function SkillsSection() {

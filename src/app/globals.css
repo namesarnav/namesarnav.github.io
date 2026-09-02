@@ -49,6 +49,9 @@
   --color-level-working-foreground: var(--level-working-foreground);
   --color-level-beginner: var(--level-beginner);
   --color-level-beginner-foreground: var(--level-beginner-foreground);
+  --color-level-proficient-swatch: var(--level-proficient-swatch);
+  --color-level-working-swatch: var(--level-working-swatch);
+  --color-level-beginner-swatch: var(--level-beginner-swatch);
   --color-grade: var(--grade);
 
   --radius-sm: calc(var(--radius) * 0.6);
@@ -106,6 +109,14 @@
   --level-working-foreground: #183347;
   --level-beginner: #e3e2e0;
   --level-beginner-foreground: #37352f;
+  /*
+    The legend dots. A pill's own background is too pale to read as a 8px dot,
+    and its foreground is the near-black ink it uses for text — three of those
+    side by side are indistinguishable. These are Notion's mid-tones instead.
+  */
+  --level-proficient-swatch: #448361;
+  --level-working-swatch: #337ea9;
+  --level-beginner-swatch: #9b9a97;
 
   /* Course grades. */
   --grade: #448361;
@@ -155,6 +166,9 @@
   --level-working-foreground: #cee7f7;
   --level-beginner: rgba(255, 255, 255, 0.094);
   --level-beginner-foreground: rgba(255, 255, 255, 0.81);
+  --level-proficient-swatch: #6cc98a;
+  --level-working-swatch: #529cca;
+  --level-beginner-swatch: rgba(255, 255, 255, 0.44);
 
   --grade: #6cc98a;
 
