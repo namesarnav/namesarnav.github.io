@@ -18,6 +18,20 @@ initial_count: 5
 items:
 ## ------------------------------------------------------------------------------------------- ##
   # `slug` is the URL for the detail page: /projects/<slug>. Keep it unique.
+  - slug: "mcop"
+    title: "Monte Carlo Options Pricer"
+    description: >
+      Point it at a folder of videos and type "a red car driving at night". It returns
+      the exact timestamps, ranked across every video you own, each one playable at the
+      moment it matched — searching the picture itself, not filenames or transcripts.
+    thumbnail: "/projects/mcop.png"     # optional; a neutral panel shows if omitted
+    tags: ["Monte", "CLIP", "CUDA"]
+    links:
+      code: "https://github.com/namesarnav/semantic-video-search-engine"
+      demo: "https://namesarnav.com/demo"
+
+## ------------------------------------------------------------------------------------------- ##
+  # `slug` is the URL for the detail page: /projects/<slug>. Keep it unique.
   - slug: "sv-engine"
     title: "Semantic Video Search Engine"
     description: >

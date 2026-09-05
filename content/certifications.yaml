@@ -25,4 +25,12 @@ items:
     # credential_id: "LF-5ridapwt2z"
     credential: "https://verify.skilljar.com/c/82etxsa6jwbk"
 
+  - title:  "Meta -  Introduction to Backend Development"
+    thumbnail: "/projects/anthropic-logo.png"
+    description: >
+      Anthropic's Introduction to AI Agents Course
+    date: "2026-06-06"          # or free text: "Issued Mar 2026"
+    # credential_id: "LF-5ridapwt2z"
+    # credential: "https://verify.skilljar.com/c/82etxsa6jwbk"
+
   

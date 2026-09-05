@@ -473,6 +473,7 @@ export type Blog = z.infer<typeof blogSchema>;
 export type Skills = z.infer<typeof skillsSchema>;
 export type Contact = z.infer<typeof contactSchema>;
 
+
 // ---------------------------------------------------------------- loading
 
 function readYaml(file: string): unknown {
