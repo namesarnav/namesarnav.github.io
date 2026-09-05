@@ -6,6 +6,12 @@ import { ThemeProvider } from "@/components/theme-provider";
 import { getSite } from "@/lib/content";
 
 import "./globals.css";
+/*
+  KaTeX ships the fonts its markup depends on; the bundler emits them alongside
+  the stylesheet. Math is rendered to HTML at build time, so this is the only
+  thing an equation needs at runtime — no script.
+*/
+import "katex/dist/katex.min.css";
 
 const instrumentSans = Instrument_Sans({
   variable: "--font-instrument-sans",

@@ -27,7 +27,7 @@ items:
     thumbnail: "/projects/mcop.png"     # optional; a neutral panel shows if omitted
     tags: ["Monte", "CLIP", "CUDA"]
     links:
-      code: "https://github.com/namesarnav/semantic-video-search-engine"
+      code: "https://github.com/namesarnav/mcop"
       demo: "https://namesarnav.com/demo"
 
 ## ------------------------------------------------------------------------------------------- ##

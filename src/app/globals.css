@@ -435,6 +435,30 @@
     height: auto;
   }
 
+  /*
+    KaTeX sizes maths in its own em scale, so it is left alone apart from the
+    two things that break a narrow column: a wide display equation has to scroll
+    inside its own strip rather than push the page sideways, and the scroll
+    needs vertical room or the fraction bars clip.
+  */
+  .markdown .katex-display {
+    margin: 1.6em 0;
+    overflow-x: auto;
+    overflow-y: hidden;
+    padding: 0.5em 0;
+  }
+
+  .markdown .katex {
+    /* Slightly under the surrounding text: KaTeX's default runs large next to
+       a 16px body, and an inline equation should sit in the line, not above it. */
+    font-size: 1.04em;
+  }
+
+  /* An equation KaTeX could not parse, so a typo is visible rather than silent. */
+  .markdown .math-error {
+    color: var(--destructive);
+  }
+
   .markdown pre code {
     background: none;
     padding: 0;
