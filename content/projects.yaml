@@ -21,11 +21,11 @@ items:
   - slug: "mcop"
     title: "Monte Carlo Options Pricer"
     description: >
-      Point it at a folder of videos and type "a red car driving at night". It returns
-      the exact timestamps, ranked across every video you own, each one playable at the
-      moment it matched — searching the picture itself, not filenames or transcripts.
+      A Monte Carlo engine for pricing European and American options. With variance reduction,
+      Greeks, and alternative asset dynamics and a backtest that puts its deltas to work
+      hedging a real position on ten years of S&P 500 data.
     thumbnail: "/projects/mcop.png"     # optional; a neutral panel shows if omitted
-    tags: ["Monte", "CLIP", "CUDA"]
+    tags: ["Hedge Funds", "Trading", "Quantitative Research"]
     links:
       code: "https://github.com/namesarnav/mcop"
       demo: "https://namesarnav.com/demo"
@@ -48,8 +48,21 @@ items:
 
 # ## ------------------------------------------------------------------------------------------- ##
 #   # `slug` is the URL for the detail page: /projects/<slug>. Keep it unique.
+  - slug: "trtship"
+    title: "trt-ship: A python package for TensorRT deployment "
+    description: >
+      Take a trained PyTorch model to a benchmarked, calibrated, Triton-servable TensorRT deployment — in one reproducible, debuggable pipeline.
+    thumbnail: "/projects/trt.png"     # optional; a neutral panel shows if omitted
+    tags: ["Next.js", "TypeScript", "Express", "PostgreSQL", "Gemini"]
+    links:
+      code: "https://github.com/PolishAI-app/polish"
+      demo: "https://polish-client-production.up.railway.app/"
+
+
+# ## ------------------------------------------------------------------------------------------- ##
+#   # `slug` is the URL for the detail page: /projects/<slug>. Keep it unique.
   - slug: "polish"
-    title: "Polish — a Cursor-like AI Document Editor"
+    title: "Polish: A Python Package for Deploying Models on TensorRT"
     description: >
       Upload a document in any format, edit it inline with an AI assistant that sees
       the surrounding text, and export back out to PDF, DOCX or LaTeX. Version history
@@ -59,6 +72,7 @@ items:
     links:
       code: "https://github.com/PolishAI-app/polish"
       demo: "https://polish-client-production.up.railway.app/"
+
 
 # ## ------------------------------------------------------------------------------------------- ##
 
