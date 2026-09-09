@@ -137,29 +137,8 @@ biases the surviving universe toward companies already listed in 2019.
 
 ## Architecture
 
-```
-configs/*.yaml          universe, strategy registry, cost/lag/validation params
-     |
-     v
-engine/data_loader.py   fetch -> adjust -> cache -> align
-     |
-  price panel           dates x (field, ticker)
-     |
-     +---------> strategies/*.py    generate_signals(panel) -> signal panel
-     |                                    |
-     +------------------------------------+
-     v                                    v
-engine/backtest.py                 engine/event_driven.py
-  VectorizedBacktester               EventDrivenBacktester
-  whole-panel arithmetic             bar loop, explicit cash and shares
-     |                                    |
-     v                                    v
-  BacktestResult  <--- same fields ---> EventDrivenResult
-     |
-     +--> metrics/performance.py   Sharpe, Sortino, max DD, Calmar, turnover
-     +--> metrics/validation.py    walk-forward folds, benchmark comparison
-     +--> viz/plots.py             equity, drawdown, rolling Sharpe
-```
+![architecture](/projects/backtest/architecture.webp)
+  
 
 Four decisions hold this together.
 

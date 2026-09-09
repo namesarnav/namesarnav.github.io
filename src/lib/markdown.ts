@@ -60,12 +60,18 @@ function renderMath(text: string, displayMode: boolean) {
 }
 
 /*
-  Why the inline rule is fussy: prose is full of dollar signs. "$100 to $200"
-  must not become an equation, so an opening `$` may not be followed by a space
-  or a digit, the closing `$` may not be preceded by a space, and neither may be
-  part of a `$$`. Anything looser turns a price range into maths.
+  Why the inline rule is fussy: prose is full of dollar signs, and "$100 to $200"
+  must not become an equation. Two guards do that work without banning digits —
+  maths like `$2^n$` and `$1/h^2$` is far too common to give up:
+
+    - the closing `$` may not be preceded by a space, which kills "$100 to $200"
+      and "$5 more" (the candidate content ends mid-space, so nothing pairs);
+    - the closing `$` may not be followed by a digit, which kills "$100-$200",
+      the one price form the first guard lets through.
+
+  Neither `$` may be part of a `$$`, which belongs to the block rule.
 */
-const INLINE_MATH = /^\$(?!\$)(?![\s\d])((?:\\.|[^\n$\\])+?)(?<![\s\\])\$(?!\$)/;
+const INLINE_MATH = /^\$(?!\$)(?!\s)((?:\\.|[^\n$\\])+?)(?<![\s\\])\$(?!\$)(?!\d)/;
 const INLINE_MATH_PAREN = /^\\\(([\s\S]+?)\\\)/;
 const BLOCK_MATH = /^ {0,3}\$\$([\s\S]+?)\$\$(?:\n+|$)/;
 const BLOCK_MATH_BRACKET = /^ {0,3}\\\[([\s\S]+?)\\\](?:\n+|$)/;
