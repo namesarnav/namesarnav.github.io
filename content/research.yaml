@@ -28,11 +28,15 @@ items:
       Temporal Extraction Tasks
     authors:
       - "Iqbal, F."
-      - "Verma, A."
       - "Dutt, R."
       - "Das, S."
+      - "Verma, A."
       - "Ray Choudhury, S."
-    status: "Under review at A* conference"
+    status: "Findings of AACL-IJCNLP 2026. Accepted."
+    # Colours the dot on the pill: accepted / published (green), under_review
+    # (amber), preprint (blue), in_progress (grey). Leave it out for a plain
+    # grey pill with no dot.
+    stage: accepted
 
   - title: >
       Do Large Language Models Reason Causally, or Just Pattern Match?
@@ -40,5 +44,7 @@ items:
     authors:
       - "Verma, A."
       - "Iqbal, F."
+      - "Das, S"
       - "Ray Choudhury, S."
     status: "Under review at A* conference"
+    stage: under_review

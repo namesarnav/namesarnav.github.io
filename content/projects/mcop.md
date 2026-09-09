@@ -18,7 +18,7 @@ results come from fixed seeds and market results from CSVs cached under `data/`.
 
 ### Delta-hedged straddle, S&P 500, 2016-2026
 
-![hedging backtest](https://media.discordapp.net/attachments/836348992392265841/1545899425111605268/hedging_backtest.png?ex=6a9dd288&is=6a9c8108&hm=c2199b857952afce2d43c2681a16b25a4ac812d4aa6a4e267810432b86abe55f&=&format=webp&quality=lossless)
+![hedging backtest](/projects/mcop/hedging_backtest.webp)
 
 Each cycle sells a one-month at-the-money straddle on the index, hedges it with
 the engine's delta, and holds to expiry. Spot, implied volatility (VIX) and the
@@ -69,7 +69,7 @@ events, and two of them dominate the loss distribution.
 Reference contract for the pricing results: $S_0 = K = 100$, $r = 5\%$,
 $\sigma = 20\%$, $T = 1$. Black-Scholes call price **10.4506**.
 
-![convergence](https://media.discordapp.net/attachments/836348992392265841/1545899766766899260/convergence.png?ex=6a9dd2d9&is=6a9c8159&hm=c4b48d59649baea3dd09d5d9867926e597f9110661dce3ef7ad8ae69ad056626&=&format=webp&quality=lossless)
+![convergence](/projects/mcop/convergence.webp)
 
 | paths | MC price | standard error |
 |---|---|---|
@@ -83,7 +83,7 @@ signature of the $O(N^{-1/2})$ rate.
 
 ### Variance reduction (N = 500,000)
 
-![variance reduction](https://media.discordapp.net/attachments/836348992392265841/1545899858911699034/variance_reduction.png?ex=6a9dd2ef&is=6a9c816f&hm=c7a6aebf3a9b923b8b8c5cd05fb424b8991f9d837f011e3638a66d54fd19c30a&=&format=webp&quality=lossless)
+![variance reduction](/projects/mcop/variance_reduction.webp)
 
 | estimator | price | standard error | variance removed | efficiency |
 |---|---|---|---|---|
@@ -125,7 +125,7 @@ call to within one standard error, as it must without dividends.
 
 ### Volatility smiles
 
-![smiles](https://media.discordapp.net/attachments/836348992392265841/1545899983721467904/volatility_smiles.png?ex=6a9dd30d&is=6a9c818d&hm=61685032a13c429230a5be66e2de87b4596426c705b710af9913038bb0aaf8bd&=&format=webp&quality=lossless)
+![smiles](/projects/mcop/volatility_smiles.webp)
 
 | strike | 80 | 90 | 100 | 110 | 120 |
 |---|---|---|---|---|---|

@@ -3,7 +3,36 @@ import { Fragment } from "react";
 
 import { LinkButton } from "@/components/link-button";
 import { Section } from "@/components/section";
-import { getResearch, type Paper } from "@/lib/content";
+import { cn } from "@/lib/utils";
+import { getResearch, type Paper, type PaperStage } from "@/lib/content";
+
+/**
+ * A paper's stage shows as a coloured dot on its status pill: green once it is
+ * in, amber while it is out for review. The words stay whatever the YAML says —
+ * only the colour is decided here.
+ */
+const STAGE_STYLES: Record<PaperStage, { pill: string; dot: string }> = {
+  accepted: {
+    pill: "bg-stage-accepted text-stage-accepted-foreground",
+    dot: "bg-stage-accepted-swatch",
+  },
+  published: {
+    pill: "bg-stage-accepted text-stage-accepted-foreground",
+    dot: "bg-stage-accepted-swatch",
+  },
+  under_review: {
+    pill: "bg-stage-review text-stage-review-foreground",
+    dot: "bg-stage-review-swatch",
+  },
+  preprint: {
+    pill: "bg-stage-preprint text-stage-preprint-foreground",
+    dot: "bg-stage-preprint-swatch",
+  },
+  in_progress: {
+    pill: "bg-tag text-tag-foreground",
+    dot: "bg-muted-foreground",
+  },
+};
 
 /**
  * Renders an author list with your own name in bold. Comparison ignores case
@@ -31,6 +60,7 @@ function Authors({ authors, highlight }: { authors: string[]; highlight?: string
 function PaperRow({ paper, highlight }: { paper: Paper; highlight?: string }) {
   const { pdf, arxiv, code, doi } = paper.links;
   const hasLinks = Boolean(pdf || arxiv || code || doi);
+  const stage = paper.stage ? STAGE_STYLES[paper.stage] : undefined;
 
   return (
     <div className="py-6">
@@ -52,7 +82,15 @@ function PaperRow({ paper, highlight }: { paper: Paper; highlight?: string }) {
 
       {paper.status ? (
         <p className="mt-2.5">
-          <span className="rounded-md bg-tag px-2 py-1 text-[13px] leading-[1.3] text-tag-foreground">
+          <span
+            className={cn(
+              "inline-flex items-center gap-1.5 rounded-md px-2 py-1 text-[13px] leading-[1.3]",
+              stage ? stage.pill : "bg-tag text-tag-foreground",
+            )}
+          >
+            {stage ? (
+              <span aria-hidden className={cn("size-1.5 rounded-full", stage.dot)} />
+            ) : null}
             {paper.status}
           </span>
         </p>

@@ -49,6 +49,16 @@
   --color-level-working-foreground: var(--level-working-foreground);
   --color-level-beginner: var(--level-beginner);
   --color-level-beginner-foreground: var(--level-beginner-foreground);
+  --color-stage-accepted: var(--stage-accepted);
+  --color-stage-accepted-foreground: var(--stage-accepted-foreground);
+  --color-stage-review: var(--stage-review);
+  --color-stage-review-foreground: var(--stage-review-foreground);
+  --color-stage-preprint: var(--stage-preprint);
+  --color-stage-preprint-foreground: var(--stage-preprint-foreground);
+  --color-stage-accepted-swatch: var(--stage-accepted-swatch);
+  --color-stage-review-swatch: var(--stage-review-swatch);
+  --color-stage-preprint-swatch: var(--stage-preprint-swatch);
+
   --color-level-proficient-swatch: var(--level-proficient-swatch);
   --color-level-working-swatch: var(--level-working-swatch);
   --color-level-beginner-swatch: var(--level-beginner-swatch);
@@ -114,6 +124,21 @@
     and its foreground is the near-black ink it uses for text — three of those
     side by side are indistinguishable. These are Notion's mid-tones instead.
   */
+  /*
+    Paper status. Notion's green and yellow tag colours, with the same tight
+    pairing of a pale ground and dark ink; the swatch is the mid-tone, because
+    neither of those two reads as a colour at dot size.
+  */
+  --stage-accepted: #dbeddb;
+  --stage-accepted-foreground: #1c3829;
+  --stage-accepted-swatch: #448361;
+  --stage-review: #fbf3db;
+  --stage-review-foreground: #402c1b;
+  --stage-review-swatch: #cb912f;
+  --stage-preprint: #d3e5ef;
+  --stage-preprint-foreground: #183347;
+  --stage-preprint-swatch: #337ea9;
+
   --level-proficient-swatch: #448361;
   --level-working-swatch: #337ea9;
   --level-beginner-swatch: #9b9a97;
@@ -166,6 +191,16 @@
   --level-working-foreground: #cee7f7;
   --level-beginner: rgba(255, 255, 255, 0.094);
   --level-beginner-foreground: rgba(255, 255, 255, 0.81);
+  --stage-accepted: #2d4838;
+  --stage-accepted-foreground: #c8e5ce;
+  --stage-accepted-swatch: #6cc98a;
+  --stage-review: #45351f;
+  --stage-review-foreground: #f5e6c8;
+  --stage-review-swatch: #e2b33c;
+  --stage-preprint: #143a4e;
+  --stage-preprint-foreground: #cee7f7;
+  --stage-preprint-swatch: #529cca;
+
   --level-proficient-swatch: #6cc98a;
   --level-working-swatch: #529cca;
   --level-beginner-swatch: rgba(255, 255, 255, 0.44);
@@ -205,6 +240,51 @@
   @media (prefers-reduced-motion: reduce) {
     html {
       scroll-behavior: auto;
+    }
+  }
+}
+
+/* ---------------------------------------------------------------- the news line */
+
+@keyframes news-in {
+  from {
+    opacity: 0;
+    transform: translateY(3px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* A slow breath on the dot — the only thing on the page that moves by itself. */
+@keyframes news-dot {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.45;
+  }
+}
+
+@layer components {
+  .news-item {
+    animation: news-in 420ms cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .news-dot {
+    animation: news-dot 2.6s ease-in-out infinite;
+  }
+
+  /*
+    Rotation still happens — the reader gets every item either way — but the
+    fade and the pulse are motion for its own sake, so they go.
+  */
+  @media (prefers-reduced-motion: reduce) {
+    .news-item,
+    .news-dot {
+      animation: none;
     }
   }
 }

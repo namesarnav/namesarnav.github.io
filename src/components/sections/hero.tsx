@@ -1,11 +1,13 @@
 import Image from "next/image";
 import Link from "next/link";
 
+import { NewsLine } from "@/components/news-line";
 import { Button } from "@/components/ui/button";
-import { getHero } from "@/lib/content";
+import { getHero, getNews } from "@/lib/content";
 
 export function HeroSection() {
   const hero = getHero();
+  const news = getNews();
 
   return (
     <section className="mx-auto w-full max-w-[900px] px-6 pt-24 pb-24 sm:pt-36 sm:pb-32">
@@ -33,6 +35,10 @@ export function HeroSection() {
 
           {hero.location ? (
             <p className="mt-5 text-[14px] text-muted-foreground">{hero.location}</p>
+          ) : null}
+
+          {news.items.length > 0 ? (
+            <NewsLine label={news.label} items={news.items} interval={news.interval} />
           ) : null}
 
           {hero.badges.length > 0 ? (

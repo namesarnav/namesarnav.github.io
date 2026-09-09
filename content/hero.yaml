@@ -20,7 +20,7 @@ photo: "/sexy-arnav.jpeg"
 # and a `label`; add `href` to link the chip to the credential itself.
 # Delete the whole `badges:` block and none render.
 badges:
-  - image: "/projects/ckad-logo.png"
+  - image: "/logos/ckad.png"
     label: "Certified Kubernetes Application Developer"
     # href: "https://www.credly.com/badges/..."   # add your Credly link
 

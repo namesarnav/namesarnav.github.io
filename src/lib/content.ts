@@ -197,6 +197,22 @@ const heroSchema = z.object({
     .default([]),
 });
 
+// ---------------------------------------------------------------- news
+
+const newsSchema = z.object({
+  /** The small word in front of the line — "Latest", "News", "Now". */
+  label: optionalText,
+  /**
+   * Seconds each item holds before the next fades in. Long enough to finish
+   * reading a line without hurrying, which is the whole point of the pause.
+   */
+  interval: z.number().min(2).max(60).optional().default(6),
+  items: z
+    .array(z.object({ text: nonEmpty, href: optionalText }))
+    .optional()
+    .default([]),
+});
+
 // ---------------------------------------------------------------- education
 
 const educationSchema = z.object({
@@ -240,6 +256,20 @@ const educationSchema = z.object({
 
 // ---------------------------------------------------------------- research
 
+/**
+ * Where a paper is in its life. Only the colour of the dot depends on this —
+ * the words the reader sees are whatever `status` says.
+ */
+export const PAPER_STAGES = [
+  "accepted",
+  "published",
+  "under_review",
+  "preprint",
+  "in_progress",
+] as const;
+
+export type PaperStage = (typeof PAPER_STAGES)[number];
+
 const paperSchema = z.object({
   title: nonEmpty,
   authors: optionalList,
@@ -248,6 +278,12 @@ const paperSchema = z.object({
    * the venue once it is accepted. One field, so nothing else changes later.
    */
   status: optionalText,
+  /**
+   * Colours the dot on the status pill: green for accepted or published,
+   * amber for under review, blue for a preprint, grey for work in progress.
+   * Leave it out and the pill is plain grey with no dot.
+   */
+  stage: z.enum(PAPER_STAGES).optional(),
   year: optionalText,
   summary: optionalText,
   links: z
@@ -470,6 +506,8 @@ export type Projects = z.infer<typeof projectsSchema>;
 export type Project = z.infer<typeof projectSchema>;
 export type Blogs = z.infer<typeof blogsSchema>;
 export type Blog = z.infer<typeof blogSchema>;
+export type News = z.infer<typeof newsSchema>;
+export type NewsItem = News["items"][number];
 export type Skills = z.infer<typeof skillsSchema>;
 export type Contact = z.infer<typeof contactSchema>;
 
@@ -573,6 +611,7 @@ export const getHero = () => {
   assertAssetsExist("hero", [hero.photo, ...hero.badges.map((b) => b.image)]);
   return hero;
 };
+export const getNews = () => load("news", newsSchema);
 export const getEducation = () => load("education", educationSchema);
 export const getResearch = () => load("research", researchSchema);
 export const getProjects = () => {

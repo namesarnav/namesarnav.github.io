@@ -24,11 +24,27 @@ items:
       A Monte Carlo engine for pricing European and American options. With variance reduction,
       Greeks, and alternative asset dynamics and a backtest that puts its deltas to work
       hedging a real position on ten years of S&P 500 data.
-    thumbnail: "/projects/mcop.png"     # optional; a neutral panel shows if omitted
+    thumbnail: "/projects/mcop.webp"     # optional; a neutral panel shows if omitted
     tags: ["Hedge Funds", "Trading", "Quantitative Research"]
     links:
       code: "https://github.com/namesarnav/mcop"
-      demo: "https://namesarnav.com/demo"
+      # demo: "https://namesarnav.com/demo"
+
+## ------------------------------------------------------------------------------------------- ##
+  # `slug` is the URL for the detail page: /projects/<slug>. Keep it unique.
+  - slug: "backtest"
+    title: "Vectorized Portfolio Backtesting Engine"
+    description: >
+      A daily-frequency engine for multi-asset equity strategies, built around the
+      things that actually decide whether a backtest means anything: vectorised
+      computation, explicit look-ahead handling, real transaction costs and honest
+      out-of-sample validation. The headline result is negative, which is the point.
+    thumbnail: "/projects/backtest.webp"     # optional; a neutral panel shows if omitted
+    tags: ["Quantitative Research", "Quantitative Trading", "Python"]
+    links:
+      code: "https://github.com/namesarnav/backtesting-python"
+      # demo: "https://namesarnav.com/demo"
+
 
 ## ------------------------------------------------------------------------------------------- ##
   # `slug` is the URL for the detail page: /projects/<slug>. Keep it unique.
@@ -38,7 +54,7 @@ items:
       Point it at a folder of videos and type "a red car driving at night". It returns
       the exact timestamps, ranked across every video you own, each one playable at the
       moment it matched — searching the picture itself, not filenames or transcripts.
-    thumbnail: "/projects/sv-engine.png"     # optional; a neutral panel shows if omitted
+    thumbnail: "/projects/sv-engine.webp"     # optional; a neutral panel shows if omitted
     tags: ["PyTorch", "CLIP", "CUDA"]
     links:
       code: "https://github.com/namesarnav/semantic-video-search-engine"
@@ -48,26 +64,25 @@ items:
 
 # ## ------------------------------------------------------------------------------------------- ##
 #   # `slug` is the URL for the detail page: /projects/<slug>. Keep it unique.
-  - slug: "trtship"
-    title: "trt-ship: A python package for TensorRT deployment "
-    description: >
-      Take a trained PyTorch model to a benchmarked, calibrated, Triton-servable TensorRT deployment — in one reproducible, debuggable pipeline.
-    thumbnail: "/projects/trt.png"     # optional; a neutral panel shows if omitted
-    tags: ["Next.js", "TypeScript", "Express", "PostgreSQL", "Gemini"]
-    links:
-      code: "https://github.com/PolishAI-app/polish"
-      demo: "https://polish-client-production.up.railway.app/"
+  # - slug: "trtship"
+  #   title: "trt-ship — a Python Package for TensorRT Deployment"
+  #   description: >
+  #     Take a trained PyTorch model to a benchmarked, calibrated, Triton-servable TensorRT deployment — in one reproducible, debuggable pipeline.
+  #   thumbnail: "/projects/trt.webp"     # optional; a neutral panel shows if omitted
+  #   tags: ["Python", "TensorRT", "ONNX", "Triton", "CUDA"]
+  #   links:
+  #     code: "https://github.com/namesarnav/trt-ship"
 
 
 # ## ------------------------------------------------------------------------------------------- ##
 #   # `slug` is the URL for the detail page: /projects/<slug>. Keep it unique.
   - slug: "polish"
-    title: "Polish: A Python Package for Deploying Models on TensorRT"
+    title: "Polish — a Cursor-like AI Document Editor"
     description: >
       Upload a document in any format, edit it inline with an AI assistant that sees
       the surrounding text, and export back out to PDF, DOCX or LaTeX. Version history
       means an aggressive rewrite is never a one-way door.
-    thumbnail: "/projects/polish.png"     # optional; a neutral panel shows if omitted
+    thumbnail: "/projects/polish.webp"     # optional; a neutral panel shows if omitted
     tags: ["Next.js", "TypeScript", "Express", "PostgreSQL", "Gemini"]
     links:
       code: "https://github.com/PolishAI-app/polish"
@@ -81,11 +96,11 @@ items:
   - slug: "marigold"
     title: "Marigold - Turn Lecture Notes to Timed Quizzes and Flashcards"
     description: >
-      Upload a document in any format, edit it inline with an AI assistant that sees
-      the surrounding text, and export back out to PDF, DOCX or LaTeX. Version history
-      means an aggressive rewrite is never a one-way door.
-    thumbnail: "/projects/marigold.png"     # optional; a neutral panel shows if omitted
-    tags: ["Next.js", "TypeScript", "Express", "PostgreSQL", "Gemini"]
+      Upload a PDF of your notes, get flashcards generated from it, study them, then
+      take a timed quiz on the same material and see exactly what you missed.
+      Re-reading feels like studying; being asked and getting it wrong is what sticks.
+    thumbnail: "/projects/marigold.webp"     # optional; a neutral panel shows if omitted
+    tags: ["React", "FastAPI", "SQLite", "Gemini"]
     links:
       code: "https://github.com/namesarnav/marigold"
       demo: "https://marigold-production.up.railway.app/"
@@ -99,7 +114,7 @@ items:
     description: >
       If you're like me who's got ADHD and struggle a lot managing multiple resources to study. I built
       this for you, all of your study material at one place. Youtube, Books, PDFs, No juggling around. 
-    thumbnail: "/projects/folio.png"     # optional; a neutral panel shows if omitted
+    thumbnail: "/projects/folio.webp"     # optional; a neutral panel shows if omitted
     tags: ["React", "FastAPI", "MongoDB", "Docker", "Cloudflare R2"]
     links:
       code: "https://github.com/namesarnav/folio"

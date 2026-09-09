@@ -25,7 +25,7 @@ items:
       classification with LoRA adapters and 4-bit quantization, on a single GPU.
     date: "2025-09-24"            # quoted; free-form text also works
     reading_time: "7 min read"    # optional
-    thumbnail: "/projects/llama-ner.png"
+    thumbnail: "/blog/adapting-llama-for-ner-tasks.webp"
     tags: ["Large Language Models", "LLM Finetuning", "NLP", "AI", "Llama 3"]
     # Where the post is also published. Renders a "Read post" button that opens
     # in a new tab. Delete it if the post only lives on this site.
@@ -40,7 +40,7 @@ items:
       worked.
     date: "2026-03-18"
     reading_time: "13 min read"
-    thumbnail: "/projects/lmd.png"
+    thumbnail: "/blog/lm-distill.webp"
     tags: ["Knowledge Distillation", "LLM", "Model Compression", "PyTorch"]
     url: "https://arnavverma.hashnode.dev/model-distillation"
     # `details` generates a page at /blog/<slug> and adds a "Read more" button,
@@ -54,7 +54,7 @@ items:
       moment it matched.
     date: "2026-08-02"
     reading_time: "31 min read"
-    thumbnail: "/projects/sv-engine.png"
+    thumbnail: "/blog/sv-engine.webp"
     tags: ["CLIP", "FAISS", "Vector Search", "Python", "TypeScript"]
     url: "https://arnavverma.hashnode.dev/building-a-semantic-video-search-engine"
 
@@ -66,7 +66,7 @@ items:
       manifest field by field, and the multi-container patterns worth knowing.
     date: "2026-08-02"
     reading_time: "26 min read"
-    thumbnail: "/projects/k8s.png"
+    thumbnail: "/blog/k8s-pods.webp"
     tags: ["Kubernetes", "Containers", "DevOps", "Infrastructure"]
     url: "https://arnavverma.hashnode.dev/kubernetes-pods"
 
@@ -78,6 +78,6 @@ items:
   #     moment it matched.
   #   date: "2026-08-02"
   #   reading_time: "24 min read"
-  #   thumbnail: "/projects/sv-engine.png"
+  #   thumbnail: "/blog/sv-engine.webp"
   #   tags: ["CLIP", "Vector Search", "Python", "NLP"]
   #   url: "https://arnavverma.hashnode.dev/kubernetes-pods"
