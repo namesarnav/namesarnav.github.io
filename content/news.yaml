@@ -9,7 +9,7 @@ label: "Latest"
 
 # Seconds each item stays up before the next one fades in. Ignored when there
 # is only one item.
-interval: 6
+interval: 3
 
 items:
   - text: "Passed the CKAD exam — Certified Kubernetes Application Developer"
