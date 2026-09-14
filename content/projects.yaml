@@ -103,7 +103,7 @@ items:
     tags: ["React", "FastAPI", "SQLite", "Gemini"]
     links:
       code: "https://github.com/namesarnav/marigold"
-      demo: "https://marigold-production.up.railway.app/"
+      demo: "https://marigold-web-production.up.railway.app/"
 
 
 
