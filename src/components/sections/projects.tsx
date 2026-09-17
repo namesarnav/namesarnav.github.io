@@ -20,12 +20,12 @@ function ProjectRow({ project }: { project: Project }) {
       <Thumbnail src={project.thumbnail} />
 
       <div className="min-w-0 flex-1">
-        <h3 className="text-[18px] font-semibold leading-[1.35] tracking-[-0.015em] text-foreground">
+        <h3 className="font-heading text-[20px] font-normal leading-[1.35] text-foreground">
           {project.title}
         </h3>
 
         {project.description ? (
-          <p className="mt-2 max-w-[68ch] text-[15px] leading-[1.6] text-foreground/80">
+          <p className="mt-2 max-w-[68ch] text-[17px] leading-[1.6] text-foreground/80">
             {project.description}
           </p>
         ) : null}
@@ -35,7 +35,7 @@ function ProjectRow({ project }: { project: Project }) {
             {project.tags.map((tag) => (
               <li
                 key={tag}
-                className="rounded-md bg-tag px-2 py-1 text-[13px] leading-[1.3] text-tag-foreground"
+                className="rounded-md bg-tag px-2 py-1 text-[15px] leading-[1.3] text-tag-foreground"
               >
                 {tag}
               </li>

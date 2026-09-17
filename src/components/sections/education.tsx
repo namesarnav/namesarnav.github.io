@@ -8,7 +8,7 @@ import { cn } from "@/lib/utils";
 /** A small all-caps rubric introducing a block within an entry. */
 function Label({ children }: { children: string }) {
   return (
-    <h4 className="text-[11px] font-medium uppercase tracking-[0.12em] text-muted-foreground">
+    <h4 className="text-[12px] font-medium uppercase tracking-[0.12em] text-muted-foreground">
       {children}
     </h4>
   );
@@ -32,7 +32,7 @@ export function EducationSection() {
               <div className="flex flex-col gap-1 sm:flex-row sm:items-baseline sm:justify-between sm:gap-8">
                 <h3
                   className={cn(
-                    "text-[16px] font-bold leading-[1.45] tracking-[-0.01em]",
+                    "text-[18px] font-bold leading-[1.45] tracking-[-0.01em]",
                     item.color ? "brand-ink" : "text-foreground",
                   )}
                   style={
@@ -48,20 +48,20 @@ export function EducationSection() {
                 </h3>
 
                 {item.dates ? (
-                  <p className="shrink-0 text-[14px] tabular-nums text-muted-foreground">
+                  <p className="shrink-0 text-[16px] tabular-nums text-muted-foreground">
                     {item.dates}
                   </p>
                 ) : null}
               </div>
 
               {qualification ? (
-                <p className="mt-1.5 text-[15px] leading-[1.55] text-muted-foreground">
+                <p className="mt-1.5 text-[17px] leading-[1.55] text-muted-foreground">
                   {qualification}
                 </p>
               ) : null}
 
               {place ? (
-                <p className="mt-1 text-[14px] text-muted-foreground">{place}</p>
+                <p className="mt-1 text-[16px] text-muted-foreground">{place}</p>
               ) : null}
 
               {item.affiliations.length > 0 ? (
@@ -71,7 +71,7 @@ export function EducationSection() {
                     {item.affiliations.map((affiliation) => (
                       <li
                         key={affiliation}
-                        className="rounded-md bg-tag px-2 py-1 text-[13px] leading-[1.3] text-tag-foreground"
+                        className="rounded-md bg-tag px-2 py-1 text-[15px] leading-[1.3] text-tag-foreground"
                       >
                         {affiliation}
                       </li>
@@ -87,7 +87,7 @@ export function EducationSection() {
                     {item.awards.map((award) => (
                       <li
                         key={award}
-                        className="relative pl-4 text-[15px] leading-[1.6] text-foreground/85 before:absolute before:left-0 before:top-[0.7em] before:h-[3px] before:w-[3px] before:rounded-full before:bg-muted-foreground"
+                        className="relative pl-4 text-[17px] leading-[1.6] text-foreground/85 before:absolute before:left-0 before:top-[0.7em] before:h-[3px] before:w-[3px] before:rounded-full before:bg-muted-foreground"
                       >
                         {award}
                       </li>
@@ -111,12 +111,12 @@ export function EducationSection() {
                         key={course.name}
                         className="flex items-baseline justify-between gap-4 border-b border-rule py-2"
                       >
-                        <span className="text-[15px] leading-[1.4] text-foreground/85">
+                        <span className="text-[17px] leading-[1.4] text-foreground/85">
                           {course.name}
                         </span>
 
                         {course.grade ? (
-                          <span className="shrink-0 text-[13px] text-grade">
+                          <span className="shrink-0 text-[15px] text-grade">
                             {course.grade}
                           </span>
                         ) : null}

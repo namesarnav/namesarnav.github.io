@@ -10,7 +10,7 @@ export function HeroSection() {
   const news = getNews();
 
   return (
-    <section className="mx-auto w-full max-w-[900px] px-6 pt-24 pb-24 sm:pt-36 sm:pb-32">
+    <section className="mx-auto w-full max-w-[1040px] px-6 pt-24 pb-24 sm:pt-36 sm:pb-32">
       {/*
         The portrait sits beside the text on wide screens and above it on
         narrow ones. `flex-col-reverse` puts the photo first in reading order
@@ -19,22 +19,22 @@ export function HeroSection() {
       */}
       <div className="flex flex-col-reverse gap-8 sm:flex-row sm:items-start sm:justify-between sm:gap-12">
         <div className="min-w-0 flex-1">
-          <h1 className="text-[40px] font-semibold leading-[1.1] tracking-[-0.03em] text-foreground sm:text-[58px]">
+          <h1 className="font-heading text-[45px] font-normal leading-[1.1] tracking-[-0.02em] text-foreground sm:text-[65px]">
             {hero.name}
           </h1>
 
-          <p className="mt-3 text-[18px] leading-[1.4] tracking-[-0.01em] text-muted-foreground sm:text-[21px]">
+          <p className="mt-3 text-[21px] leading-[1.4] text-muted-foreground sm:text-[26px]">
             {hero.title}
           </p>
 
           {hero.tagline ? (
-            <p className="mt-7 max-w-[58ch] text-[16px] leading-[1.65] text-foreground/85">
+            <p className="mt-7 max-w-[58ch] text-[18px] leading-[1.65] text-foreground/85">
               {hero.tagline}
             </p>
           ) : null}
 
           {hero.location ? (
-            <p className="mt-5 text-[14px] text-muted-foreground">{hero.location}</p>
+            <p className="mt-5 text-[16px] text-muted-foreground">{hero.location}</p>
           ) : null}
 
           {news.items.length > 0 ? (
@@ -67,12 +67,12 @@ export function HeroSection() {
                     {badge.href ? (
                       <Link
                         href={badge.href}
-                        className="flex items-center gap-2 rounded-md border border-rule bg-surface py-1.5 pr-3 pl-1.5 text-[13px] leading-[1.3] text-foreground/85 transition-colors hover:bg-surface-hover"
+                        className="flex items-center gap-2 rounded-md border border-rule bg-surface py-1.5 pr-3 pl-1.5 text-[15px] leading-[1.3] text-foreground/85 transition-colors hover:bg-surface-hover"
                       >
                         {chip}
                       </Link>
                     ) : (
-                      <span className="flex items-center gap-2 rounded-md border border-rule bg-surface py-1.5 pr-3 pl-1.5 text-[13px] leading-[1.3] text-foreground/85">
+                      <span className="flex items-center gap-2 rounded-md border border-rule bg-surface py-1.5 pr-3 pl-1.5 text-[15px] leading-[1.3] text-foreground/85">
                         {chip}
                       </span>
                     )}

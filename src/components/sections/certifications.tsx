@@ -30,24 +30,24 @@ function CertificationRow({ item }: { item: Certification }) {
       </div>
 
       <div className="min-w-0 flex-1">
-        <h3 className="text-[16px] font-semibold leading-[1.4] tracking-[-0.01em] text-foreground">
+        <h3 className="font-heading text-[18px] font-normal leading-[1.4] text-foreground">
           {item.title}
         </h3>
 
         {item.date ? (
-          <p className="mt-1 text-[13px] text-muted-foreground">
+          <p className="mt-1 text-[15px] text-muted-foreground">
             {formatDate(item.date)}
           </p>
         ) : null}
 
         {item.description ? (
-          <p className="mt-2 text-[15px] leading-[1.6] text-foreground/85">
+          <p className="mt-2 text-[17px] leading-[1.6] text-foreground/85">
             {item.description}
           </p>
         ) : null}
         
         {item.credential_id ? (
-          <p className="mt-2 text-[15px] leading-[1.6] text-foreground/85">
+          <p className="mt-2 text-[17px] leading-[1.6] text-foreground/85">
             <b>Credential ID:</b> {item.credential_id}
           </p>
         ) : null}

@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Instrument_Sans } from "next/font/google";
+import { Google_Sans, Source_Serif_4 } from "next/font/google";
 
 import { SiteHeader } from "@/components/site-header";
 import { ThemeProvider } from "@/components/theme-provider";
@@ -13,8 +13,17 @@ import "./globals.css";
 */
 import "katex/dist/katex.min.css";
 
-const instrumentSans = Instrument_Sans({
-  variable: "--font-instrument-sans",
+/*
+  A serif for headings, Google Sans for everything else — nav, body, meta, tags.
+*/
+const googleSans = Google_Sans({
+  variable: "--font-google-sans",
+  subsets: ["latin"],
+  display: "swap",
+});
+
+const sourceSerif = Source_Serif_4({
+  variable: "--font-source-serif",
   subsets: ["latin"],
   display: "swap",
 });
@@ -59,7 +68,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
     <html
       lang="en"
       suppressHydrationWarning
-      className={`${instrumentSans.variable} h-full antialiased`}
+      className={`${googleSans.variable} ${sourceSerif.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col">
         <ThemeProvider>
@@ -71,7 +80,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
           <div className="flex-1">{children}</div>
           {site.footer ? (
             <footer className="border-t border-rule">
-              <div className="mx-auto w-full max-w-[900px] px-6 py-10 text-center text-[13px] text-muted-foreground">
+              <div className="mx-auto w-full max-w-[1040px] px-6 py-10 text-center text-[15px] text-muted-foreground">
                 {site.footer}
               </div>
             </footer>

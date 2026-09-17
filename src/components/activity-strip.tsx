@@ -41,9 +41,9 @@ export function ActivityStrip({
     <div className="mt-10 border-t border-rule pt-8">
       <div className="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1">
         {label ? (
-          <p className="text-[13px] text-muted-foreground">{label}</p>
+          <p className="text-[15px] text-muted-foreground">{label}</p>
         ) : null}
-        <p className="text-[13px] text-muted-foreground tabular-nums">
+        <p className="text-[15px] text-muted-foreground tabular-nums">
           {total.toLocaleString("en-US")} contributions
         </p>
       </div>
@@ -59,7 +59,7 @@ export function ActivityStrip({
             {monthLabels.map((month, index) => (
               <span
                 key={index}
-                className="w-[11px] text-[11px] leading-[1.4] text-muted-foreground"
+                className="w-[11px] text-[12px] leading-[1.4] text-muted-foreground"
               >
                 {month}
               </span>
@@ -90,7 +90,7 @@ export function ActivityStrip({
         </div>
       </div>
 
-      <div className="mt-3 flex items-center gap-1.5 text-[11px] text-muted-foreground">
+      <div className="mt-3 flex items-center gap-1.5 text-[12px] text-muted-foreground">
         <span>Less</span>
         {[0, 1, 2, 3, 4].map((level) => (
           <span key={level} data-level={level} className="activity-cell" aria-hidden />

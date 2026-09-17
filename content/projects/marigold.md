@@ -1,21 +1,7 @@
----
-title: "Building Marigold"
-description: "A study app that turns your PDFs into flashcards, quizzes you on them, and tries to work out what you're about to forget."
-date: 2026-09-14
-tags: [fastapi, react, postgres, machine-learning, railway]
----
-
-# Building Marigold
-
-A study app that turns your PDFs into flashcards, quizzes you on them, and tries to work out what you're about to forget. Here's how the whole thing fits together, including the parts that broke along the way.
 
 **Stack:** FastAPI and SQLAlchemy · React and Vite · Postgres and Redis · Gemini · PyTorch · Railway
 
-> **The short version, as a flashcard**
->
-> **Q:** What does Marigold do, in one breath?
->
-> **A:** You upload a PDF, Gemini writes about 15 flashcards from it, and you study and quiz yourself. Every answer you give is logged, and a small model uses that history to rank your topics by how likely you are to have forgotten them.
+
 
 ## Why I built it
 

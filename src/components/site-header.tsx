@@ -34,14 +34,14 @@ export function SiteHeader({
   return (
     <header
       className={cn(
-        "sticky top-0 z-50 bg-background/85 backdrop-blur-[6px] transition-colors",
+        "sticky top-0 z-50 bg-background/90 backdrop-blur-[6px] transition-colors",
         scrolled ? "border-b border-rule" : "border-b border-transparent",
       )}
     >
-      <div className="mx-auto flex h-14 w-full max-w-[900px] items-center justify-between gap-6 px-6">
+      <div className="mx-auto flex h-14 w-full max-w-[1040px] items-center justify-between gap-6 px-6">
         <Link
           href="/"
-          className="truncate text-[15px] font-medium tracking-[-0.01em] text-foreground"
+          className="truncate font-heading text-[19px] font-normal tracking-[-0.01em] text-foreground"
         >
           {brand}
         </Link>
@@ -51,7 +51,7 @@ export function SiteHeader({
             <Link
               key={item.href}
               href={item.href}
-              className="hidden rounded-md px-2 py-1 text-[14px] text-muted-foreground transition-colors hover:bg-surface-hover hover:text-foreground sm:block"
+              className="hidden rounded-md px-2 py-1 text-[16px] text-muted-foreground transition-colors hover:bg-surface-hover hover:text-foreground sm:block"
             >
               {item.label}
             </Link>

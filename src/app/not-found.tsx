@@ -12,7 +12,7 @@ export default function NotFound() {
   const links = copy.links ?? site.nav;
 
   return (
-    <main className="mx-auto flex w-full max-w-[900px] flex-col items-center px-6 pt-28 pb-32 text-center sm:pt-40">
+    <main className="mx-auto flex w-full max-w-[1040px] flex-col items-center px-6 pt-28 pb-32 text-center sm:pt-40">
       {/*
         Each digit drifts on its own slow cycle, offset so they never line up
         and the group never reads as a single bouncing block. The delays are
@@ -34,7 +34,7 @@ export default function NotFound() {
         ))}
       </p>
 
-      <h1 className="notfound-rise mt-8 text-[26px] font-semibold tracking-[-0.02em] text-foreground sm:text-[32px]">
+      <h1 className="notfound-rise mt-8 font-heading text-[31px] font-normal tracking-[-0.01em] text-foreground sm:text-[36px]">
         {copy.heading ?? "This page wandered off"}
         {/* A caret, as though the sentence is still being typed. */}
         <span aria-hidden className="notfound-caret" />
@@ -42,7 +42,7 @@ export default function NotFound() {
 
       {copy.message ? (
         <p
-          className="notfound-rise mt-4 max-w-[46ch] text-[16px] leading-[1.65] text-muted-foreground"
+          className="notfound-rise mt-4 max-w-[46ch] text-[18px] leading-[1.65] text-muted-foreground"
           style={{ "--delay": "0.08s" } as React.CSSProperties}
         >
           {copy.message}
@@ -69,7 +69,7 @@ export default function NotFound() {
               <li key={link.href}>
                 <Link
                   href={`/${link.href}`}
-                  className="text-[14px] text-muted-foreground transition-colors hover:text-foreground"
+                  className="text-[16px] text-muted-foreground transition-colors hover:text-foreground"
                 >
                   {link.label}
                 </Link>

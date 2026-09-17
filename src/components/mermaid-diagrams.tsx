@@ -40,7 +40,7 @@ export function MermaidDiagrams() {
         // matches whichever theme the reader is on.
         theme: "base",
         darkMode: resolvedTheme === "dark",
-        fontFamily: "var(--font-instrument-sans), system-ui, sans-serif",
+        fontFamily: "var(--font-google-sans), system-ui, sans-serif",
         themeVariables: readThemeVariables(),
       });
 

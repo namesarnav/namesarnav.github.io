@@ -161,7 +161,7 @@ export function VibeButton({ vibe }: { vibe: VibeConfig }) {
               : label
           }
           className={cn(
-            "group relative flex h-8 items-center gap-2 rounded-md border px-2.5 text-[13px] font-medium transition-colors",
+            "group relative flex h-8 items-center gap-2 rounded-md border px-2.5 text-[15px] font-medium transition-colors",
             "focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50 outline-none",
             playing
               ? "border-transparent bg-primary text-primary-foreground"
@@ -202,11 +202,11 @@ export function VibeButton({ vibe }: { vibe: VibeConfig }) {
 
       {playing && name.title ? (
         <div className="pointer-events-none absolute top-full right-0 z-10 mt-1.5 max-w-[220px] text-right">
-          <p className="truncate text-[11px] font-light tracking-wide text-muted-foreground">
+          <p className="truncate text-[12px] font-light tracking-wide text-muted-foreground">
             {name.title}
           </p>
           {name.artist ? (
-            <p className="truncate text-[10px] font-light tracking-wide text-muted-foreground/70">
+            <p className="truncate text-[11px] font-light tracking-wide text-muted-foreground/70">
               {name.artist}
             </p>
           ) : null}

@@ -21,7 +21,7 @@ export function ContactSection() {
           {contact.email ? (
             <a
               href={`mailto:${contact.email}`}
-              className="group flex items-center gap-3 py-4 text-[15px] text-foreground transition-colors hover:text-link"
+              className="group flex items-center gap-3 py-4 text-[17px] text-foreground transition-colors hover:text-link"
             >
               <Mail className="size-4 shrink-0 text-muted-foreground transition-colors group-hover:text-link" />
               <span className="truncate">{contact.email}</span>
@@ -31,7 +31,7 @@ export function ContactSection() {
           {contact.phone ? (
             <a
               href={`tel:${contact.phone.replace(/[^+\d]/g, "")}`}
-              className="group flex items-center gap-3 py-4 text-[15px] text-foreground transition-colors hover:text-link"
+              className="group flex items-center gap-3 py-4 text-[17px] text-foreground transition-colors hover:text-link"
             >
               <Phone className="size-4 shrink-0 text-muted-foreground transition-colors group-hover:text-link" />
               <span className="truncate tabular-nums">{contact.phone}</span>

@@ -43,14 +43,14 @@ export function NewsLine({
 
   return (
     <div
-      className="mt-6 flex items-center gap-2.5 text-[14px]"
+      className="mt-6 flex items-center gap-2.5 text-[16px]"
       onMouseEnter={() => setPaused(true)}
       onMouseLeave={() => setPaused(false)}
       onFocus={() => setPaused(true)}
       onBlur={() => setPaused(false)}
     >
       {label ? (
-        <span className="flex shrink-0 items-center gap-1.5 rounded-full bg-stage-accepted px-2 py-0.5 text-[12px] font-medium tracking-[0.01em] text-stage-accepted-foreground">
+        <span className="flex shrink-0 items-center gap-1.5 rounded-full bg-stage-accepted px-2 py-0.5 text-[13px] font-medium tracking-[0.01em] text-stage-accepted-foreground">
           <span aria-hidden className="news-dot size-1.5 rounded-full bg-stage-accepted-swatch" />
           {label}
         </span>

@@ -40,7 +40,7 @@ export function SkillsSection() {
                 aria-hidden
                 className={cn("size-2 rounded-full", LEVEL_SWATCHES[level])}
               />
-              <span className="text-[13px] text-muted-foreground">{label}</span>
+              <span className="text-[15px] text-muted-foreground">{label}</span>
             </li>
           ))}
         </ul>
@@ -52,7 +52,7 @@ export function SkillsSection() {
             key={group.name}
             className="flex flex-col gap-3 py-6 sm:flex-row sm:gap-8"
           >
-              <h3 className="shrink-0 pt-1 text-[14px] font-medium text-muted-foreground sm:w-[150px]">
+              <h3 className="shrink-0 pt-1 text-[16px] font-medium text-muted-foreground sm:w-[150px]">
                 {group.name}
               </h3>
 
@@ -66,7 +66,7 @@ export function SkillsSection() {
                   <li
                     key={item.name}
                     className={cn(
-                      "rounded-md px-2 py-1 text-[13px] leading-[1.3]",
+                      "rounded-md px-2 py-1 text-[15px] leading-[1.3]",
                       LEVEL_STYLES[item.level],
                     )}
                   >

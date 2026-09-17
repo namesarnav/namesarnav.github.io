@@ -23,14 +23,14 @@ export function Section({
 }) {
   return (
     <section id={id} className={cn("border-t border-rule", className)}>
-      <div className="mx-auto w-full max-w-[900px] px-6 py-20 sm:py-24">
+      <div className="mx-auto w-full max-w-[1040px] px-6 py-20 sm:py-24">
         <div className="mb-10">
-          <h2 className="text-[26px] font-semibold tracking-[-0.02em] text-foreground sm:text-[30px]">
+          <h2 className="font-heading text-[31px] font-normal tracking-[-0.01em] text-foreground sm:text-[34px]">
             {heading}
           </h2>
 
           {blurb ? (
-            <p className="mt-2 max-w-[60ch] text-[15px] leading-[1.6] text-muted-foreground">
+            <p className="mt-2 max-w-[60ch] text-[17px] leading-[1.6] text-muted-foreground">
               {blurb}
             </p>
           ) : null}

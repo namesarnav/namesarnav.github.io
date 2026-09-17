@@ -20,18 +20,18 @@ function BlogRow({ post }: { post: Blog }) {
       <Thumbnail src={post.thumbnail} />
 
       <div className="min-w-0 flex-1">
-        <h3 className="text-[18px] font-semibold leading-[1.35] tracking-[-0.015em] text-foreground">
+        <h3 className="font-heading text-[20px] font-normal leading-[1.35] text-foreground">
           {post.title}
         </h3>
 
         {meta.length > 0 ? (
-          <p className="mt-1.5 text-[13px] text-muted-foreground">
+          <p className="mt-1.5 text-[15px] text-muted-foreground">
             {meta.join(" · ")}
           </p>
         ) : null}
 
         {post.description ? (
-          <p className="mt-2 max-w-[68ch] text-[15px] leading-[1.6] text-foreground/80">
+          <p className="mt-2 max-w-[68ch] text-[17px] leading-[1.6] text-foreground/80">
             {post.description}
           </p>
         ) : null}
@@ -41,7 +41,7 @@ function BlogRow({ post }: { post: Blog }) {
             {post.tags.map((tag) => (
               <li
                 key={tag}
-                className="rounded-md bg-tag px-2 py-1 text-[13px] leading-[1.3] text-tag-foreground"
+                className="rounded-md bg-tag px-2 py-1 text-[15px] leading-[1.3] text-tag-foreground"
               >
                 {tag}
               </li>

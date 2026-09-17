@@ -42,7 +42,7 @@ function Authors({ authors, highlight }: { authors: string[]; highlight?: string
   const target = highlight?.trim().toLowerCase();
 
   return (
-    <p className="mt-1.5 text-[14px] leading-[1.55] text-muted-foreground">
+    <p className="mt-1.5 text-[16px] leading-[1.55] text-muted-foreground">
       {authors.map((author, index) => (
         <Fragment key={`${author}-${index}`}>
           {index > 0 ? ", " : null}
@@ -65,12 +65,12 @@ function PaperRow({ paper, highlight }: { paper: Paper; highlight?: string }) {
   return (
     <div className="py-6">
       <div className="flex flex-col gap-1.5 sm:flex-row sm:items-baseline sm:justify-between sm:gap-8">
-        <h3 className="text-[16px] font-medium leading-[1.45] tracking-[-0.01em] text-foreground">
+        <h3 className="font-heading text-[18px] font-normal leading-[1.45] text-foreground">
           {paper.title}
         </h3>
 
         {paper.year ? (
-          <span className="shrink-0 text-[14px] tabular-nums text-muted-foreground">
+          <span className="shrink-0 text-[16px] tabular-nums text-muted-foreground">
             {paper.year}
           </span>
         ) : null}
@@ -84,7 +84,7 @@ function PaperRow({ paper, highlight }: { paper: Paper; highlight?: string }) {
         <p className="mt-2.5">
           <span
             className={cn(
-              "inline-flex items-center gap-1.5 rounded-md px-2 py-1 text-[13px] leading-[1.3]",
+              "inline-flex items-center gap-1.5 rounded-md px-2 py-1 text-[15px] leading-[1.3]",
               stage ? stage.pill : "bg-tag text-tag-foreground",
             )}
           >
@@ -97,7 +97,7 @@ function PaperRow({ paper, highlight }: { paper: Paper; highlight?: string }) {
       ) : null}
 
       {paper.summary ? (
-        <p className="mt-3 max-w-[68ch] text-[15px] leading-[1.6] text-foreground/80">
+        <p className="mt-3 max-w-[68ch] text-[17px] leading-[1.6] text-foreground/80">
           {paper.summary}
         </p>
       ) : null}

@@ -38,26 +38,26 @@ export function DetailArticle({
   html?: string;
 }) {
   return (
-    <main className="mx-auto w-full max-w-[760px] px-6 pt-12 pb-24 sm:pt-16">
+    <main className="mx-auto w-full max-w-[860px] px-6 pt-12 pb-24 sm:pt-16">
       <Link
         href={backHref}
-        className="inline-flex items-center gap-1.5 text-[14px] text-muted-foreground transition-colors hover:text-foreground"
+        className="inline-flex items-center gap-1.5 text-[16px] text-muted-foreground transition-colors hover:text-foreground"
       >
         <ArrowLeft className="size-3.5" />
         {backLabel}
       </Link>
 
       <div className="mt-8">
-        <h1 className="text-[34px] font-semibold leading-[1.15] tracking-[-0.025em] text-foreground sm:text-[42px]">
+        <h1 className="font-heading text-[38px] font-normal leading-[1.15] tracking-[-0.02em] text-foreground sm:text-[47px]">
           {title}
         </h1>
 
         {meta ? (
-          <p className="mt-3 text-[14px] text-muted-foreground">{meta}</p>
+          <p className="mt-3 text-[16px] text-muted-foreground">{meta}</p>
         ) : null}
 
         {description ? (
-          <p className="mt-4 text-[17px] leading-[1.6] text-muted-foreground">
+          <p className="mt-4 text-[21px] leading-[1.5] text-muted-foreground sm:text-[24px]">
             {description}
           </p>
         ) : null}
@@ -68,7 +68,7 @@ export function DetailArticle({
           {tags.map((tag) => (
             <li
               key={tag}
-              className="rounded-md bg-tag px-2 py-1 text-[13px] leading-[1.3] text-tag-foreground"
+              className="rounded-md bg-tag px-2 py-1 text-[15px] leading-[1.3] text-tag-foreground"
             >
               {tag}
             </li>
@@ -110,7 +110,7 @@ export function DetailArticle({
         {blocks.map((block, index) => (
           <section key={block.heading ?? index}>
             {block.heading ? (
-              <h2 className="text-[20px] font-semibold tracking-[-0.015em] text-foreground">
+              <h2 className="font-heading text-[25px] font-normal tracking-[-0.01em] text-foreground">
                 {block.heading}
               </h2>
             ) : null}
@@ -124,7 +124,7 @@ export function DetailArticle({
                 .map((paragraph) => (
                   <p
                     key={paragraph}
-                    className="text-[16px] leading-[1.7] text-foreground/85"
+                    className="text-[18px] leading-[1.7] text-foreground/85"
                   >
                     {paragraph}
                   </p>
