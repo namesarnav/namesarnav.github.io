@@ -40,7 +40,7 @@ items:
 
 
     thumbnail: "/projects/trt.webp"     # optional; a neutral panel shows if omitted
-    tags: ["Hedge Funds", "Trading", "Quantitative Research"]
+    tags: ["PyTorch", "TensorRT", "CUDA"]
     links:
       code: "https://github.com/namesarnav/mcop"
       # demo: "https://namesarnav.com/demo"
