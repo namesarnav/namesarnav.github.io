@@ -46,6 +46,21 @@ items:
       # demo: "https://namesarnav.com/demo"
 
 
+  - slug: "synapse"
+    title: "Synapse -  A workflow Automation Engine"
+    description: >
+      Building Synapse: a workflow engine that survives crashes
+      You draw a workflow as a graph in the browser, hit publish, and a fleet of workers runs it reliably. If a worker dies halfway through, the work still gets done.
+
+
+    thumbnail: "/projects/trt.webp"     # optional; a neutral panel shows if omitted
+    tags: ["PyTorch", "TensorRT", "CUDA"]
+    links:
+      code: "https://github.com/namesarnav/mcop"
+      # demo: "https://namesarnav.com/demo"
+
+
+
 
 ## ------------------------------------------------------------------------------------------- ##
   # `slug` is the URL for the detail page: /projects/<slug>. Keep it unique.
