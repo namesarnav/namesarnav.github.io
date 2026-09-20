@@ -15,9 +15,6 @@ actions:
 # Set to 0 to always show everything.
 initial_count: 5
 
-
-
-
 items:
   # `slug` is the URL for the detail page: /projects/<slug>. Keep it unique.
   - slug: "marigold"
@@ -31,6 +28,20 @@ items:
     links:
       code: "https://github.com/namesarnav/marigold"
       demo: "https://marigold-web-production.up.railway.app/"
+
+
+## ------------------------------------------------------------------------------------------- ##
+  # `slug` is the URL for the detail page: /projects/<slug>. Keep it unique.
+  - slug: "trt-ship"
+    title: "TRT Ship"
+    description: >
+      o engi
+    thumbnail: "/projects/trt.webp"     # optional; a neutral panel shows if omitted
+    tags: ["Hedge Funds", "Trading", "Quantitative Research"]
+    links:
+      code: "https://github.com/namesarnav/mcop"
+      # demo: "https://namesarnav.com/demo"
+
 
 
 ## ------------------------------------------------------------------------------------------- ##

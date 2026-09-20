@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Google_Sans, Source_Serif_4 } from "next/font/google";
+import { Google_Sans } from "next/font/google";
 
 import { SiteHeader } from "@/components/site-header";
 import { ThemeProvider } from "@/components/theme-provider";
@@ -14,16 +14,10 @@ import "./globals.css";
 import "katex/dist/katex.min.css";
 
 /*
-  A serif for headings, Google Sans for everything else — nav, body, meta, tags.
+  Google Sans for everything — headings, body, meta, tags.
 */
 const googleSans = Google_Sans({
   variable: "--font-google-sans",
-  subsets: ["latin"],
-  display: "swap",
-});
-
-const sourceSerif = Source_Serif_4({
-  variable: "--font-source-serif",
   subsets: ["latin"],
   display: "swap",
 });
@@ -68,7 +62,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
     <html
       lang="en"
       suppressHydrationWarning
-      className={`${googleSans.variable} ${sourceSerif.variable} h-full antialiased`}
+      className={`${googleSans.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col">
         <ThemeProvider>
