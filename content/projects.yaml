@@ -35,7 +35,10 @@ items:
   - slug: "trt-ship"
     title: "TRT Ship"
     description: >
-      o engi
+      A CLI and Python toolkit that takes a trained Pytorch model through ONNX export, TensorRT engine builds 
+      and INT8 calibration, numerical validation and benchmarking, to a Triton model repository
+
+
     thumbnail: "/projects/trt.webp"     # optional; a neutral panel shows if omitted
     tags: ["Hedge Funds", "Trading", "Quantitative Research"]
     links:
