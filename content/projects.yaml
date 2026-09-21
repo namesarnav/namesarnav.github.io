@@ -39,7 +39,7 @@ items:
       and INT8 calibration, numerical validation and benchmarking, to a Triton model repository
 
 
-    thumbnail: "/projects/trt.webp"     # optional; a neutral panel shows if omitted
+    thumbnail: "/projects/trt-ship.png"     # optional; a neutral panel shows if omitted
     tags: ["PyTorch", "TensorRT", "CUDA"]
     links:
       code: "https://github.com/namesarnav/mcop"
@@ -53,7 +53,7 @@ items:
         You draw a workflow as a graph in the browser, hit publish, and a fleet of workers runs it reliably. If a worker dies halfway through, the work still gets done.
 
 
-    thumbnail: "/projects/trt.webp"     # optional; a neutral panel shows if omitted
+    thumbnail: "/projects/synapse.png"     # optional; a neutral panel shows if omitted
     tags: ["PyTorch", "TensorRT", "CUDA"]
     links:
       code: "https://github.com/namesarnav/mcop"
@@ -100,7 +100,7 @@ items:
       Point it at a folder of videos and type "a red car driving at night". It returns
       the exact timestamps, ranked across every video you own, each one playable at the
       moment it matched — searching the picture itself, not filenames or transcripts.
-    thumbnail: "/projects/sv-engine.webp"     # optional; a neutral panel shows if omitted
+    thumbnail: "/projects/sv-engine.png"     # optional; a neutral panel shows if omitted
     tags: ["PyTorch", "CLIP", "CUDA"]
     links:
       code: "https://github.com/namesarnav/semantic-video-search-engine"
@@ -128,7 +128,7 @@ items:
       Upload a document in any format, edit it inline with an AI assistant that sees
       the surrounding text, and export back out to PDF, DOCX or LaTeX. Version history
       means an aggressive rewrite is never a one-way door.
-    thumbnail: "/projects/polish.webp"     # optional; a neutral panel shows if omitted
+    thumbnail: "/projects/polish.png"     # optional; a neutral panel shows if omitted
     tags: ["Next.js", "TypeScript", "Express", "PostgreSQL", "Gemini"]
     links:
       code: "https://github.com/PolishAI-app/polish"
@@ -188,3 +188,5 @@ items:
 #       code: "https://github.com/yourhandle/paper-radar"
 #       demo: "https://paper-radar.example.com"
 # ## ------------------------------------------------------------------------------------------- ##
+
+# bro expected us not to use ai aftere treaching us everything on the hw 4 hours before its due????
