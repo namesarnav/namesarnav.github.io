@@ -32,6 +32,38 @@ items:
 
 ## ------------------------------------------------------------------------------------------- ##
   # `slug` is the URL for the detail page: /projects/<slug>. Keep it unique.
+  - slug: "mcop"
+    title: "Monte Carlo Options Pricer"
+    description: >
+      A Monte Carlo engine for pricing European and American options. With variance reduction,
+      Greeks, and alternative asset dynamics and a backtest that puts its deltas to work
+      hedging a real position on ten years of S&P 500 data.
+    thumbnail: "/projects/monte-carlo.png"     # optional; a neutral panel shows if omitted
+    tags: ["Hedge Funds", "Trading", "Quantitative Research"]
+    links:
+      code: "https://github.com/namesarnav/mcop"
+      # demo: "https://namesarnav.com/demo"
+
+## ------------------------------------------------------------------------------------------- ##
+  # `slug` is the URL for the detail page: /projects/<slug>. Keep it unique.
+  - slug: "backtest"
+    title: "Vectorized Portfolio Backtesting Engine"
+    description: >
+      A daily-frequency engine for multi-asset equity strategies, built around the
+      things that actually decide whether a backtest means anything: vectorised
+      computation, explicit look-ahead handling, real transaction costs and honest
+      out-of-sample validation. The headline result is negative, which is the point.
+    thumbnail: "/projects/backtest.png"     # optional; a neutral panel shows if omitted
+    tags: ["Quantitative Research", "Quantitative Trading", "Python"]
+    links:
+      code: "https://github.com/namesarnav/backtesting-python"
+      # demo: "https://namesarnav.com/demo"
+
+
+
+
+## ------------------------------------------------------------------------------------------- ##
+  # `slug` is the URL for the detail page: /projects/<slug>. Keep it unique.
   - slug: "trt-ship"
     title: "TRT Ship"
     description: >
@@ -60,38 +92,6 @@ items:
       demo: "https://web-production-002c6.up.railway.app/"
 
 
-
-
-## ------------------------------------------------------------------------------------------- ##
-  # `slug` is the URL for the detail page: /projects/<slug>. Keep it unique.
-  - slug: "mcop"
-    title: "Monte Carlo Options Pricer"
-    description: >
-      A Monte Carlo engine for pricing European and American options. With variance reduction,
-      Greeks, and alternative asset dynamics and a backtest that puts its deltas to work
-      hedging a real position on ten years of S&P 500 data.
-    thumbnail: "/projects/mcop.webp"     # optional; a neutral panel shows if omitted
-    tags: ["Hedge Funds", "Trading", "Quantitative Research"]
-    links:
-      code: "https://github.com/namesarnav/mcop"
-      # demo: "https://namesarnav.com/demo"
-
-## ------------------------------------------------------------------------------------------- ##
-  # `slug` is the URL for the detail page: /projects/<slug>. Keep it unique.
-  - slug: "backtest"
-    title: "Vectorized Portfolio Backtesting Engine"
-    description: >
-      A daily-frequency engine for multi-asset equity strategies, built around the
-      things that actually decide whether a backtest means anything: vectorised
-      computation, explicit look-ahead handling, real transaction costs and honest
-      out-of-sample validation. The headline result is negative, which is the point.
-    thumbnail: "/projects/backtest.webp"     # optional; a neutral panel shows if omitted
-    tags: ["Quantitative Research", "Quantitative Trading", "Python"]
-    links:
-      code: "https://github.com/namesarnav/backtesting-python"
-      # demo: "https://namesarnav.com/demo"
-
-
 ## ------------------------------------------------------------------------------------------- ##
   # `slug` is the URL for the detail page: /projects/<slug>. Keep it unique.
   - slug: "sv-engine"
@@ -105,6 +105,9 @@ items:
     links:
       code: "https://github.com/namesarnav/semantic-video-search-engine"
       demo: "https://www.loom.com/share/adc1e9a402644b0f9ffeb3c7754e141a"
+
+
+
 
 
 
@@ -189,4 +192,3 @@ items:
 #       demo: "https://paper-radar.example.com"
 # ## ------------------------------------------------------------------------------------------- ##
 
-# bro expected us not to use ai aftere treaching us everything on the hw 4 hours before its due????
