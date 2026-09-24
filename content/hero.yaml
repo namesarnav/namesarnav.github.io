@@ -16,13 +16,14 @@ photo: "/sexy-arnav.jpeg"
 # Optional. Defaults to `name`, which is what you want for a portrait.
 # photo_alt: "Arnav Verma"
 
-# Credential badges under the location line. Each needs an `image` in public/
-# and a `label`; add `href` to link the chip to the credential itself.
+# Credential badges, shown under the portrait: the badge art with its name
+# beneath it. `href` makes the whole badge a link to the credential itself.
+# Keep `label` short — it sits under the art, in a column as wide as the photo.
 # Delete the whole `badges:` block and none render.
 badges:
   - image: "/logos/ckad.png"
     label: "Certified Kubernetes Application Developer"
-    # href: "https://www.credly.com/badges/..."   # add your Credly link
+    href: "https://www.credly.com/badges/f5646465-5d5c-4567-bf56-23a64b9b6e54/public_url"
 
 # Optional butto  ns under the tagline. Delete the whole `actions:` block to hide them.
 actions:

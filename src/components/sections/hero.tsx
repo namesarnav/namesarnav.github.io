@@ -47,47 +47,6 @@ export function HeroSection() {
             <NewsLine label={news.label} items={news.items} interval={news.interval} />
           ) : null}
 
-          {hero.badges.length > 0 ? (
-            <ul className="mt-6 flex flex-wrap items-center gap-2">
-              {hero.badges.map((badge) => {
-                const chip = (
-                  <>
-                    {/*
-                      The badge art is a transparent square, so it gets no frame
-                      of its own — object-contain keeps a wide or tall logo from
-                      being cropped into the box.
-                    */}
-                    <Image
-                      src={badge.image}
-                      alt=""
-                      width={28}
-                      height={28}
-                      className="size-7 shrink-0 object-contain"
-                    />
-                    <span>{badge.label}</span>
-                  </>
-                );
-
-                return (
-                  <li key={`${badge.label}-${badge.image}`}>
-                    {badge.href ? (
-                      <Link
-                        href={badge.href}
-                        className="flex items-center gap-2 rounded-md border border-rule bg-surface py-1.5 pr-3 pl-1.5 text-[15px] leading-[1.3] text-foreground/85 transition-colors hover:bg-surface-hover"
-                      >
-                        {chip}
-                      </Link>
-                    ) : (
-                      <span className="flex items-center gap-2 rounded-md border border-rule bg-surface py-1.5 pr-3 pl-1.5 text-[15px] leading-[1.3] text-foreground/85">
-                        {chip}
-                      </span>
-                    )}
-                  </li>
-                );
-              })}
-            </ul>
-          ) : null}
-
           {hero.actions.length > 0 ? (
             <div className="mt-9 flex flex-wrap items-center gap-2.5">
               {hero.actions.map((action) => (
@@ -104,18 +63,63 @@ export function HeroSection() {
           ) : null}
         </Parallax>
 
-        {hero.photo ? (
-          <Parallax speed={0.24} className="relative size-[132px] shrink-0 overflow-hidden rounded-xl border border-rule bg-surface shadow-(--shadow-soft) sm:size-[172px]">
-            <Image
-              src={hero.photo}
-              alt={hero.photo_alt ?? hero.name}
-              fill
-              // Never larger than the rendered box, so the browser can skip the
-              // full-resolution file on small screens.
-              sizes="172px"
-              className="object-cover"
-              priority
-            />
+        {/*
+          Portrait, then the credentials directly under it: badge art over its
+          own name, so a credential reads as a thing you can click rather than
+          as another chip in the run of text.
+        */}
+        {hero.photo || hero.badges.length > 0 ? (
+          <Parallax speed={0.24} className="flex shrink-0 flex-col items-center gap-5">
+            {hero.photo ? (
+              <div className="relative size-[132px] overflow-hidden rounded-xl border border-rule bg-surface shadow-(--shadow-soft) sm:size-[172px]">
+                <Image
+                  src={hero.photo}
+                  alt={hero.photo_alt ?? hero.name}
+                  fill
+                  // Never larger than the rendered box, so the browser can skip
+                  // the full-resolution file on small screens.
+                  sizes="172px"
+                  className="object-cover"
+                  priority
+                />
+              </div>
+            ) : null}
+
+            {hero.badges.length > 0 ? (
+              <ul className="flex flex-wrap items-start justify-center gap-5">
+                {hero.badges.map((badge) => {
+                  const art = (
+                    <>
+                      <Image
+                        src={badge.image}
+                        alt=""
+                        width={64}
+                        height={64}
+                        className="size-14 object-contain transition-transform duration-200 group-hover:scale-105 sm:size-16"
+                      />
+                      <span className="max-w-[9rem] text-center text-[14px] leading-[1.3] text-muted-foreground transition-colors group-hover:text-foreground">
+                        {badge.label}
+                      </span>
+                    </>
+                  );
+
+                  return (
+                    <li key={`${badge.label}-${badge.image}`}>
+                      {badge.href ? (
+                        <Link
+                          href={badge.href}
+                          className="group flex flex-col items-center gap-2 rounded-md outline-offset-4"
+                        >
+                          {art}
+                        </Link>
+                      ) : (
+                        <span className="flex flex-col items-center gap-2">{art}</span>
+                      )}
+                    </li>
+                  );
+                })}
+              </ul>
+            ) : null}
           </Parallax>
         ) : null}
       </div>
