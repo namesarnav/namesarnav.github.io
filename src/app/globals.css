@@ -150,41 +150,46 @@
   --selection: rgba(26, 115, 232, 0.2);
 }
 
+/*
+  Dark mode is a flat near-black, #090809, under plain white text. The surfaces,
+  rules and tags above it are neutral greys stepped off that same value, so
+  nothing introduces a colour cast the page itself does not have.
+*/
 .dark {
-  --background: #131314;
-  --foreground: #e3e3e3;
+  --background: #090809;
+  --foreground: #ffffff;
 
-  --card: #1b1b1c;
-  --card-foreground: #e3e3e3;
-  --popover: #1e1f20;
-  --popover-foreground: #e3e3e3;
+  --card: #131214;
+  --card-foreground: #ffffff;
+  --popover: #1a191b;
+  --popover-foreground: #ffffff;
 
-  --primary: #e3e3e3;
-  --primary-foreground: #131314;
+  --primary: #ffffff;
+  --primary-foreground: #090809;
 
-  --secondary: #1e1f20;
-  --secondary-foreground: #e3e3e3;
+  --secondary: #1a191b;
+  --secondary-foreground: #ffffff;
 
-  --muted: #1b1b1c;
-  --muted-foreground: #9aa0a6;
+  --muted: #131214;
+  --muted-foreground: #9b9a9e;
 
-  --accent: #282a2c;
-  --accent-foreground: #e3e3e3;
+  --accent: #232225;
+  --accent-foreground: #ffffff;
 
   --destructive: #f28b82;
 
-  --border: #303134;
-  --input: #3c4043;
+  --border: #262528;
+  --input: #3a383d;
   --ring: rgba(138, 180, 248, 0.55);
 
-  --rule: #303134;
+  --rule: #262528;
   /* Dark grounds swallow soft shadows, so this leans on a deeper black. */
   --shadow-soft: 0 1px 2px rgba(0, 0, 0, 0.28), 0 4px 12px rgba(0, 0, 0, 0.22);
-  --surface: #1b1b1c;
-  --surface-hover: rgba(255, 255, 255, 0.05);
-  --tag: #282a2c;
-  --tag-foreground: #dadce0;
-  --header: #172131;
+  --surface: #131214;
+  --surface-hover: rgba(255, 255, 255, 0.06);
+  --tag: #232225;
+  --tag-foreground: #ebeaec;
+  --header: #0f0e10;
   --link: #a8c7fa;
 
   --level-proficient: #0f3a1f;
