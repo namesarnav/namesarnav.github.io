@@ -13,16 +13,19 @@ export function LinkButton({
   children,
   variant = "outline",
   size = "sm",
+  className,
 }: {
   href: string;
   children: ReactNode;
   variant?: "default" | "outline" | "ghost";
   size?: "sm" | "lg";
+  className?: string;
 }) {
   return (
     <Button
       variant={variant}
       size={size}
+      className={className}
       render={
         isExternal(href) ? (
           <a href={href} target="_blank" rel="noreferrer noopener" />

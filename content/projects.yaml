@@ -13,6 +13,12 @@ actions:
   - social: huggingface
     href: "https://huggingface.co/namesarnav"
 
+# What the buttons on a project say. Delete a line to fall back to its default.
+labels:
+  demo: "Try it here"
+  code: "Code"
+  read_more: "Read more"
+
 # How many rows show before the "View more" button appears.
 # Set to 0 to always show everything.
 initial_count: 5

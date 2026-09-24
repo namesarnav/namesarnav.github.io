@@ -346,6 +346,14 @@ const projectsSchema = z.object({
   heading: nonEmpty,
   actions: sectionActionsSchema,
   blurb: optionalText,
+  /**
+   * What the three buttons on a project say. Every one falls back to its own
+   * wording, so the block can be trimmed to just the line worth changing.
+   */
+  labels: z
+    .object({ demo: optionalText, code: optionalText, read_more: optionalText })
+    .optional()
+    .default({}),
   /** How many rows show before the "View more" button. 0 shows everything. */
   initial_count: z.number().int().min(0).optional().default(3),
   items: z

@@ -1,7 +1,8 @@
-import { Code2, ExternalLink } from "lucide-react";
+import { ArrowUpRight } from "lucide-react";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 
+import { BrandMark } from "@/components/brand-mark";
 import { DetailArticle } from "@/components/detail-article";
 import { LinkButton } from "@/components/link-button";
 import { getProject, getProjects } from "@/lib/content";
@@ -40,6 +41,7 @@ export default async function ProjectPage({ params }: PageProps<"/projects/[slug
   if (!html && project.details.length === 0) notFound();
 
   const { code, demo } = project.links;
+  const { labels } = getProjects();
 
   return (
     <DetailArticle
@@ -54,16 +56,19 @@ export default async function ProjectPage({ params }: PageProps<"/projects/[slug
       actions={
         code || demo ? (
           <>
-            {code ? (
-              <LinkButton href={code}>
-                <Code2 data-icon="inline-start" />
-                Code
+            {demo ? (
+              <LinkButton href={demo} variant="default" className="try-cta">
+                {labels.demo ?? "Try it here"}
+                <ArrowUpRight
+                  data-icon="inline-end"
+                  className="transition-transform duration-200 group-hover/button:translate-x-0.5 group-hover/button:-translate-y-0.5"
+                />
               </LinkButton>
             ) : null}
-            {demo ? (
-              <LinkButton href={demo}>
-                <ExternalLink data-icon="inline-start" />
-                Demo
+            {code ? (
+              <LinkButton href={code}>
+                <BrandMark name="github" slot="inline-start" />
+                {labels.code ?? "Code"}
               </LinkButton>
             ) : null}
           </>

@@ -1,16 +1,28 @@
-import { ArrowRight, Code2, ExternalLink } from "lucide-react";
+import { ArrowRight, ArrowUpRight } from "lucide-react";
 
+import { BrandMark } from "@/components/brand-mark";
 import { LinkButton } from "@/components/link-button";
 import { ExpandableList } from "@/components/expandable-list";
 import { Section } from "@/components/section";
 import { Thumbnail } from "@/components/thumbnail";
-import { getProjects, readMoreHref, type Project } from "@/lib/content";
+import {
+  getProjects,
+  readMoreHref,
+  type Project,
+  type Projects,
+} from "@/lib/content";
 
 /**
  * A search-result row: thumbnail on the left, everything else stacked to its
  * right. One project per line, full width. Stacks vertically on phones.
  */
-function ProjectRow({ project }: { project: Project }) {
+function ProjectRow({
+  project,
+  labels,
+}: {
+  project: Project;
+  labels: Projects["labels"];
+}) {
   const readMore = readMoreHref(project);
   const { code, demo } = project.links;
   const hasActions = Boolean(readMore || code || demo);
@@ -43,26 +55,31 @@ function ProjectRow({ project }: { project: Project }) {
           </ul>
         ) : null}
 
+        {/* The live thing first, and the only filled button of the three:
+            reading about a project is the fallback, trying it is the point. */}
         {hasActions ? (
           <div className="mt-4 flex flex-wrap items-center gap-2">
-            {readMore ? (
-              <LinkButton href={readMore} variant="default">
-                Read more
-                <ArrowRight data-icon="inline-end" />
+            {demo ? (
+              <LinkButton href={demo} variant="default" className="try-cta">
+                {labels.demo ?? "Try it here"}
+                <ArrowUpRight
+                  data-icon="inline-end"
+                  className="transition-transform duration-200 group-hover/button:translate-x-0.5 group-hover/button:-translate-y-0.5"
+                />
               </LinkButton>
             ) : null}
 
             {code ? (
               <LinkButton href={code}>
-                <Code2 data-icon="inline-start" />
-                Code
+                <BrandMark name="github" slot="inline-start" />
+                {labels.code ?? "Code"}
               </LinkButton>
             ) : null}
 
-            {demo ? (
-              <LinkButton href={demo}>
-                <ExternalLink data-icon="inline-start" />
-                Demo
+            {readMore ? (
+              <LinkButton href={readMore}>
+                {labels.read_more ?? "Read more"}
+                <ArrowRight data-icon="inline-end" />
               </LinkButton>
             ) : null}
           </div>
@@ -80,7 +97,7 @@ export function ProjectsSection() {
     <Section id="projects" heading={projects.heading} blurb={projects.blurb} actions={projects.actions}>
       <ExpandableList initialCount={projects.initial_count}>
         {projects.items.map((project) => (
-          <ProjectRow key={project.slug} project={project} />
+          <ProjectRow key={project.slug} project={project} labels={projects.labels} />
         ))}
       </ExpandableList>
     </Section>
