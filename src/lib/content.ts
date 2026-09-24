@@ -226,6 +226,12 @@ const educationSchema = z.object({
       z.object({
         institution: nonEmpty,
         /**
+         * The school's mark, as a file in `public/`. Leave it out and the entry
+         * shows a monogram in the institution's own colour instead, so the
+         * column still lines up.
+         */
+        logo: optionalText,
+        /**
          * The institution's own colour, as hex. Hex only — it is written
          * straight into a style attribute, so nothing else is accepted.
          */
@@ -659,7 +665,11 @@ export const getHero = () => {
   return hero;
 };
 export const getNews = () => load("news", newsSchema);
-export const getEducation = () => load("education", educationSchema);
+export const getEducation = () => {
+  const education = load("education", educationSchema);
+  assertAssetsExist("education", education.items.map((item) => item.logo));
+  return education;
+};
 export const getResearch = () => load("research", researchSchema);
 export const getProjects = () => {
   const projects = load("projects", projectsSchema);

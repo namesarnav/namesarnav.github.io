@@ -1,5 +1,6 @@
 import { FileText } from "lucide-react";
 
+import { InstitutionLogo } from "@/components/institution-logo";
 import { LinkButton } from "@/components/link-button";
 import { Section } from "@/components/section";
 import { getEducation } from "@/lib/content";
@@ -29,6 +30,20 @@ export function EducationSection() {
 
           return (
             <li key={`${item.institution}-${item.dates ?? ""}`} className="py-7">
+              {/*
+                The mark and the name sit on one line, the way a CV entry reads;
+                everything below stays where it was rather than indenting under
+                the logo, so a long course list keeps the full column width.
+              */}
+              <div className="flex items-start gap-4">
+                <InstitutionLogo
+                  name={item.institution}
+                  logo={item.logo}
+                  color={item.color}
+                  colorDark={item.color_dark}
+                />
+
+                <div className="min-w-0 flex-1">
               <div className="flex flex-col gap-1 sm:flex-row sm:items-baseline sm:justify-between sm:gap-8">
                 <h3
                   className={cn(
@@ -63,6 +78,8 @@ export function EducationSection() {
               {place ? (
                 <p className="mt-1 text-[16px] text-muted-foreground">{place}</p>
               ) : null}
+                </div>
+              </div>
 
               {item.affiliations.length > 0 ? (
                 <div className="mt-5">

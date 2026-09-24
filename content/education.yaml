@@ -1,16 +1,20 @@
 heading: "Education"
 
 items:
-  - institution: "New York University, Courant Institute of Mathematical Sciences (Attending)"
+  - institution: "New York University, Courant Institute of Mathematical Sciences"
+    # The school's mark, from public/. Drop the line and the entry falls back to
+    # a monogram in the colour below.
+    logo: "/logos/nyu.png"
     # The school's own colour, hex only. In dark mode it is lightened
     # automatically so it stays legible; set `color_dark` to override that.
     color: "#57068C"        # NYU violet
+    # Overrides the auto-lightened dark-mode colour.
+    color_dark: "#fff"
     # Free text, so "Expected 05/28" and "01/23 – 05/26" both work.
     dates: "Expected 05/28"
     degree: "M.S. Computer Science"
     # `degree` and `field` are joined with a middot when both are present.
     location: "Washington Square Campus, New York, NY "
-
     affiliations:
       - "Tech@NYU"
       - "HackNYU"
@@ -21,8 +25,10 @@ items:
       - { name: "Machine Learning - Kyunghyun Cho", grade: "In progress" }
       - { name: "Deep Learning - Yann LeCunn", grade: "In progress" }
 
-  - institution: "University of North Texas (Graduated)"
-    color: "#00693C"        # UNT green
+  - institution: "University of North Texas"
+    logo: "/logos/unt-eagles.png"
+    color: "#00853E"        # UNT green
+    color_dark: "#fff"
     dates: "01/23 – 05/26"
     degree: "B.S. Computer Science"
     field: "Mathematics Minor"
