@@ -474,6 +474,38 @@ const certificationsSchema = z.object({
     .default([]),
 });
 
+// ---------------------------------------------------------------- documents
+
+/**
+ * The filing cabinet: résumé, transcripts, certificate copies. Every entry is a
+ * file in `public/` (or a full URL) plus the words that describe it — `group`
+ * is free text and becomes the sub-heading the document is filed under, in the
+ * order the groups first appear.
+ */
+const documentsSchema = z.object({
+  heading: nonEmpty,
+  actions: sectionActionsSchema,
+  blurb: optionalText,
+  items: z
+    .array(
+      z.object({
+        title: nonEmpty,
+        description: optionalText,
+        group: optionalText,
+        /** Free text, so "Issued Mar 2026" and "2026-03-14" both work. */
+        date: optionalText,
+        /** A file in `public/` or a full URL. */
+        file: nonEmpty,
+        /** Shown on the button — "PDF", "PNG". Falls back to the extension. */
+        kind: optionalText,
+        /** A preview image in `public/`. Omit it and a file glyph shows. */
+        thumbnail: optionalText,
+      }),
+    )
+    .optional()
+    .default([]),
+});
+
 // ---------------------------------------------------------------- contact
 
 /**
@@ -510,6 +542,10 @@ export type News = z.infer<typeof newsSchema>;
 export type NewsItem = News["items"][number];
 export type Skills = z.infer<typeof skillsSchema>;
 export type Contact = z.infer<typeof contactSchema>;
+export type Documents = z.infer<typeof documentsSchema>;
+export type DocumentItem = Documents["items"][number];
+export type Skill = Skills["groups"][number]["items"][number];
+export type EducationItem = Education["items"][number];
 
 
 // ---------------------------------------------------------------- loading
@@ -675,6 +711,14 @@ export const getCertifications = () => {
     certifications.items.map((item) => item.thumbnail),
   );
   return certifications;
+};
+export const getDocuments = () => {
+  const documents = load("documents", documentsSchema);
+  assertAssetsExist("documents", [
+    ...documents.items.map((item) => item.file),
+    ...documents.items.map((item) => item.thumbnail),
+  ]);
+  return documents;
 };
 export const getContact = () => load("contact", contactSchema);
 
