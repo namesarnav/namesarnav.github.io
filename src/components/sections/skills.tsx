@@ -1,4 +1,5 @@
 import { ActivityStrip } from "@/components/activity-strip";
+import { BrandMark } from "@/components/brand-mark";
 import { Section } from "@/components/section";
 import { getSkills, SKILL_LEVELS, type SkillLevel } from "@/lib/content";
 import { cn } from "@/lib/utils";
@@ -66,10 +67,13 @@ export function SkillsSection() {
                   <li
                     key={item.name}
                     className={cn(
-                      "rounded-md px-2 py-1 text-[15px] leading-[1.3]",
+                      // The mark sits inside the existing pill: same padding,
+                      // same type size, so the row's height does not move.
+                      "flex items-center gap-1.5 rounded-md px-2 py-1 text-[15px] leading-[1.3]",
                       LEVEL_STYLES[item.level],
                     )}
                   >
+                    <BrandMark name={item.name} icon={item.icon} />
                     {item.name}
                   </li>
                 ))}

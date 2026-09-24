@@ -402,10 +402,19 @@ export type SkillLevel = (typeof SKILL_LEVELS)[number];
 
 /** A bare string is shorthand for a skill at the middle level. */
 const skillItemSchema = z.union([
-  nonEmpty.transform((name) => ({ name, level: "working" as SkillLevel })),
+  nonEmpty.transform((name) => ({
+    name,
+    level: "working" as SkillLevel,
+    icon: undefined as string | false | undefined,
+  })),
   z.object({
     name: nonEmpty,
     level: z.enum(SKILL_LEVELS).optional().default("working"),
+    /**
+     * Overrides the mark matched from the name: either a simple-icons slug
+     * ("nextdotjs") or a file in `public/`. `false` drops the mark entirely.
+     */
+    icon: z.union([nonEmpty, z.literal(false)]).optional(),
   }),
 ]);
 
@@ -705,7 +714,20 @@ function assertBodiesMatch(
   }
 }
 
-export const getSkills = () => load("skills", skillsSchema);
+export const getSkills = () => {
+  const skills = load("skills", skillsSchema);
+  /* An `icon:` holding a path has to point at a real file; a bare slug is a
+     simple-icons name and is resolved at render time instead. */
+  assertAssetsExist(
+    "skills",
+    skills.groups.flatMap((group) =>
+      group.items.map((item) =>
+        typeof item.icon === "string" && item.icon.startsWith("/") ? item.icon : undefined,
+      ),
+    ),
+  );
+  return skills;
+};
 export const getCertifications = () => {
   const certifications = load("certifications", certificationsSchema);
   assertAssetsExist(
