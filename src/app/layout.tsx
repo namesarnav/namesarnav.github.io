@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Google_Sans } from "next/font/google";
 
 import { SiteHeader } from "@/components/site-header";
+import { SmoothScroll } from "@/components/smooth-scroll";
 import { ThemeProvider } from "@/components/theme-provider";
 import { getSite } from "@/lib/content";
 
@@ -66,6 +67,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
     >
       <body className="min-h-full flex flex-col">
         <ThemeProvider>
+          <SmoothScroll />
           <SiteHeader
             brand={site.brand ?? site.title}
             nav={site.nav}

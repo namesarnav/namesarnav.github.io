@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 
+import { Parallax } from "@/components/parallax";
 import { NewsLine } from "@/components/news-line";
 import { Button } from "@/components/ui/button";
 import { getHero, getNews } from "@/lib/content";
@@ -18,7 +19,12 @@ export function HeroSection() {
         still the first thing a screen reader reaches.
       */}
       <div className="flex flex-col-reverse gap-8 sm:flex-row sm:items-start sm:justify-between sm:gap-12">
-        <div className="min-w-0 flex-1">
+        {/*
+          The two columns drift at slightly different rates as the page scrolls:
+          the portrait hangs back further than the text, so the hero separates
+          into two planes. Both numbers are small on purpose.
+        */}
+        <Parallax speed={0.09} className="min-w-0 flex-1">
           <h1 className="font-heading text-[45px] font-normal leading-[1.1] tracking-[-0.02em] text-foreground sm:text-[65px]">
             {hero.name}
           </h1>
@@ -96,10 +102,10 @@ export function HeroSection() {
               ))}
             </div>
           ) : null}
-        </div>
+        </Parallax>
 
         {hero.photo ? (
-          <div className="relative size-[132px] shrink-0 overflow-hidden rounded-xl border border-rule bg-surface shadow-(--shadow-soft) sm:size-[172px]">
+          <Parallax speed={0.24} className="relative size-[132px] shrink-0 overflow-hidden rounded-xl border border-rule bg-surface shadow-(--shadow-soft) sm:size-[172px]">
             <Image
               src={hero.photo}
               alt={hero.photo_alt ?? hero.name}
@@ -110,7 +116,7 @@ export function HeroSection() {
               className="object-cover"
               priority
             />
-          </div>
+          </Parallax>
         ) : null}
       </div>
     </section>

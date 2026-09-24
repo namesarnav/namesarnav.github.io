@@ -219,6 +219,8 @@
 
   html {
     @apply font-sans;
+    /* Lenis eases the page itself; the two easings would otherwise fight, so
+       this is the fallback for when Lenis is off (reduce-motion, or no JS). */
     scroll-behavior: smooth;
     /* The sticky header must not cover an anchored section heading. */
     scroll-padding-top: 5.5rem;
@@ -237,6 +239,20 @@
 
   a {
     -webkit-tap-highlight-color: transparent;
+  }
+
+  html.lenis,
+  html.lenis body {
+    height: auto;
+  }
+  html.lenis {
+    scroll-behavior: auto;
+  }
+  .lenis.lenis-smooth [data-lenis-prevent] {
+    overscroll-behavior: contain;
+  }
+  .lenis.lenis-stopped {
+    overflow: hidden;
   }
 
   @media (prefers-reduced-motion: reduce) {

@@ -4,7 +4,7 @@
 
 Personal portfolio for Arnav Verma. Deploys to
 https://github.com/namesarnav/namesarnav.github.io via GitHub Actions
-(static export, `out/`). Dev server runs on port 3111.
+(static export, `out/`). Dev server runs on Next's default port 3000 (`next dev`, no port flag).
 
 ## The one rule
 
@@ -52,7 +52,9 @@ breakage in hand-edited YAML — keep it strict.
 - **Push only when explicitly asked.** Commit and push are a separate step.
 - When shown a reference site, match the **information format**, not the visual
   design. Notion-minimal is the look; don't import someone else's typography.
-- Parallax was tried and explicitly removed. Don't reintroduce it.
+- Parallax: removed once, then asked for again. It now exists only as
+  `src/components/parallax.tsx`, on the two hero columns, at speeds under 0.12,
+  and off under `prefers-reduced-motion`. Keep it to that.
 - No browser has been available in these sessions — verify via `next build`,
   eslint, and grepping rendered HTML in `out/`.
 
