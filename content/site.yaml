@@ -62,6 +62,8 @@ not_found:
 vibe:
   label: "Click here to vibe"
   playing_label: "Vibing"
+  # The small line above the track name in the corner popup.
+  now_playing_label: "Now playing"
   loop: true       # start over at the top when the last track ends
   shuffle: false   # play in a random order each time
   volume: 0.7

@@ -112,6 +112,8 @@ const siteSchema = z.object({
         .optional(),
       label: optionalText,
       playing_label: optionalText,
+      /** The line above the track name in the corner toast. */
+      now_playing_label: optionalText,
       /** Start again at the top of the playlist when the last track ends. */
       loop: z.boolean().optional().default(true),
       /** Play in a random order each time. */
@@ -628,33 +630,77 @@ function load<T extends z.ZodType>(file: string, schema: T): z.infer<T> {
 const AUDIO_DIR = path.join(PUBLIC_DIR, "audio");
 const AUDIO_EXTENSIONS = new Set([".mp3", ".m4a", ".aac", ".ogg", ".oga", ".opus", ".wav", ".flac", ".webm"]);
 
-/**
- * Everything in `public/audio/`, in name order. Filenames go into a URL, so each
- * one is encoded — spaces and other awkward characters survive the trip.
- */
-function discoverTracks(): { src: string; title?: string }[] {
-  let files: string[];
+/** Every audio file in `public/audio/`, in name order. */
+function audioFiles(): string[] {
   try {
-    files = fs.readdirSync(AUDIO_DIR);
+    return fs
+      .readdirSync(AUDIO_DIR)
+      .filter((file) => AUDIO_EXTENSIONS.has(path.extname(file).toLowerCase()))
+      .sort((a, b) => a.localeCompare(b, "en", { numeric: true, sensitivity: "base" }));
   } catch {
     return [];
   }
+}
 
-  return files
-    .filter((file) => AUDIO_EXTENSIONS.has(path.extname(file).toLowerCase()))
-    .sort((a, b) => a.localeCompare(b, "en", { numeric: true, sensitivity: "base" }))
-    .map((file) => ({
+/**
+ * The playlist, from `content/songs.yaml`. Rows play in the order they are
+ * written; `title` and `artist` may be left out, and a track without them is
+ * named from its filename, which is read as `Song, Artist.mp3`.
+ */
+const songsSchema = z.object({
+  tracks: z
+    .array(z.object({ file: nonEmpty, title: optionalText, artist: optionalText }))
+    .optional()
+    .default([]),
+});
+
+function songsPlaylist(): { src: string; title?: string; artist?: string }[] {
+  // The file is optional: with no songs.yaml at all, the folder is the playlist.
+  if (!fs.existsSync(path.join(CONTENT_DIR, "songs.yaml"))) {
+    return audioFiles().map((file) => ({
       src: `/audio/${encodeURIComponent(file)}`,
       title: undefined,
       artist: undefined,
     }));
+  }
+
+  const { tracks } = load("songs", songsSchema);
+
+  const available = new Set(audioFiles());
+  const missing = tracks.filter((track) => !available.has(track.file));
+  if (missing.length > 0) {
+    throw new Error(
+      `content/songs.yaml lists ${missing.length > 1 ? "files" : "a file"} that ` +
+        `${missing.length > 1 ? "are" : "is"} not in public/audio/:\n` +
+        missing.map((track) => `  \u2022 ${track.file}`).join("\n") +
+        "\nAdd the file, or delete the entry.",
+    );
+  }
+
+  const listed = new Set(tracks.map((track) => track.file));
+
+  return [
+    ...tracks,
+    // A file dropped into the folder still plays without being written down —
+    // it just goes last, and is named from its filename.
+    ...audioFiles()
+      .filter((file) => !listed.has(file))
+      .map((file) => ({ file, title: undefined, artist: undefined })),
+  ].map((track) => ({
+    // Filenames go into a URL, so each one is encoded — spaces and other
+    // awkward characters survive the trip.
+    src: `/audio/${encodeURIComponent(track.file)}`,
+    title: track.title,
+    artist: track.artist,
+  }));
 }
 
 export const getSite = () => {
   const site = load("site", siteSchema);
 
-  // An explicit list wins; otherwise the folder is the playlist.
-  const tracks = site.vibe.tracks ?? discoverTracks();
+  // An explicit list in site.yaml still wins; otherwise songs.yaml is the
+  // playlist, and it falls back to the folder when that file is not there.
+  const tracks = site.vibe.tracks ?? songsPlaylist();
   assertAssetsExist("site", tracks.map((track) => track.src));
 
   return { ...site, vibe: { ...site.vibe, tracks } };

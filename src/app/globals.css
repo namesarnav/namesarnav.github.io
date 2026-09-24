@@ -338,6 +338,32 @@
   }
 }
 
+@layer components {
+  /*
+    The toast stays mounted while a track plays and is moved in and out on
+    `data-open`, so both directions are transitions rather than a mount and an
+    unmount: it rises and settles on the way in, and sinks back on the way out.
+    Out is quicker than in — leaving should not hold the corner.
+  */
+  .vibe-toast {
+    transition:
+      opacity 260ms cubic-bezier(0.22, 1, 0.36, 1),
+      transform 260ms cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .vibe-toast[data-open="false"] {
+    transition-duration: 180ms;
+  }
+
+  /* The whole point of the card is the name it carries, so with motion reduced
+     it simply appears and disappears. */
+  @media (prefers-reduced-motion: reduce) {
+    .vibe-toast {
+      transition: none;
+    }
+  }
+}
+
 @layer utilities {
   /*
     An institution's own colour, handed in as `--brand`. Dark mode mixes it
