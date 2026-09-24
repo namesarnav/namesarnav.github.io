@@ -307,5 +307,8 @@ matching component under `src/components/sections/`. Keep the string in YAML.
 
 ## Licence
 
-The code is yours to use. The content in `content/`, and everything in `public/`
-— photographs, logos, documents, music — is not: replace it with your own.
+The code is [MIT](LICENSE) — use it, change it, ship it.
+
+The content is not. Everything in `content/`, and everything in `public/` —
+photographs, logos, documents, music — belongs to me and is only here so the
+template has something to render. Replace it with your own.
