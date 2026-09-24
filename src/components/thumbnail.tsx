@@ -1,6 +1,8 @@
 import { ImageIcon } from "lucide-react";
 import Image from "next/image";
 
+import { cn } from "@/lib/utils";
+
 /**
  * One fixed box for every row, whether or not there is an image to put in it.
  *
@@ -9,9 +11,23 @@ import Image from "next/image";
  * the same. A row with no image keeps the same box, so titles stay aligned down
  * the whole list instead of jumping left.
  */
-export function Thumbnail({ src, alt = "" }: { src?: string; alt?: string }) {
+export function Thumbnail({
+  src,
+  alt = "",
+  className,
+}: {
+  src?: string;
+  alt?: string;
+  /** Overrides the row widths — the card grid wants the full column instead. */
+  className?: string;
+}) {
   return (
-    <div className="relative aspect-video w-full shrink-0 overflow-hidden rounded-lg border border-rule bg-surface sm:w-[280px] lg:w-[320px]">
+    <div
+      className={cn(
+        "relative aspect-video w-full shrink-0 overflow-hidden rounded-lg border border-rule bg-surface sm:w-[280px] lg:w-[320px]",
+        className,
+      )}
+    >
       {src ? (
         <Image
           src={src}

@@ -17,22 +17,29 @@ og_image: "/og.png"
 # Shown in the top-left of the sticky header. Falls back to `title` if omitted.
 brand: "AV"
 
+# The "back" link at the top of the Projects, Writing and Documents pages.
+back_label: "Home"
+
 # Top bar links. Remove any entry to drop it from the nav.
+# Anything with a page of its own points at the page; the rest are sections on
+# the homepage, written as "/#id" so they also work from /projects or /blog.
 nav:
   - label: "Education"
-    href: "#education"
+    href: "/#education"
   - label: "Research"
-    href: "#research"
+    href: "/#research"
   - label: "Projects"
-    href: "#projects"
+    href: "/projects"
   - label: "Writing"
-    href: "#blogs"
+    href: "/blog"
   - label: "Skills"
-    href: "#skills"
+    href: "/#skills"
   - label: "Certifications"
-    href: "#certifications"
+    href: "/#certifications"
   - label: "Contact"
-    href: "#contact"
+    href: "/#contact"
+# /documents is deliberately not listed here — it exists, but it is for personal
+# use, so nothing on the site links to it.
 
 # Optional. Shown centred at the very bottom of the page.
 footer: "Built (from scratch) with ❤️ by Me ;) "

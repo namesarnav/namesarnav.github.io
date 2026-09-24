@@ -6,6 +6,8 @@ blurb: "Posts on things I've worked through and wanted to explain properly."
 # icon and gives you "View <Name>" for free; add `label:` to say something else.
 # Delete the block and no buttons render.
 actions:
+  - label: "All writing"
+    href: "/blog"
   - social: hashnode
     href: "https://arnavverma.hashnode.dev"
   - social: medium

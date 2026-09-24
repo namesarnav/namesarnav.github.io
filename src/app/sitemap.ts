@@ -41,8 +41,21 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.8,
     }));
 
+  /*
+    The index pages change whenever an entry is added to either list. /documents
+    is left out on purpose: it is a personal page, so it is not advertised to
+    crawlers — though nothing stops someone who knows the URL from opening it.
+  */
+  const indexes = ["/projects/", "/blog/"].map((path) => ({
+    url: at(path),
+    lastModified,
+    changeFrequency: "weekly" as const,
+    priority: 0.9,
+  }));
+
   return [
     { url: at("/"), lastModified, changeFrequency: "weekly" as const, priority: 1 },
+    ...indexes,
     ...projects,
     ...posts,
   ];

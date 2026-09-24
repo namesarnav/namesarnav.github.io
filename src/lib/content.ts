@@ -62,6 +62,8 @@ const siteSchema = z.object({
   og_image: optionalText,
   og_image_alt: optionalText,
   brand: optionalText,
+  /** The "back" link at the top of every standalone page. Falls back to `title`. */
+  back_label: optionalText,
   nav: z
     .array(z.object({ label: nonEmpty, href: nonEmpty }))
     .optional()

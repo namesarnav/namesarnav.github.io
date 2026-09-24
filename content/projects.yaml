@@ -6,6 +6,8 @@ blurb: "A few things I've built and written up."
 # icon and gives you "View <Name>" for free; add `label:` to say something else.
 # Delete the block and no buttons render.
 actions:
+  - label: "All projects"
+    href: "/projects"
   - social: github
     href: "https://github.com/namesarnav"
   - social: huggingface
