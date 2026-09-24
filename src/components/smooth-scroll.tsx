@@ -6,7 +6,7 @@ import { useEffect } from "react";
 /**
  * Inertial scrolling for the whole document. Lenis still scrolls the real page
  * — it only eases how fast `scrollY` catches up to the wheel — so the sticky
- * header, anchor links and the hero parallax all keep working off it unchanged.
+ * header and the anchor links keep working off it unchanged.
  *
  * Renders nothing; it exists for the effect.
  */

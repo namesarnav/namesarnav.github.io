@@ -52,9 +52,8 @@ breakage in hand-edited YAML — keep it strict.
 - **Push only when explicitly asked.** Commit and push are a separate step.
 - When shown a reference site, match the **information format**, not the visual
   design. Notion-minimal is the look; don't import someone else's typography.
-- Parallax: removed once, then asked for again. It now exists only as
-  `src/components/parallax.tsx`, on the two hero columns, at speeds under 0.12,
-  and off under `prefers-reduced-motion`. Keep it to that.
+- Parallax has been tried and removed twice — most recently on the hero
+  columns, where the drift read as jitter. Don't reintroduce it.
 - No browser has been available in these sessions — verify via `next build`,
   eslint, and grepping rendered HTML in `out/`.
 

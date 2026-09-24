@@ -1,7 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
 
-import { Parallax } from "@/components/parallax";
 import { NewsLine } from "@/components/news-line";
 import { Button } from "@/components/ui/button";
 import { getHero, getNews } from "@/lib/content";
@@ -19,12 +18,7 @@ export function HeroSection() {
         still the first thing a screen reader reaches.
       */}
       <div className="flex flex-col-reverse gap-8 sm:flex-row sm:items-start sm:justify-between sm:gap-12">
-        {/*
-          The two columns drift at slightly different rates as the page scrolls:
-          the portrait hangs back further than the text, so the hero separates
-          into two planes. Both numbers are small on purpose.
-        */}
-        <Parallax speed={0.09} className="min-w-0 flex-1">
+        <div className="min-w-0 flex-1">
           <h1 className="font-heading text-[45px] font-normal leading-[1.1] tracking-[-0.02em] text-foreground sm:text-[65px]">
             {hero.name}
           </h1>
@@ -61,7 +55,7 @@ export function HeroSection() {
               ))}
             </div>
           ) : null}
-        </Parallax>
+        </div>
 
         {/*
           Portrait, then the credentials directly under it: badge art over its
@@ -69,7 +63,7 @@ export function HeroSection() {
           as another chip in the run of text.
         */}
         {hero.photo || hero.badges.length > 0 ? (
-          <Parallax speed={0.24} className="flex shrink-0 flex-col items-center gap-5">
+          <div className="flex shrink-0 flex-col items-center gap-5">
             {hero.photo ? (
               <div className="relative size-[132px] overflow-hidden rounded-xl border border-rule bg-surface shadow-(--shadow-soft) sm:size-[172px]">
                 <Image
@@ -120,7 +114,7 @@ export function HeroSection() {
                 })}
               </ul>
             ) : null}
-          </Parallax>
+          </div>
         ) : null}
       </div>
     </section>
