@@ -63,9 +63,15 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
     <html
       lang="en"
       suppressHydrationWarning
-      className={`${googleSans.variable} h-full antialiased`}
+      /*
+        No `h-full` here. Lenis watches <html> with a ResizeObserver to know how
+        far the page scrolls, and a height pinned to the viewport never changes
+        size — so the scroll limit stayed at whatever it was before the images
+        and fonts landed, and the page stopped halfway.
+      */
+      className={`${googleSans.variable} antialiased`}
     >
-      <body className="min-h-full flex flex-col">
+      <body className="flex min-h-dvh flex-col">
         <ThemeProvider>
           <SmoothScroll />
           <SiteHeader

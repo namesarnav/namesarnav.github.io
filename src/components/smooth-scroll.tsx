@@ -25,6 +25,16 @@ export function SmoothScroll() {
       syncTouch: false,
     });
 
+    /*
+      A ResizeObserver catches the page growing, but not every growth resizes
+      the observed box in time — a webfont swapping or a late image can land
+      after the last measurement. Re-measuring on load costs nothing and makes
+      the limit right even then.
+    */
+    const remeasure = () => lenis.resize();
+    window.addEventListener("load", remeasure);
+    document.fonts?.ready.then(remeasure).catch(() => {});
+
     let frame = 0;
     const raf = (time: number) => {
       lenis.raf(time);
@@ -33,6 +43,7 @@ export function SmoothScroll() {
     frame = requestAnimationFrame(raf);
 
     return () => {
+      window.removeEventListener("load", remeasure);
       cancelAnimationFrame(frame);
       lenis.destroy();
     };
