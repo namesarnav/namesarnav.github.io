@@ -21,7 +21,7 @@ I work on language model safety and evaluations, representation learning, and th
 
 ## Publications
 {% for post in site.publications reversed %}
-* **{{ post.title }}**<br>{{ post.citation | split: " (20" | first }}<br>{% if post.category == "in_progress" %}<i>In progress</i>{% else %}<i>{{ post.venue }}</i>{% endif %}
+* **{{ post.title }}**<br>{% for a in post.authors %}{% if a == site.author.publication_name %}<b>{{ a }}</b>{% else %}{{ a }}{% endif %}{% unless forloop.last %}, {% endunless %}{% endfor %}<br>{% if post.category == "in_progress" %}<i>In progress</i>{% else %}<i>{{ post.venue }}</i>{% endif %}
 {% endfor %}
 
 ## Selected projects

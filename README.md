@@ -14,7 +14,7 @@ Earlier versions of the site: `legacy-2` (Next.js) and `legacy-site`.
 | Top-bar links | `_data/navigation.yml` |
 | Homepage (About, News, Publications, Selected projects, Writing) | `_pages/about.md` |
 | CV (education, skills, certifications) | `_pages/cv.md` |
-| Publications, one file each | `_publications/` |
+| Publications, one file each (`authors:` list; `author.publication_name` in `_config.yml` is bolded) | `_publications/` |
 | Projects, one file each (served at `/projects/<name>/`) | `_portfolio/` |
 | Writing, one file each (served at `/blog/<slug>/`) | `_posts/` |
 | Unlisted documents page | `_pages/documents.md` |

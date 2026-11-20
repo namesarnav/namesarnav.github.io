@@ -31,6 +31,7 @@ author:
   employer         : "New York University, Courant"
   uri              : # URL
   email            : "av4445@nyu.edu" 
+  publication_name : "Arnav Verma"   # bolded in author lists
 
   # Academic websites
   academia         : # URL
