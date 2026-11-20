@@ -1,0 +1,22 @@
+{% comment %}
+  A YouTube-style row: small 16:9 thumbnail on the left, title, a meta line and
+  a two-line description on the right. Pass `item` (a post or portfolio doc).
+{% endcomment %}
+{% assign item = include.item %}
+<li class="media-row">
+  <a class="media-row__thumb" href="{{ item.url | relative_url }}" tabindex="-1" aria-hidden="true">
+    {% if item.header.teaser %}<img src="{{ item.header.teaser | relative_url }}" alt="" loading="lazy">{% endif %}
+  </a>
+  <div class="media-row__body">
+    <a class="media-row__title" href="{{ item.url | relative_url }}">{{ item.title }}</a>
+    <p class="media-row__meta">
+      {% if item.collection == "posts" %}
+        {% assign words = item.content | strip_html | number_of_words %}
+        {{ item.date | date: "%b %Y" }} · {{ words | divided_by: 220 | at_least: 1 }} min read
+      {% elsif item.tags.size > 0 %}
+        {{ item.tags | join: " · " }}
+      {% endif %}
+    </p>
+    <p class="media-row__desc">{{ item.excerpt | strip_html | strip }}</p>
+  </div>
+</li>

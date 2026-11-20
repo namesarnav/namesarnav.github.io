@@ -25,32 +25,16 @@ I work on language model safety and evaluations, representation learning, and th
 {% endfor %}
 
 ## Selected projects
-<ul class="thumb-list">
+<ul class="media-list">
 {% assign projects = site.portfolio | sort: "order" %}
-{% for p in projects limit: 4 %}
-  <li>
-    <a class="thumb-list__img" href="{{ p.url | relative_url }}" tabindex="-1" aria-hidden="true">{% if p.header.teaser %}<img src="{{ p.header.teaser | relative_url }}" alt="" loading="lazy">{% endif %}</a>
-    <div class="thumb-list__text">
-      <a href="{{ p.url | relative_url }}"><strong>{{ p.title }}</strong></a>
-      <span>{{ p.excerpt | strip_html | truncatewords: 20 }}</span>
-    </div>
-  </li>
-{% endfor %}
+{% for p in projects limit: 4 %}{% include media-row.html item=p %}{% endfor %}
 </ul>
 
 [All projects →](/projects/)
 
 ## Writing
-<ul class="thumb-list">
-{% for post in site.posts limit: 4 %}
-  <li>
-    <a class="thumb-list__img" href="{{ post.url | relative_url }}" tabindex="-1" aria-hidden="true">{% if post.header.teaser %}<img src="{{ post.header.teaser | relative_url }}" alt="" loading="lazy">{% endif %}</a>
-    <div class="thumb-list__text">
-      <a href="{{ post.url | relative_url }}"><strong>{{ post.title }}</strong></a>
-      <span>{{ post.date | date: "%B %Y" }} · {{ post.excerpt | strip_html | truncatewords: 16 }}</span>
-    </div>
-  </li>
-{% endfor %}
+<ul class="media-list">
+{% for post in site.posts limit: 4 %}{% include media-row.html item=post %}{% endfor %}
 </ul>
 
 [All writing →](/blog/)

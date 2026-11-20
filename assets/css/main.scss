@@ -40,42 +40,67 @@
 /* Site additions: wide Mermaid diagrams scroll sideways rather than shrink */
 pre:has(> code.language-mermaid) { overflow-x: auto; }
 
-/* Site additions: compact lists with small thumbnails on the homepage */
-.thumb-list {
+/* Site additions: YouTube-style rows (thumbnail left, text right) */
+.media-list {
   list-style: none;
-  margin: 0 0 1em;
+  margin: 0.5em 0 1em;
   padding: 0;
 }
-.thumb-list li {
+.media-row {
   display: flex;
-  gap: 0.9em;
+  gap: 1em;
   align-items: flex-start;
-  margin-bottom: 1em;
+  margin-bottom: 1.1em;
 }
-.thumb-list__img {
+.media-row__thumb {
   flex: none;
-  width: 88px;
-  height: 56px;
-  border-radius: 4px;
+  width: 176px;
+  aspect-ratio: 16 / 9;
+  border-radius: 8px;
   overflow: hidden;
   background: var(--global-border-color);
-  margin-top: 0.2em;
 }
-.thumb-list__img img {
+.media-row__thumb img {
   width: 100%;
   height: 100%;
   object-fit: cover;
   display: block;
+  transition: transform .2s ease;
 }
-.thumb-list__text {
-  min-width: 0;
-  line-height: 1.45;
-}
-.thumb-list__text a { text-decoration: none; }
-.thumb-list__text a:hover { text-decoration: underline; }
-.thumb-list__text span {
+.media-row:hover .media-row__thumb img { transform: scale(1.03); }
+.media-row__body { min-width: 0; }
+.page__content .media-row a,
+.media-row a { text-decoration: none; }
+.page__content .media-row a.media-row__title,
+.media-row__title {
   display: block;
-  font-size: 0.85em;
+  font-size: 0.95em;
+  font-weight: 600;
+  line-height: 1.35;
+  color: var(--global-text-color);
+  text-decoration: none;
+}
+.page__content .media-row__title:hover { text-decoration: underline; }
+.media-row p { margin: 0; }
+.media-row__meta,
+.page__content .media-row p.media-row__meta {
+  font-size: 0.72em;
   color: var(--global-text-color-light);
-  margin-top: 0.15em;
+  margin-top: 0.3em !important;
+}
+.media-row__desc,
+.page__content .media-row p.media-row__desc {
+  font-size: 0.78em;
+  line-height: 1.5;
+  color: var(--global-text-color);
+  opacity: .72;
+  margin-top: 0.35em !important;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+@media (max-width: 600px) {
+  .media-row__thumb { width: 128px; border-radius: 6px; }
+  .media-row__desc { display: none; }
 }
