@@ -1,0 +1,61 @@
+# Site built on Hyde (https://github.com/poole/hyde) by @mdo, MIT licensed.
+
+title:        "Arnav Verma"
+tagline:      "AI Engineering & Research"
+description:  "Portfolio of Arnav Verma — machine learning research and engineering."
+url:          "https://namesarnav.com"
+baseurl:      ""
+author:
+  name:       "Arnav Verma"
+image:        "/og.png"
+
+# Hyde sidebar colour. One of: theme-base-08 (red) … theme-base-0f (brown).
+# Leave blank for the classic charcoal sidebar.
+theme_class:  ""
+# Set true to put the sidebar on the right.
+reverse_layout: false
+
+# Sidebar navigation, in order.
+nav:
+  - { label: "About",          url: "/" }
+  - { label: "Research",       url: "/research/" }
+  - { label: "Projects",       url: "/projects/" }
+  - { label: "Writing",        url: "/blog/" }
+  - { label: "Education",      url: "/education/" }
+  - { label: "Skills",         url: "/skills/" }
+  - { label: "Certifications", url: "/certifications/" }
+# /documents/ exists but is deliberately unlisted.
+
+markdown:     kramdown
+highlighter:  rouge
+kramdown:
+  input:      GFM
+  hard_wrap:  false
+  syntax_highlighter: rouge
+  math_engine: mathjax
+
+permalink:    pretty
+
+collections:
+  projects:
+    output:    true
+    permalink: /projects/:name/
+
+defaults:
+  - scope: { path: "", type: "projects" }
+    values: { layout: "project", render_with_liquid: false }
+  - scope: { path: "", type: "posts" }
+    values: { layout: "post", permalink: "/blog/:slug/", render_with_liquid: false }
+
+plugins:
+  - jekyll-sitemap
+  - jekyll-seo-tag
+
+exclude:
+  - README.md
+  - LICENSE
+  - Gemfile
+  - Gemfile.lock
+  - vendor
+  - .bundle
+  - .jekyll-cache

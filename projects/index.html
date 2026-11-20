@@ -1,0 +1,25 @@
+---
+layout: page
+title: Projects
+---
+{% assign d = site.data.projects %}
+<p class="lead">{{ d.blurb }}</p>
+
+<div class="posts">
+  {% assign projects = site.projects | sort: "order" %}
+  {% for p in projects %}
+  <div class="post card">
+    {% if p.image %}<a href="{{ p.url | relative_url }}"><img class="thumb" src="{{ p.image | relative_url }}" alt="" loading="lazy"></a>{% endif %}
+    <h2 class="post-title"><a href="{{ p.url | relative_url }}">{{ p.title }}</a></h2>
+    {% if p.tags.size > 0 %}{% include tags.html tags=p.tags %}{% endif %}
+    <p>{{ p.description }}</p>
+    <p class="project-links">
+      <a href="{{ p.url | relative_url }}">{{ d.labels.read_more }} &rarr;</a>
+      {% if p.demo %}<a href="{{ p.demo }}" target="_blank" rel="noopener">{{ d.labels.demo }}</a>{% endif %}
+      {% if p.code %}<a href="{{ p.code }}" target="_blank" rel="noopener">{{ d.labels.code }}</a>{% endif %}
+    </p>
+  </div>
+  {% endfor %}
+</div>
+
+<p class="muted">More on {% for l in d.links %}<a href="{{ l.href }}" target="_blank" rel="noopener">{{ l.label }}</a>{% unless forloop.last %} &middot; {% endunless %}{% endfor %}.</p>

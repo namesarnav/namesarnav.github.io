@@ -1,0 +1,21 @@
+---
+layout: page
+title: Certifications
+permalink: /certifications/
+---
+{% assign c = site.data.certifications %}
+<p class="lead">{{ c.blurb }}</p>
+
+{% for item in c.items %}
+<div class="cert">
+  {% if item.thumbnail %}<img class="cert-badge" src="{{ item.thumbnail | relative_url }}" alt="">{% endif %}
+  <div>
+    <h3 class="cert-title">{% if item.credential %}<a href="{{ item.credential }}" target="_blank" rel="noopener">{{ item.title }}</a>{% else %}{{ item.title }}{% endif %}</h3>
+    {% if item.description %}<p>{{ item.description }}</p>{% endif %}
+    <p class="muted">
+      {% if item.date %}{{ item.date | date: "%B %Y" }}{% endif %}
+      {% if item.credential_id %} &middot; Credential {{ item.credential_id }}{% endif %}
+    </p>
+  </div>
+</div>
+{% endfor %}

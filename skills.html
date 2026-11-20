@@ -1,0 +1,20 @@
+---
+layout: page
+title: Skills
+permalink: /skills/
+---
+{% assign s = site.data.skills %}
+<p class="lead">{{ s.blurb }}</p>
+
+{% if s.legend %}
+<p class="legend">
+  {% for l in s.legend %}<span class="skill skill-{{ l[0] }}">{{ l[1] }}</span>{% endfor %}
+</p>
+{% endif %}
+
+{% for g in s.groups %}
+<h3>{{ g.name }}</h3>
+<p class="skills">
+  {% for i in g.items %}{% if i.name %}<span class="skill skill-{{ i.level | default: 'working' }}">{{ i.name }}</span>{% else %}<span class="skill skill-working">{{ i }}</span>{% endif %}{% endfor %}
+</p>
+{% endfor %}

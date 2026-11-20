@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+  {% include head.html %}
+
+  <body class="{{ site.theme_class }}{% if site.reverse_layout %} layout-reverse{% endif %}">
+
+    {% include sidebar.html %}
+
+    <div class="content container">
+      {{ content }}
+    </div>
+
+    {% include scripts.html %}
+  </body>
+</html>
