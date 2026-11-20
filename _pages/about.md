@@ -9,7 +9,7 @@ redirect_from:
 
 Hi, I'm Arnav Verma. I'm currently a Master's student in Computer Science at New York University's Courant Institute of Mathematical Sciences. Previously, I completed my Bachelor's in Computer Science, with a minor in Mathematics, at the University of North Texas.
 
-I work on language model safety and evaluations, representation learning, and the systems that make it practical. I am currently working on efficient training and evaluation of multimodal models.
+I work on language model safety, evaluation, and interpretability. I am also interested in representation learning and, more recently, world models.
 
 [CV](/cv/) · [Résumé (PDF)](/documents/resume.pdf)
 
