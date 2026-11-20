@@ -19,7 +19,7 @@ Earlier versions of the site: `legacy-2` (Next.js) and `legacy-site`.
 | Writing, one file each (served at `/blog/<slug>/`) | `_posts/` |
 | Unlisted documents page | `_pages/documents.md` |
 | Profile photo / social preview image | `images/profile.jpeg` / `images/og-image.png` |
-| Font (Work Sans sitewide) | `_sass/_themes.scss`, `_includes/head/custom.html` |
+| Font (Instrument Sans sitewide) | `_sass/_themes.scss`, `_includes/head/custom.html` |
 
 Posts and projects support Mermaid (```` ```mermaid ````) and maths (`$$…$$`).
 Liquid is switched off inside them, so `{{ }}` in code samples is safe.
