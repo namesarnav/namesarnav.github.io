@@ -56,15 +56,23 @@
     <div class="archive__item-excerpt" itemprop="description">{{ post.excerpt | markdownify }}<p><strong><a href="{{ base_path }}{{ post.url }}" rel="permalink">Read more</a></strong></p></div>
     {% endif %}
     
-    {% if post.collection == 'publications' and post.citation == nil and post.authors %}
-      <p>{% include author-list.html authors=post.authors %}</p>
-    {% endif %}
+    {% if post.collection == 'publications' %}
+      {% if post.authors %}<p class="archive__item-authors">{% include author-list.html authors=post.authors %}</p>{% endif %}
+      {% if post.paperurl or post.bibtex or post.codeurl %}
+      <p class="archive__item-links">
+        {% if post.paperurl %}<a href="{{ post.paperurl }}">PDF</a>{% endif %}
+        {% if post.codeurl %}{% if post.paperurl %} · {% endif %}<a href="{{ post.codeurl }}">Code</a>{% endif %}
+        {% if post.bibtex %}{% if post.paperurl or post.codeurl %} · {% endif %}<a href="{{ base_path }}{{ post.url }}#bibtex">BibTeX</a>{% endif %}
+      </p>
+      {% endif %}
+    {% else %}
     {% include /components/citations.html
         citation=post.citation
         paperurl=post.paperurl
         slidesurl=post.slidesurl
         bibtexurl=post.bibtexurl
-    %}    
+    %}
+    {% endif %}    
 
   </article>
 </div>
