@@ -56,6 +56,9 @@
     <div class="archive__item-excerpt" itemprop="description">{{ post.excerpt | markdownify }}<p><strong><a href="{{ base_path }}{{ post.url }}" rel="permalink">Read more</a></strong></p></div>
     {% endif %}
     
+    {% if post.collection == 'publications' and post.citation == nil and post.authors %}
+      <p>{% include author-list.html authors=post.authors %}</p>
+    {% endif %}
     {% include /components/citations.html
         citation=post.citation
         paperurl=post.paperurl

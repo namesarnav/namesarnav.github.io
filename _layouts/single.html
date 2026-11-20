@@ -49,6 +49,9 @@ layout: default
       <section class="page__content" itemprop="text">
         {{ content }}
 
+        {% if page.collection == 'publications' and page.citation == nil and page.authors %}
+          <p>{% include author-list.html authors=page.authors %}</p>
+        {% endif %}
         {% include /components/citations.html
             citation=page.citation
             paperurl=page.paperurl
