@@ -1,0 +1,20 @@
+{% assign hero = site.data.hero %}
+{% assign contact = site.data.contact %}
+<aside class="author">
+  {% if hero.photo %}<img class="author-avatar" src="{{ hero.photo | relative_url }}" alt="{{ hero.name }}">{% endif %}
+  <div class="author-text">
+    <h2 class="author-name">{{ hero.name }}</h2>
+    <ul class="author-links">
+      {% if hero.affiliation %}<li><i class="fa-solid fa-building-columns fa-fw" aria-hidden="true"></i><span>{{ hero.affiliation }}</span></li>{% endif %}
+      {% if hero.location %}<li><i class="fa-solid fa-location-dot fa-fw" aria-hidden="true"></i><span>{{ hero.location }}</span></li>{% endif %}
+      {% if contact.email %}<li><a href="mailto:{{ contact.email }}"><i class="fa-solid fa-envelope fa-fw" aria-hidden="true"></i><span>Email</span></a></li>{% endif %}
+      {% for s in contact.socials %}
+        {% assign key = s[0] %}{% assign meta = site.data.social_names[key] %}
+        <li><a href="{{ s[1] }}" target="_blank" rel="noopener">
+          {% if meta.icon %}<i class="{{ meta.icon }} fa-fw" aria-hidden="true"></i>{% else %}<span class="fa-fw emoji" aria-hidden="true">{{ meta.emoji }}</span>{% endif %}
+          <span>{{ meta.label | default: s[0] }}</span>
+        </a></li>
+      {% endfor %}
+    </ul>
+  </div>
+</aside>

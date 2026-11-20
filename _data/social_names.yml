@@ -1,10 +1,11 @@
-github: "GitHub"
-linkedin: "LinkedIn"
-huggingface: "Hugging Face"
-hashnode: "Hashnode"
-medium: "Medium"
-youtube: "YouTube"
-google_scholar: "Google Scholar"
-open_review: "OpenReview"
-instagram: "Instagram"
-spotify: "Spotify"
+# Label and Font Awesome icon for each key in contact.yml `socials`.
+github:         { label: "GitHub",         icon: "fa-brands fa-github" }
+linkedin:       { label: "LinkedIn",       icon: "fa-brands fa-linkedin" }
+google_scholar: { label: "Google Scholar", icon: "fa-brands fa-google-scholar" }
+huggingface:    { label: "Hugging Face",   emoji: "🤗" }
+hashnode:       { label: "Hashnode",       icon: "fa-brands fa-hashnode" }
+medium:         { label: "Medium",         icon: "fa-brands fa-medium" }
+youtube:        { label: "YouTube",        icon: "fa-brands fa-youtube" }
+open_review:    { label: "OpenReview",     icon: "fa-solid fa-book-open" }
+instagram:      { label: "Instagram",      icon: "fa-brands fa-instagram" }
+spotify:        { label: "Spotify",        icon: "fa-brands fa-spotify" }

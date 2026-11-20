@@ -1,4 +1,4 @@
-# Site built on Hyde (https://github.com/poole/hyde) by @mdo, MIT licensed.
+# Academic profile, in the spirit of AcademicPages (https://academicpages.github.io).
 
 title:        "Arnav Verma"
 tagline:      "AI Engineering & Research"
@@ -9,21 +9,15 @@ author:
   name:       "Arnav Verma"
 image:        "/og.png"
 
-# Hyde sidebar colour. One of: theme-base-08 (red) … theme-base-0f (brown).
-# Leave blank for the classic charcoal sidebar.
-theme_class:  ""
-# Set true to put the sidebar on the right.
-reverse_layout: false
-
-# Sidebar navigation, in order.
+# Top-bar navigation, in order. `external: true` opens in a new tab.
 nav:
-  - { label: "About",          url: "/" }
-  - { label: "Research",       url: "/research/" }
+  - { label: "Publications",   url: "/publications/" }
   - { label: "Projects",       url: "/projects/" }
   - { label: "Writing",        url: "/blog/" }
   - { label: "Education",      url: "/education/" }
   - { label: "Skills",         url: "/skills/" }
   - { label: "Certifications", url: "/certifications/" }
+  - { label: "CV",             url: "/documents/resume.pdf" }
 # /documents/ exists but is deliberately unlisted.
 
 markdown:     kramdown

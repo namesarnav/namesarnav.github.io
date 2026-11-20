@@ -1,0 +1,8 @@
+{% assign r = site.data.research %}
+{% assign paper = include.paper %}
+<li class="pub">
+  <span class="pub-title">{{ paper.title | strip }}</span><br>
+  <span class="pub-authors">{% for a in paper.authors %}{% if a == r.highlight_author %}<span class="me">{{ a }}</span>{% else %}{{ a }}{% endif %}{% unless forloop.last %}, {% endunless %}{% endfor %}</span><br>
+  <span class="pub-venue status-{{ paper.stage }}">{{ paper.status }}</span>
+  {% if paper.links %}<br><span class="pub-links">{% for l in paper.links %}<a href="{{ l[1] }}" target="_blank" rel="noopener">{{ l[0] | upcase }}</a>{% unless forloop.last %} &middot; {% endunless %}{% endfor %}</span>{% endif %}
+</li>

@@ -9,7 +9,7 @@ layout: default
   </span>
   {% if page.tags.size > 0 %}{% include tags.html tags=page.tags %}{% endif %}
   {% if page.also_on %}
-    <p class="message">Also published at <a href="{{ page.also_on }}" target="_blank" rel="noopener">{{ page.also_on | split: "/" | slice: 2 | first }}</a>.</p>
+    <p class="note">Also published at <a href="{{ page.also_on }}" target="_blank" rel="noopener">{{ page.also_on | split: "/" | slice: 2 | first }}</a>.</p>
   {% endif %}
   {{ content }}
 </div>

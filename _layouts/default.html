@@ -1,16 +1,17 @@
 <!DOCTYPE html>
-<html lang="en-us">
-
+<html lang="en">
   {% include head.html %}
-
-  <body class="{{ site.theme_class }}{% if site.reverse_layout %} layout-reverse{% endif %}">
-
-    {% include sidebar.html %}
-
-    <div class="content container">
-      {{ content }}
+  <body>
+    {% include masthead.html %}
+    <div class="wrapper">
+      {% include author-profile.html %}
+      <main class="main" id="main">
+        {{ content }}
+      </main>
     </div>
-
+    <footer class="footer">
+      &copy; {{ site.time | date: '%Y' }} {{ site.author.name }} &middot; <a href="{{ '/atom.xml' | relative_url }}">Feed</a>
+    </footer>
     {% include scripts.html %}
   </body>
 </html>

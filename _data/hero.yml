@@ -1,38 +1,23 @@
-# The opening screen: name and title.
-# `tagline`, `location` and `actions` are all optional — delete what you don't need.
+# The profile column and the About section on the homepage.
 
 name: "Arnav Verma"
-title: "AI Engineering & Research"
-
-tagline: >
-  I work on language model safety and evaluations, representation learning and the systems that make it practical.
-  Currently a Masters student at NYU Courant.
-  Currently working on efficient training and evaluation of multimodal models.
-
-location: "📍 New York, NY"
-
-# A file in public/ or a full URL. Delete the line and the hero goes text-only.
+# Shown under your name in the profile column.
+affiliation: "New York University, Courant"
+location: "New York, NY"
+# A file in the repo or a full URL. Delete the line to drop the photo.
 photo: "/sexy-arnav.jpeg"
-# Optional. Defaults to `name`, which is what you want for a portrait.
-# photo_alt: "Arnav Verma"
 
-# Credential badges, shown under the portrait: the badge art with its name
-# beneath it. `href` makes the whole badge a link to the credential itself.
-# Keep `label` short — it sits under the art, in a column as wide as the photo.
-# Delete the whole `badges:` block and none render.
-badges:
-  - image: "/logos/ckad.png"
-    label: "Certified Kubernetes Application Developer"
-    href: "https://www.credly.com/badges/f5646465-5d5c-4567-bf56-23a64b9b6e54/public_url"
+# The About section. Markdown: blank lines make paragraphs, **bold** works.
+bio: |
+  Hi, I'm Arnav Verma. I'm currently a Master's student in Computer Science at
+  New York University's Courant Institute of Mathematical Sciences. Previously, I
+  completed my Bachelor's in Computer Science, with a minor in Mathematics, at the
+  University of North Texas.
 
-# Optional butto  ns under the tagline. Delete the whole `actions:` block to hide them.
-actions:
-  - label: "View My Work"
-    href: "#projects"
-    variant: "primary"
-  - label: "Get in Touch"
-    href: "#contact"
-    variant: "secondary"
-  - label: "View Resume"
-    href: "/documents/resume.pdf"
-    variant: "secondary"
+  I work on language model safety and evaluations, representation learning, and
+  the systems that make it practical. I am currently working on efficient training
+  and evaluation of multimodal models.
+
+# Links under the bio.
+links:
+  - { label: "CV", href: "/documents/resume.pdf" }

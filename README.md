@@ -1,7 +1,8 @@
 # namesarnav.github.io
 
-Personal site of Arnav Verma, built with [Jekyll](https://jekyllrb.com) on the
-[Hyde](https://github.com/poole/hyde) theme by [@mdo](https://github.com/mdo) (MIT).
+Academic profile of Arnav Verma, built with [Jekyll](https://jekyllrb.com). The
+layout (top bar, profile column, single reading column, dark mode) follows
+[AcademicPages](https://academicpages.github.io).
 
 The previous Next.js site lives on the `legacy-2` branch (and the one before
 that on `legacy-site`).
@@ -10,22 +11,18 @@ that on `legacy-site`).
 
 | What | Where |
 | --- | --- |
-| Site title, tagline, sidebar nav, sidebar colour | `_config.yml` |
-| Homepage text, photo, "Latest" list | `_data/hero.yml`, `_data/news.yml` |
-| Contact details and social links (sidebar + homepage) | `_data/contact.yml` |
-| Research, education, skills, certifications, documents | `_data/*.yml` |
+| Site title, tagline, top-bar nav | `_config.yml` |
+| Bio, photo, affiliation, News list | `_data/hero.yml`, `_data/news.yml` |
+| Email and profile links (icons: `_data/social_names.yml`) | `_data/contact.yml` |
+| Publications (`research.yml`), education, skills, certifications, documents | `_data/*.yml` |
 | Projects (one file each, front matter = card) | `_projects/<slug>.md` |
 | Writing (one file each, front matter = card) | `_posts/YYYY-MM-DD-<slug>.md` |
 | Images, PDFs | `projects/`, `blog/`, `logos/`, `certifications/`, `documents/` |
-| Hyde CSS (untouched) / site additions | `public/css/{poole,hyde,syntax}.css` / `public/css/site.css` |
+| All styles (light and dark tokens at the top) | `assets/css/main.css` |
 
 Posts and projects support GitHub-flavoured Markdown, ```` ```mermaid ```` fences,
 and maths (`$$…$$`, inline or display) on pages with `math: true` in their front
 matter. Liquid is switched off inside them, so `{{ }}` in code samples is safe.
-
-To change the sidebar colour, set `theme_class` in `_config.yml` to one of
-Hyde's `theme-base-08` … `theme-base-0f`. `reverse_layout: true` moves the
-sidebar to the right.
 
 ## Run locally
 
