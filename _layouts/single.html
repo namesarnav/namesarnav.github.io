@@ -47,17 +47,17 @@ layout: default
       {% endunless %}
 
       <section class="page__content" itemprop="text">
-        {{ content }}
-
-        {% if page.collection == 'publications' and page.citation == nil and page.authors %}
-          <p>{% include author-list.html authors=page.authors %}</p>
-        {% endif %}
-        {% include /components/citations.html
-            citation=page.citation
-            paperurl=page.paperurl
-            slidesurl=page.slidesurl
-            bibtexurl=page.bibtexurl
-        %}         
+        {% if page.collection == 'publications' %}
+          {% include publication-detail.html %}
+        {% else %}
+          {{ content }}
+          {% include /components/citations.html
+              citation=page.citation
+              paperurl=page.paperurl
+              slidesurl=page.slidesurl
+              bibtexurl=page.bibtexurl
+          %}
+        {% endif %}         
 
         {% if page.link %}<div><a href="{{ page.link }}" class="btn">{{ site.data.ui-text[site.locale].ext_link_label | default: "Direct Link" }}</a></div>{% endif %}
       </section>

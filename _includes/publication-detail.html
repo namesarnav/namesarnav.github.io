@@ -1,0 +1,32 @@
+{%- comment -%}
+  The body of a publication page, built from its front matter: authors, link
+  buttons (PDF, anthology/landing page, code, slides), abstract and BibTeX.
+{%- endcomment -%}
+{% if page.authors %}
+  <p class="pub-authors">{% include author-list.html authors=page.authors %}</p>
+{% endif %}
+
+{% if page.paperurl or page.url_landing or page.codeurl or page.slidesurl or page.bibtex %}
+<p class="pub-links">
+  {% if page.paperurl %}<a class="pub-links__primary" href="{{ page.paperurl }}"><i class="fas fa-file-pdf" aria-hidden="true"></i> PDF</a>{% endif %}
+  {% if page.url_landing %}<a href="{{ page.url_landing }}">{{ page.url_landing_label | default: "Paper page" }}</a>{% endif %}
+  {% if page.codeurl %}<a href="{{ page.codeurl }}"><i class="fab fa-github" aria-hidden="true"></i> Code</a>{% endif %}
+  {% if page.slidesurl %}<a href="{{ page.slidesurl }}">Slides</a>{% endif %}
+  {% if page.bibtex %}<a href="#bibtex">BibTeX</a>{% endif %}
+</p>
+{% endif %}
+
+{% if page.abstract %}
+<h2>Abstract</h2>
+<p>{{ page.abstract }}</p>
+{% endif %}
+
+{{ content }}
+
+{% if page.bibtex %}
+<h2 id="bibtex">BibTeX</h2>
+<div class="pub-bibtex highlighter-rouge"><div class="highlight"><pre class="highlight"><code>{{ page.bibtex | strip | xml_escape }}</code></pre></div></div>
+{% elsif page.citation %}
+<h2>Citation</h2>
+<p>{{ page.citation }}</p>
+{% endif %}
