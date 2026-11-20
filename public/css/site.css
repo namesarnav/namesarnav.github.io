@@ -3,6 +3,17 @@
  * Hyde's palette, nothing that fights the theme.
  */
 
+/* Type: Inter for text, PT Serif for headings */
+html, body, .message {
+  font-family: "Inter", -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, sans-serif;
+}
+h1, h2, h3, h4, h5, h6,
+.sidebar-about h1,
+.page-title, .post-title {
+  font-family: "PT Serif", Georgia, "Times New Roman", serif;
+}
+.sidebar-about h1 { font-weight: 700; letter-spacing: -.01em; }
+
 /* Sidebar */
 .sidebar-avatar {
   display: block;
