@@ -1,10 +1,10 @@
 ---
 title: Adapting LLaMA for NER Tasks
 slug: adapting-llama-for-ner-tasks
-description: Customize your models using PEFT. Fine-tuning LLaMA 3.2 1B for token
-  classification with LoRA adapters and 4-bit quantization, on a single GPU.
-reading_time: 7 min read
-image: "/blog/adapting-llama-for-ner-tasks.webp"
+excerpt: Customize your models using PEFT. Fine-tuning LLaMA 3.2 1B for token classification
+  with LoRA adapters and 4-bit quantization, on a single GPU.
+header:
+  teaser: "/blog/adapting-llama-for-ner-tasks.webp"
 tags:
 - Large Language Models
 - LLM Finetuning

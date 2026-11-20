@@ -1,8 +1,0 @@
-# Writing page. The posts themselves live in _posts/ — one Markdown file each,
-# with title, description, tags, reading_time, image and (optionally) `also_on`
-# in the front matter.
-heading: "Writing"
-blurb: "Posts on things I've worked through and wanted to explain properly."
-links:
-  - { label: "Hashnode", href: "https://arnavverma.hashnode.dev" }
-  - { label: "Medium",   href: "https://medium.com/@namesarnav" }

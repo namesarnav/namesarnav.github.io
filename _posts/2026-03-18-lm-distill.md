@@ -1,18 +1,19 @@
 ---
 title: Language Model Distillation
 slug: lm-distill
-description: 'Training a small student model to behave like a large teacher: what
-  the soft probabilities actually carry, how to transfer attention patterns when the
-  two models are different sizes, and how to tell whether it worked.'
-reading_time: 13 min read
-image: "/blog/lm-distill.webp"
+excerpt: 'Training a small student model to behave like a large teacher: what the
+  soft probabilities actually carry, how to transfer attention patterns when the two
+  models are different sizes, and how to tell whether it worked.'
+header:
+  teaser: "/blog/lm-distill.webp"
 tags:
 - Knowledge Distillation
 - LLM
 - Model Compression
 - PyTorch
-also_on: https://arnavverma.hashnode.dev/model-distillation
 ---
+*Also published on [arnavverma.hashnode.dev](https://arnavverma.hashnode.dev/model-distillation).*
+
 Knowledge distillation is a technique for training smaller neural networks to perform like larger ones. The basic idea is simple: train a small "student" model to copy the behavior of a large "teacher" model. This lets you compress years of training and billions of parameters into something you can actually deploy. But making this work well requires understanding probability matching, intermediate representations, and training dynamics.
 
 ## How Distillation Works

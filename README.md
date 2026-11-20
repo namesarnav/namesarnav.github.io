@@ -1,37 +1,45 @@
 # namesarnav.github.io
 
-Academic profile of Arnav Verma, built with [Jekyll](https://jekyllrb.com). The
-layout (top bar, profile column, single reading column, dark mode) follows
-[AcademicPages](https://academicpages.github.io).
+Academic profile of Arnav Verma, built on the
+[AcademicPages](https://github.com/academicpages/academicpages.github.io) Jekyll
+template (a fork of Minimal Mistakes). Template licence: `LICENSE-academicpages`.
 
-The previous Next.js site lives on the `legacy-2` branch (and the one before
-that on `legacy-site`).
+Earlier versions of the site: `legacy-2` (Next.js) and `legacy-site`.
 
 ## Where things live
 
 | What | Where |
 | --- | --- |
-| Site title, tagline, top-bar nav | `_config.yml` |
-| Bio, photo, affiliation, News list | `_data/hero.yml`, `_data/news.yml` |
-| Email and profile links (icons: `_data/social_names.yml`) | `_data/contact.yml` |
-| Publications (`research.yml`), education, skills, certifications, documents | `_data/*.yml` |
-| Projects (one file each, front matter = card) | `_projects/<slug>.md` |
-| Writing (one file each, front matter = card) | `_posts/YYYY-MM-DD-<slug>.md` |
-| Images, PDFs | `projects/`, `blog/`, `logos/`, `certifications/`, `documents/` |
-| All styles (light and dark tokens at the top) | `assets/css/main.css` |
+| Name, sidebar bio, affiliation, profile links | `_config.yml` → `author:` |
+| Top-bar links | `_data/navigation.yml` |
+| Homepage (About, News, Publications, Selected projects) | `_pages/about.md` |
+| CV (education, skills, certifications) | `_pages/cv.md` |
+| Publications, one file each | `_publications/` |
+| Projects, one file each (served at `/projects/<name>/`) | `_portfolio/` |
+| Writing, one file each (served at `/blog/<slug>/`) | `_posts/` |
+| Unlisted documents page | `_pages/documents.md` |
+| Profile photo / social preview image | `images/profile.jpeg` / `images/og-image.png` |
+| Fonts (Inter text, PT Serif headings) | `_sass/_themes.scss`, `_includes/head/custom.html` |
 
-Posts and projects support GitHub-flavoured Markdown, ```` ```mermaid ```` fences,
-and maths (`$$…$$`, inline or display) on pages with `math: true` in their front
-matter. Liquid is switched off inside them, so `{{ }}` in code samples is safe.
+Posts and projects support Mermaid (```` ```mermaid ````) and maths (`$$…$$`).
+Liquid is switched off inside them, so `{{ }}` in code samples is safe.
+
+### Changes made to the template
+
+- `author-profile.html`: Hugging Face and Hashnode links (`author.huggingface`, `author.hashnode`).
+- `archive-single.html` / `single.html`: an `under_review` publication category,
+  project thumbnails from any site path, no build-date "Published" line on projects.
+- `_main.js`: wide Mermaid diagrams scroll instead of shrinking.
 
 ## Run locally
 
 ```bash
 bundle install
-bundle exec jekyll serve      # http://localhost:4000
+npx uglify-js assets/js/plugins/jquery.greedy-navigation.js assets/js/_main.js assets/js/theme.js -c -m -o assets/js/main.min.js
+bundle exec jekyll serve -l -H localhost   # open http://localhost:4000, not 127.0.0.1
 ```
 
 ## Deploy
 
-Every push to `main` builds with Jekyll and deploys through GitHub Actions
-(`.github/workflows/deploy.yml`). Pages source must be set to **GitHub Actions**.
+Every push to `main` builds and deploys through GitHub Actions
+(`.github/workflows/deploy.yml`, adapted from the template's own workflow).

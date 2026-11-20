@@ -1,0 +1,19 @@
+---
+layout: archive
+title: "Projects"
+permalink: /projects/
+redirect_from:
+  - /portfolio/
+author_profile: true
+---
+
+{% include base_path %}
+
+
+<div class="grid__wrapper">
+{% assign projects = site.portfolio | sort: "order" %}
+{% for post in projects %}
+  {% include archive-single.html type="grid" %}
+{% endfor %}
+</div>
+

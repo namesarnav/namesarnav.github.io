@@ -1,17 +1,31 @@
-<!DOCTYPE html>
-<html lang="en">
-  {% include head.html %}
+---
+layout: compress
+---
+
+{% include base_path %}
+
+<!doctype html>
+<html lang="{{ site.locale | slice: 0,2 }}" class="no-js"{% if site.site_theme == "dark" %} data-theme="dark"{% endif %}>
+  <head>
+    {% include head.html %}
+    {% include head/custom.html %}
+  </head>
+
   <body>
+
+    {% include browser-upgrade.html %}
     {% include masthead.html %}
-    <div class="wrapper">
-      {% include author-profile.html %}
-      <main class="main" id="main">
-        {{ content }}
-      </main>
+
+    {{ content }}
+
+    <div class="page__footer">
+      <footer>
+        {% include footer/custom.html %}
+        {% include footer.html %}
+      </footer>
     </div>
-    <footer class="footer">
-      &copy; {{ site.time | date: '%Y' }} {{ site.author.name }} &middot; <a href="{{ '/atom.xml' | relative_url }}">Feed</a>
-    </footer>
+
     {% include scripts.html %}
+
   </body>
 </html>
