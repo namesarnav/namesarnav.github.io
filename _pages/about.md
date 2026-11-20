@@ -21,13 +21,36 @@ I work on language model safety and evaluations, representation learning, and th
 
 ## Publications
 {% for post in site.publications reversed %}
-* **{{ post.title }}**<br>{{ post.citation | split: " (20" | first }}<br>{% if post.category == "under_review" %}<i>Under review at {{ post.venue }}</i>{% else %}<i>{{ post.venue }}</i>{% endif %}
+* **{{ post.title }}**<br>{{ post.citation | split: " (20" | first }}<br>{% if post.category == "in_progress" %}<i>In progress</i>{% else %}<i>{{ post.venue }}</i>{% endif %}
 {% endfor %}
 
 ## Selected projects
+<ul class="thumb-list">
 {% assign projects = site.portfolio | sort: "order" %}
 {% for p in projects limit: 4 %}
-* [**{{ p.title }}**]({{ p.url }}) — {{ p.excerpt | truncatewords: 22 }}
+  <li>
+    <a class="thumb-list__img" href="{{ p.url | relative_url }}" tabindex="-1" aria-hidden="true">{% if p.header.teaser %}<img src="{{ p.header.teaser | relative_url }}" alt="" loading="lazy">{% endif %}</a>
+    <div class="thumb-list__text">
+      <a href="{{ p.url | relative_url }}"><strong>{{ p.title }}</strong></a>
+      <span>{{ p.excerpt | strip_html | truncatewords: 20 }}</span>
+    </div>
+  </li>
 {% endfor %}
+</ul>
 
 [All projects →](/projects/)
+
+## Writing
+<ul class="thumb-list">
+{% for post in site.posts limit: 4 %}
+  <li>
+    <a class="thumb-list__img" href="{{ post.url | relative_url }}" tabindex="-1" aria-hidden="true">{% if post.header.teaser %}<img src="{{ post.header.teaser | relative_url }}" alt="" loading="lazy">{% endif %}</a>
+    <div class="thumb-list__text">
+      <a href="{{ post.url | relative_url }}"><strong>{{ post.title }}</strong></a>
+      <span>{{ post.date | date: "%B %Y" }} · {{ post.excerpt | strip_html | truncatewords: 16 }}</span>
+    </div>
+  </li>
+{% endfor %}
+</ul>
+
+[All writing →](/blog/)

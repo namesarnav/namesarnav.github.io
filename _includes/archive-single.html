@@ -42,8 +42,8 @@
 
         {% if post.collection == 'teaching' %}
           <p> {{ post.type }}, <i>{{ post.venue }}</i>, {{ post.date | default: "1900-01-01" | date: "%Y" }} </p>
-        {% elsif post.collection == 'publications' and post.category == 'under_review' %}
-          <p>Under review at <i>{{ post.venue }}</i></p>
+        {% elsif post.collection == 'publications' and post.category == 'in_progress' %}
+          <p><i>In progress</i></p>
         {% elsif post.collection == 'publications' %}
           <p>Published in <i>{{ post.venue }}</i>, {{ post.date | default: "1900-01-01" | date: "%Y" }} </p>
         {% elsif post.date and post.collection == 'posts' %}

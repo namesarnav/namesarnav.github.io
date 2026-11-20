@@ -12,14 +12,14 @@ Earlier versions of the site: `legacy-2` (Next.js) and `legacy-site`.
 | --- | --- |
 | Name, sidebar bio, affiliation, profile links | `_config.yml` → `author:` |
 | Top-bar links | `_data/navigation.yml` |
-| Homepage (About, News, Publications, Selected projects) | `_pages/about.md` |
+| Homepage (About, News, Publications, Selected projects, Writing) | `_pages/about.md` |
 | CV (education, skills, certifications) | `_pages/cv.md` |
 | Publications, one file each | `_publications/` |
 | Projects, one file each (served at `/projects/<name>/`) | `_portfolio/` |
 | Writing, one file each (served at `/blog/<slug>/`) | `_posts/` |
 | Unlisted documents page | `_pages/documents.md` |
 | Profile photo / social preview image | `images/profile.jpeg` / `images/og-image.png` |
-| Fonts (Inter text, PT Serif headings) | `_sass/_themes.scss`, `_includes/head/custom.html` |
+| Font (Work Sans sitewide) | `_sass/_themes.scss`, `_includes/head/custom.html` |
 
 Posts and projects support Mermaid (```` ```mermaid ````) and maths (`$$…$$`).
 Liquid is switched off inside them, so `{{ }}` in code samples is safe.
@@ -27,7 +27,7 @@ Liquid is switched off inside them, so `{{ }}` in code samples is safe.
 ### Changes made to the template
 
 - `author-profile.html`: Hugging Face and Hashnode links (`author.huggingface`, `author.hashnode`).
-- `archive-single.html` / `single.html`: an `under_review` publication category,
+- `archive-single.html` / `single.html`: an `in_progress` publication category,
   project thumbnails from any site path, no build-date "Published" line on projects.
 - `_main.js`: wide Mermaid diagrams scroll instead of shrinking.
 

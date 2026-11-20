@@ -39,3 +39,43 @@
 
 /* Site additions: wide Mermaid diagrams scroll sideways rather than shrink */
 pre:has(> code.language-mermaid) { overflow-x: auto; }
+
+/* Site additions: compact lists with small thumbnails on the homepage */
+.thumb-list {
+  list-style: none;
+  margin: 0 0 1em;
+  padding: 0;
+}
+.thumb-list li {
+  display: flex;
+  gap: 0.9em;
+  align-items: flex-start;
+  margin-bottom: 1em;
+}
+.thumb-list__img {
+  flex: none;
+  width: 88px;
+  height: 56px;
+  border-radius: 4px;
+  overflow: hidden;
+  background: var(--global-border-color);
+  margin-top: 0.2em;
+}
+.thumb-list__img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+.thumb-list__text {
+  min-width: 0;
+  line-height: 1.45;
+}
+.thumb-list__text a { text-decoration: none; }
+.thumb-list__text a:hover { text-decoration: underline; }
+.thumb-list__text span {
+  display: block;
+  font-size: 0.85em;
+  color: var(--global-text-color-light);
+  margin-top: 0.15em;
+}
