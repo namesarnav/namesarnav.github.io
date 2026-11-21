@@ -18,8 +18,8 @@ Education
 ======
 * **M.S. Computer Science**, New York University, Courant Institute of Mathematical Sciences, Expected 05/28
   * Washington Square Campus, New York, NY
-  * Coursework: Fundamental Algorithms - Yap Chee; Machine Learning - Kyunghyun Cho; Deep Learning - Yann LeCun
-  * Affiliations: Tech@NYU, HackNYU, IEEE Computer Society
+  * Coursework: Fundamental Algorithms - Yap Chee; Machine Learning - Kyunghyun Cho; Reinforcement Learning with Foundation Models - Sherry Yang
+  * Affiliations: NYU AI Safety Club, NYU Math Club, IEEE Computer Society
 
 * **B.S. Computer Science, Mathematics Minor**, University of North Texas, 01/23 – 05/26
   * Dallas-Fort Worth, TX · GPA 3.70
